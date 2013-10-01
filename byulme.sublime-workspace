@@ -1,0 +1,554 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"defa",
+				"preventDefault"
+			],
+			[
+				"data",
+				"dataOld"
+			],
+			[
+				"display",
+				"displayGridBody"
+			],
+			[
+				"grid",
+				"gridData1"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"mul",
+				"multiReverse"
+			],
+			[
+				"pagin",
+				"paginationarea"
+			],
+			[
+				"opt",
+				"opt1label"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"Na",
+				"NanumGothicBold"
+			],
+			[
+				"getel",
+				"getElementAbsPosY"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/JSLint/JSLint.sublime-build",
+	"command_palette":
+	{
+		"height": 51.0,
+		"selected_items":
+		[
+			[
+				"insap",
+				"Package Control: Install Package"
+			],
+			[
+				"insp",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: instp",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: insp",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: install ",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"github",
+				"Github: Blame"
+			],
+			[
+				"github: open",
+				"Github: Open File"
+			],
+			[
+				"inta",
+				"Package Control: Install Package"
+			],
+			[
+				"intap",
+				"Package Control: Install Package"
+			],
+			[
+				"instalp",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instap",
+				"Package Control: Install Package"
+			],
+			[
+				"removep",
+				"Package Control: Remove Package"
+			],
+			[
+				"prosav",
+				"Project: Save As"
+			],
+			[
+				"proadf",
+				"Project: Add Folder"
+			],
+			[
+				"project",
+				"Project: Add Folder"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"insall",
+				"Package Control: Install Package"
+			],
+			[
+				"install	",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/dodolee/byulme/site/public/stylesheets/custom.css",
+		"/Users/dodolee/byulme/site/views/layout.jade",
+		"/Users/dodolee/byulme/site/routes/index.js",
+		"/Users/dodolee/byulme/site/app.js",
+		"/Users/dodolee/byulme/site/views/index.jade",
+		"/Users/dodolee/byulme/0.01/routes/rank.js",
+		"/Users/dodolee/byulme/0.01/routes/index.js",
+		"/Users/dodolee/byulme/0.01/app.js",
+		"/Users/dodolee/Work/byulme/de/routes/user.js",
+		"/Users/dodolee/Work/byulme/de/views/index.jade",
+		"/Users/dodolee/Work/nodejs_examples/rst_bingo/views/layout.jade",
+		"/Users/dodolee/Work/nodejs_examples/rst_bingo/views/index.jade",
+		"/Users/dodolee/Work/socket/index.html",
+		"/Users/dodolee/Work/socket/server.js",
+		"/Users/dodolee/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/dodolee/Work/nodejs_examples/rst_bingo/public/stylesheets/style.css",
+		"/Users/dodolee/Work/byulme/rst_bingo/views/index.jade",
+		"/Users/dodolee/Work/byulme/rst_bingo/views/layout.jade",
+		"/Users/dodolee/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/dodolee/Work/fnfams/fng/setting_01-01.asp",
+		"/Users/dodolee/Work/fnfams/scripts/setting_01-01.js",
+		"/Users/dodolee/Downloads/common_js/test.html",
+		"/Users/dodolee/Downloads/common_js/common.js",
+		"/Users/dodolee/jj.html",
+		"/Users/dodolee/Work/fnfams/fng/fams.fng",
+		"/D/SOURCE/fnfams/html/s1-1.html",
+		"/D/SOURCE/fnfams/html/s2-1.html",
+		"/D/SOURCE/fnfams/demo.js",
+		"/D/SOURCE/fms/scripts/test.js",
+		"/D/SOURCE/fms/rsch/popeasy/js/site.js",
+		"/D/SOURCE/fms/rsch/popeasy/js/jquery.modal.js",
+		"/D/SOURCE/fms/css/jquery.ui.all.css",
+		"/D/SOURCE/fms/rsch/AmChart/samples/javaScript/bubbleChart.html",
+		"/D/SOURCE/fms/rsch/popeasy/index.html",
+		"/D/SOURCE/fms/css/style.css",
+		"/D/SOURCE/fms/demotest.html",
+		"/D/SOURCE/fms/rsch/AmChart/samples/javaScript/multipleValueAxes.html",
+		"/D/SOURCE/fms/rsch/AmChart/sources/javascript/raphael/raphael.js",
+		"/D/SOURCE/fms/rsch/AmChart/samples/javaScript/barsOrColumns.html",
+		"/D/SOURCE/fms/rsch/AmChart/samples/javaScript/3dStackedColumn.html",
+		"/D/SOURCE/fms/rsch/AmChart/samples/javaScript/barAndLine.html",
+		"/D/SOURCE/fms/rsch/dhtmlwindow/demo.htm",
+		"/D/SOURCE/fms/demo.html",
+		"/D/SOURCE/fms/js/fng.js",
+		"/C/Users/eedonge/Downloads/popeasy/popeasy/js/jquery.modal.js",
+		"/C/Users/eedonge/Downloads/popeasy/popeasy/js/site.js",
+		"/D/SOURCE/fgfms/test.html",
+		"/C/Users/eedonge/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/D/SOURCE/fgfms/fng.html",
+		"/D/SOURCE/fgfms/rsch/AmChart/samples/javaScript/3dStackedColumn.html",
+		"/D/SOURCE/fgfms/rsch/AmChart/samples/javaScript/barAndLine.html",
+		"/C/Users/eedonge/AppData/Roaming/Sublime Text 2/Packages/User/JSLint.sublime-settings",
+		"/C/Users/eedonge/AppData/Roaming/Sublime Text 2/Packages/JSLint/JSLint.sublime-build",
+		"/C/Users/eedonge/AppData/Roaming/Sublime Text 2/Packages/JSLint/JSLint.sublime-settings",
+		"/C/Users/eedonge/AppData/Roaming/Sublime Text 2/Packages/Emmet/Default (Windows).sublime-keymap",
+		"/C/Users/eedonge/Downloads/kendoui.web.2013.1.319.open-source/examples/web/grid/remote-data.html",
+		"/C/Users/eedonge/AppData/Roaming/Sublime Text 2/Packages/User/Emmet.sublime-settings",
+		"/C/Users/eedonge/AppData/Roaming/Sublime Text 2/Packages/Emmet/Emmet.sublime-settings",
+		"/D/SOURCE/fgfms/rsch/AmChart/basicSamples/javaScriptOnly/xy.html",
+		"/C/Users/eedonge/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/D/SOURCE/fgfms/rsch/AmChart/basicSamples/javaScriptOnly/radar.html",
+		"/D/SOURCE/fgfms/rsch/AmChart/basicSamples/javaScriptOnly/pie.html",
+		"/D/SOURCE/fgfms/rsch/AmChart/samples/flashOrJavaScript/RadarAndPolar/100%Stacked/data.xml",
+		"/C/Users/eedonge/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/D/SOURCE/Company Guide 152/handbook2013_demo.html",
+		"/D/ebiz/css/bootstrap.css",
+		"/D/ebiz/rtindex.html",
+		"/D/ebiz/main.html",
+		"/D/ebiz/historyex/demo/index.html",
+		"/D/ebiz/css/main.css",
+		"/D/ebiz/rtindex.asp",
+		"/D/ebiz/report_updown.asp",
+		"/C/Users/eedonge/Desktop/ex130604.log",
+		"/D/ebiz/updown.html",
+		"/D/ebiz/viewreport.html",
+		"/D/ebiz/ebiz.fng",
+		"/D/ebiz/js/fnguide.js",
+		"/C/Users/eedonge/Desktop/ttt.html",
+		"/C/Users/eedonge/Downloads/mozilla-pdf.js-3641c22/web/viewer.js",
+		"/C/Users/eedonge/Downloads/mozilla-pdf.js-3641c22/web/viewer.html",
+		"/C/Users/eedonge/Downloads/mozilla-pdf.js-3641c22/web/viewer-snippet.html",
+		"/C/Users/eedonge/Downloads/mozilla-pdf.js-3641c22/examples/helloworld/index.html",
+		"/C/Users/eedonge/Downloads/mozilla-pdf.js-3641c22/src/core.js",
+		"/C/Users/eedonge/Downloads/mozilla-pdf.js-3641c22/examples/helloworld/hello.js",
+		"/D/ebiz/index.html",
+		"/D/ebiz/historyex/index.html",
+		"/D/ebiz/sftp-config.json",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/js/routers/router.js",
+		"/C/Users/eedonge/Downloads/kendoui.web.2012.3.1114.open-source/src/js/kendo.core.js",
+		"/C/Users/eedonge/Downloads/kendoui.web.2012.3.1114.open-source/src/js/kendo.web.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/lib/kendo.combobox.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/rtindex.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/b.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/js/main.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/report_updown.asp",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/report_updown_nopage.asp",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/updown.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/ebiz.fng",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/lib/kendo.web.min.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/charttest.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/lib/kendo.web.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/lib/kendo.grid.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/lib/kendo.core.js",
+		"/C/Users/eedonge/Downloads/kendoui.web.2012.3.1114.open-source/src/js/kendo.window.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/srchByKwd.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/js/fng.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/lib/bootstrapSwitch.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/loading.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/js/menu.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/js/todo.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/index.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/Dev/index.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/ready.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/error.html",
+		"/C/Users/eedonge/Downloads/kendoui.trial.2012.3.1315/vsdoc/kendo.js",
+		"/C/Users/eedonge/Downloads/paulkinzett-toolbar-dd7ed15/jquery.toolbar.js",
+		"/C/Users/eedonge/Downloads/paulkinzett-toolbar-dd7ed15/documentation/index.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/kendotest.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/asp/navbar.asp",
+		"/D/FnSource/FnGuide/FnGuideRenewal/asp/test.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/asp/js/main.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/asp/ebiz.asp",
+		"/D/FnSource/FnGuide/FnGuideRenewal/asp/js/fng.js",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/todos.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/rtindex.asp",
+		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/ebiz.html",
+		"/D/FnSource/FnGuide/FnGuideRenewal/asp/cal.asp",
+		"/D/FnSource/FnGuide/FnGuideRenewal/asp/error.asp"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"’",
+			"bingo-board",
+			"3",
+			"makesorttable",
+			"fng.debug.log",
+			"sorting",
+			"gridgroup",
+			"$li",
+			"$ul",
+			"ul",
+			"closelayer",
+			"closeLayer",
+			"validator",
+			"chart",
+			"grid",
+			"fnguide",
+			"pageclickhdl",
+			"data-link",
+			"pageLinkClick",
+			"slice",
+			"\\$tb",
+			"paginationing",
+			"pageclickhdl",
+			"makeSortTable",
+			"trOld",
+			"options.line",
+			"options.page",
+			"page.target",
+			"fnguide.grid",
+			"fng.",
+			"validator",
+			"sortTable",
+			"sortFunction",
+			"that",
+			"trOld",
+			"table",
+			"debug.log",
+			"debug.log(",
+			"debug.",
+			"fnguide.util",
+			"debug.log",
+			"json",
+			"dataSlice",
+			"json",
+			"thString",
+			"settings",
+			"log('a')",
+			"'a'",
+			"fnguide",
+			"fng",
+			"constr",
+			"Constr",
+			"constr",
+			"opt",
+			"fng",
+			"fng.debug",
+			"\\$fng",
+			"/$fng",
+			"$fng",
+			"pages",
+			"pageCnt",
+			"fng.debug.log",
+			"body",
+			"fng.grid",
+			"sorttable",
+			"sort",
+			"fng.grid",
+			" style=\" \"",
+			"style=\" \"",
+			"float:left;",
+			"float",
+			"1000px",
+			"scrollbar",
+			"1000px",
+			"scrollbar",
+			"\\$fng.debug.log",
+			"makeSortTable",
+			"\\$fng.debug.log",
+			"fng.debug.log(",
+			"close",
+			"closebtn",
+			"fng.debug.log",
+			"loadimg",
+			"$fng.debug.log",
+			"appendTo",
+			"$fng",
+			"$fng.debug.log",
+			"modal",
+			"layer",
+			"sort",
+			"\\$td",
+			"$td",
+			"td",
+			"fng.debug.log",
+			"multiSortTable",
+			"displayGrid",
+			"chartdiv",
+			";\n",
+			"len",
+			"type",
+			"graph1",
+			"chart",
+			"ChartCursor",
+			"chartCursor",
+			"graph3",
+			"valAxis3",
+			"graph2",
+			"graph1",
+			"valAxis2",
+			"valAxis1",
+			"chartData",
+			"chart",
+			"debug.log",
+			"legendMarginTop",
+			"expenses",
+			"makeAllSortable",
+			"makeSortable",
+			"settings",
+			"0",
+			"graph2",
+			"graph1",
+			"0",
+			"graph",
+			"=",
+			";",
+			"\"",
+			"graph2.",
+			";"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"fng",
+			"",
+			"th",
+			"td",
+			"<br/>",
+			"[\\w]+>/n/t<[\\w]",
+			"[\\w]+>\\n\\t<[\\w]",
+			">\\n\\t<",
+			">\\n<",
+			">/n/t<",
+			"",
+			"\\},\\n\\{",
+			"\\},^\\n\\{",
+			"",
+			"\\},\\n\\{",
+			"},^\\n{",
+			"},\\n{"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 168.0
+	},
+	"output.jslint_result_view":
+	{
+		"height": 120.0
+	},
+	"output.sftp":
+	{
+		"height": 120.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"javascriptonly/pie",
+				"rsch/AmChart/basicSamples/javaScriptOnly/pie.html"
+			],
+			[
+				"10",
+				"rsch/AmChart/samples/flashOrJavaScript/RadarAndPolar/100%Stacked/data.xml"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 133.0,
+	"status_bar_visible": true
+}
