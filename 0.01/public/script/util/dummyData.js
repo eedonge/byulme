@@ -1,5 +1,7 @@
 define(function(require){
-	var $ = require('jquery');
+	// var $ = require('jquery');
+	var mysql = require('express');
+
 	var DummyData = function() {
 		this.cardList = new Array();
 	

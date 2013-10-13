@@ -20,11 +20,11 @@ define(
 		con : '#dashboard_container',	//랭킹 공간 (카드들이 위치할 컨테이너)
 		menuId : null,	//메뉴아이디 (랭킹 종류)
 		render: function() {
-      $(this.el).html(template());
+        $(this.el).html(template());
       // this.currentList = ;
     	this.makeCardList(DummyData.cardData(this.menuId));
     	//isotope 처리
-      $(this.con).isotope({
+        $(this.con).isotope({
           itemSelector : '.dashboardItem',
           getSortData : {
 				    starId : function ( $elem ) {

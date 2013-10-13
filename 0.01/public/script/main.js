@@ -7,6 +7,7 @@ requirejs.config({
 		"mainView": "view/main/mainView",
 		"rankView": "view/rank/rankView",
 		"aboutView": "view/about/aboutView",
+        "express": "../../node_modules/express"
 	},
 	
 	shim: {
