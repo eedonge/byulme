@@ -12,88 +12,45 @@ define(function(require) {
 		 * 프레그먼트 문자를 기준으로 라우트 정의
 		 */
 		routes : {
-			'' : 'mainRoute',
-			'index' : 'mainRoute',
-			/*,
-			'pricePlan' : 'pricePlanRoute',
-			'pricePlan/:id' : 'pricePlanRoute',
-			'lteReport' : 'lteReportRoute',
-			'voc' : 'vocRoute',
-			'voc/:id' : 'vocRoute',
-			'makePricePlan': 'makePricePlanRoute',
-			'makePricePlan/:data': 'makePricePlanRoute',
-
-			'*actions' : 'defaultAction'
-			*/
+			// '' : 'mainRoute',
+			// 'index' : 'mainRoute',
+			'' : 'rankRoute',
+			'rank/:menuId' : 'rankRoute',
+			'about' : 'aboutRoute'
 		},
 
-        initialize: function() {
+    initialize: function() {
 
-        },
-		
+    },
+
 		mainRoute : function() {
 			require(["mainView"], function(MainView) {
-				var direction = BreadCrumb.manager.route('index', 'home');
+				var direction = BreadCrumb.manager.route('index', 'ByulMe');
 				PageTransition.page.transition(direction, MainView);
 			});
 		},
-		// /*
-		//  * 대쉬보드 요청시 처리내용
-		// */
-		// dashboardRoute : function() {
-		// 	require(["dashboardView"], function(DashboardView) {
-		// 		var direction = BreadCrumb.manager.route('index', 'T-Dashboard');
-		// 		PageTransition.page.transition(direction, DashboardView);
-		// 	});
-		// },
-		
-		// /*
-		//  * LTE 개통정보 요청시 처리내용
-		//  */
-		// lteReportRoute : function() {
-		// 	require(["lteReportView"], function(LteReportView) {
-		// 		var direction = BreadCrumb.manager.route('lteReport', 'LTE 개통 통계');
-		// 		PageTransition.page.transition(direction, LteReportView);
-		// 	});
-		// },
-		
-		// /*
-		//  * 정책 요청시 처리내용
-		//  */
-		// pricePlanRoute : function(id) {
-		// 	require(["pricePlanView"], function(PricePlanView) {
-		// 		var direction = BreadCrumb.manager.route('pricePlan', '정책');
-		// 		PricePlanView['selectedPricePlanId'] = id || null;
-		// 		PageTransition.page.transition(direction, PricePlanView);
-		// 	});
-		// },
-		
-		// /*
-		//  * VOC 요청시 처리내용
-		//  */
-		// vocRoute : function(id) {
-		// 	require(["vocView"], function(VocView) {
-		// 		var direction = BreadCrumb.manager.route('voc', 'VOC');
-		// 		VocView['selectedVocId'] = id || null;
-		// 		PageTransition.page.transition(direction, VocView);
-		// 	});
-		// },
-		
-		// /*
-		//  * 정책 생성, 수정 요청시 처리내용
-		//  */
-		// makePricePlanRoute: function(data) {
-		// 	require(["makePricePlanView"], function(MakePricePlanView) {
-		// 		var title = (typeof(data) == 'undefined') ? '새로운 정책' : '정책 수정';
-		// 		var direction = BreadCrumb.manager.route('makePricePlan', title);
-		// 		MakePricePlanView.selectPlanData = data || null;
-		// 		PageTransition.page.transition(direction, MakePricePlanView);
-		// 	});
-		// },
 
-		// defaultAction : function(actions) {
-		// 	console.log('default route : ' + actions);
-		// },
+		rankRoute : function(menuId) {
+			require(["rankView"], function(RankView) {
+				menuId = menuId || 'newly';	//메뉴아이디가 없다면 최근 리스트로
+				var direction = BreadCrumb.manager.route('rank/' + menuId, 'Rank');
+				if(RankView['menuId'] === null) {	//랭킹 메뉴 아이디가 없다면 랭킹 메뉴는 처음 실행한것, 랭킹 화면을 그린다.
+					RankView['menuId'] = menuId;	//처음은 newly
+					PageTransition.page.transition(direction, RankView);
+				} else {	//랭킹 메뉴 아이디가 있다면 랭킹 뷰를 새로 그리지않고 isotope 처리만 해준다.
+					RankView['menuId'] = menuId;	//새로운 메뉴아이디
+					RankView.sortCardList();	//새로운 랭킹 리스트로 정렬한다.
+				}
+			})
+		},
+
+		aboutRoute : function() {
+			require(["aboutView"], function(AboutView) {
+				require('rankView')['menuId'] = null;	//랭킹 메뉴아이디 초기화
+				var direction = BreadCrumb.manager.route('about', 'About');
+				PageTransition.page.transition(direction, AboutView);
+			})
+		}
 	});
 
 	new MainRouter();

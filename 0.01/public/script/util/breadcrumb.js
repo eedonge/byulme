@@ -27,8 +27,8 @@
 	BreadcrumbManager.prototype.route = function(route, title) {
 		var alreadyRoute = false;
 		var sameIdx = 0;
-		var isRoot = this.itemList.length == 0 ? true : false;
-		
+		var isRoot = (this.itemList.length == 0 || this.itemList.length == 10) ? true : false;
+		this.menuActive(route);
 		if(this.prevRoute != null) {
 			if(this.prevRoute == route) {
 				this.prevRoute = route;
@@ -37,7 +37,6 @@
 		}
 		
 		this.prevRoute = route;
-		
 		for(var i = 0; i < this.itemList.length; i++) {
 			var item = this.itemList[i];
 			
@@ -52,14 +51,9 @@
 			switch(route) {
 				case 'index':
 					break;
-				case 'lteReport':
-				case 'pricePlan':
-				case 'voc':
-					this.itemList.push({'route': 'index', 'title': 'T-Dashboard'});
+				case 'rank':
 					break;
-				case 'makePricePlan':
-					this.itemList.push({'route': 'index', 'title': 'T-Dashboard'});
-					this.itemList.push({'route': 'pricePlan', 'title': '정책'});
+				case 'about':
 					break;
 			}
 		}
@@ -67,7 +61,7 @@
 		//히스토리 확인하여 기존것이 있는지 체크 한 후에 방향 및 히스토리 정리
 		if(!alreadyRoute) {
 			this.itemList.push({'route': route, 'title': title});
-			this.draw();
+			// this.draw();
 			
 			return isRoot ? "|" : ">";
 		} else {
@@ -76,10 +70,15 @@
 				 i--;
 			}
 			
-			this.draw();
+			// this.draw();
 			
 			return "<";
 		}
+	};
+
+	BreadcrumbManager.prototype.menuActive = function(route) {
+		console.log('route:' + route);
+		$('.nav li').removeClass('active').children('a[href="#' + route + '"]').parent().addClass('active');
 	};
 	
 	/*
