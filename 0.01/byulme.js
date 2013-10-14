@@ -64,7 +64,7 @@ app.get('/bmdb/:operation', function(req, res){
     }); 
   });
 });
-   
+      
 
 /***************************************************/
 /* INSERT, UPDATE : POST                           */
