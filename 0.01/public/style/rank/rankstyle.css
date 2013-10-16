@@ -1,5 +1,4 @@
 /**** Isotope Filtering ****/
-
 .isotope-item {
   z-index: 2;
 }
@@ -37,7 +36,6 @@
 }
 
 /**** disabling Isotope CSS3 transitions ****/
-
 .isotope.no-transition,
 .isotope.no-transition .isotope-item,
 .isotope .isotope-item.no-transition {
@@ -55,9 +53,9 @@
 
 #dashboard_container > .dashboardItem {
 	border: 0;
-	margin: 5px;
-	width: 365px;
-	height: 290px;
+	margin: 5px 10px 15px 10px;
+	width: 345px;
+	height: 400px;
 	background: #FFFFFF;
 	border-radius: 5px;
 	background: url('../image/bg_top.png');
@@ -71,51 +69,3 @@
 	font-size: 1.6em;
 	line-height: 100%;
 }
-
-/*
-#dashboard_container .widget {
-	padding: 10px 5px 5px 5px;
-}
-
-#dashboard_container .widget-facebook {
-	padding: 5px 5px 5px 5px;
-}
-#dashboard_container .widget .lists li {
-	font-size: 14px;
-	text-align: left;
-}
-#dashboard_container .widget2 {
-	padding: 0;
-}
-#dashboard_container .lists li .name {
-	width: 60px;
-	display: inline-block;
-}
-#dashboard_container .lists li .txt-con {
-	width: 150px;
-	display: inline-block;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-#dashboard_container .lists li .txt-con2 {
-	width: 220px;
-	display: block;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-#dashboard_container .scrollview {
-	position: relative;
-	top: 0;
-}
-
-#dashboard_container .hero-unit {
-	min-height: 326px;
-}
-
-#dashboard_container li {
-	line-height: 18px;
-}
-*/
