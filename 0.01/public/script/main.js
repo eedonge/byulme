@@ -8,8 +8,7 @@ requirejs.config({
 		"rankView": "view/rank/rankView",
 		"aboutView": "view/about/aboutView",
         "makeView": "view/make/makeView",
-        "express": "../../node_modules/express",
-        "infinitescroll": "../lib/jquery.infinitescroll.min"
+        "express": "../../node_modules/express"
 	},
 	
 	shim: {

@@ -6,7 +6,7 @@ define(
 		'template!../template/rank/rank',
 		'template!../template/rank/card',
 		'isotope',
-    'infinitescroll',
+    //'infinitescroll',
 		// 'style!../style/main/main',
 		'style!../style/rank/rankstyle'
 	], function(
