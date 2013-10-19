@@ -13,6 +13,11 @@ define(
 		el : 'div#contentsView',
 		render: function() {
         $(this.el).html(template());
+
+        $("#uploadtest").click(function(){
+        	document.location = '#make';
+        });
+
         $("#test").click(function(){
         	$.ajax({
         		type:"GET",
@@ -33,6 +38,28 @@ define(
 				console.log(data);
 			});
 */
+
+			$('#bmUploaderModal').modal({
+  				keyboard: false,
+  				backdrop: 'static'
+			});
+
+
+
+			$('#bmUploaderModal').on('hide.bs.modal', function () {
+				//return false;
+			});
+
+			$('#bmUploaderModal').on('hidden.bs.modal', function () {
+				$(this).remove();
+				window.history.back();
+			});
+
+			/*
+			$('#bmDataTest').click(function(){
+
+			});*/	
+
         });
         return this;
     }

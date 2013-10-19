@@ -16,7 +16,8 @@ define(function(require) {
 			// 'index' : 'mainRoute',
 			'' : 'rankRoute',
 			'rank/:menuId' : 'rankRoute',
-			'about' : 'aboutRoute'
+			'about' : 'aboutRoute',
+			'make' : 'makeRoute'
 		},
 
     initialize: function() {
@@ -53,7 +54,16 @@ define(function(require) {
 				var direction = BreadCrumb.manager.route('about', 'About');
 				PageTransition.page.transition(direction, AboutView);
 			})
-		}
+		},
+
+		makeRoute : function() {
+			require(["makeView"], function(MakeView) {
+				var direction = BreadCrumb.manager.route('make', 'Make');
+				PageTransition.page.transition(direction, MakeView);
+			})
+		},
+
+
 	});
 
 	new MainRouter();
