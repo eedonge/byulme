@@ -694,6 +694,9 @@ class UploadHandler
         $file->size = $this->fix_integer_overflow(intval($size));
 
         $file->type = $type;
+
+        $this->bm_Logger->info("Handle File Upload[Name : ".$file->name.", Size : ".$file->size.", Type : ".$file->type."]");
+
         if ($this->validate($uploaded_file, $file, $error, $index)) {
             $this->handle_form_data($file, $index);
             $upload_dir = $this->get_upload_path();
@@ -959,9 +962,9 @@ class UploadHandler
                 $this->bmMySql->bm_insert_card_info($user_id, $file_id, "MV");
                 $this->bmMySql->bm_insert_movie_info($file_id, $file_full_name);
                 //YouTube Upload
-                exec("php ./BMYoutubeExe.php ./".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
+                //exec("php ./BMYoutubeExe.php ./".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
                 //Vimeo Upload
-                exec("php ./BMVimeoExe.php ./".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
+                //exec("php ./BMVimeoExe.php ./".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
 
             }else{
 
@@ -970,7 +973,7 @@ class UploadHandler
                 $this->bmMySql->bm_insert_card_info($user_id, $file_id, "IMG");
                 $this->bmMySql->bm_insert_image_info($file_id, $file_full_name, $file_thumb_name);
 
-                exec("php ./BMFacebookExe.php ".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
+                //exec("php ./BMFacebookExe.php ".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
             }
         }
         $this->bmMySql->bm_close();
@@ -980,6 +983,7 @@ class UploadHandler
 
     public function post($print_response = true) {
 
+        $this->bm_Logger->info("************* File Upload Start *****************");
 
         if (isset($_REQUEST['_method']) && $_REQUEST['_method'] === 'DELETE') {
             return $this->delete($print_response);
@@ -998,6 +1002,10 @@ class UploadHandler
 
         $upload = isset($_FILES[$this->options['param_name']]) ?
             $_FILES[$this->options['param_name']] : null;
+
+        
+        $this->bm_Logger->info("User ID [".$user_id."], File Type [".$file_type."]");
+
         // Parse the Content-Disposition header, if available:
         $file_name = $this->get_server_var('HTTP_CONTENT_DISPOSITION') ?
             rawurldecode(preg_replace(
