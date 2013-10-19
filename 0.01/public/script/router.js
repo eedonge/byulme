@@ -42,6 +42,9 @@ define(function(require) {
 					RankView['menuId'] = menuId;	//새로운 메뉴아이디
 					RankView.sortCardList();	//새로운 랭킹 리스트로 정렬한다.
 				}
+				$(window).scroll(function(){
+					RankView.appendCardListCall();
+				});
 			})
 		},
 

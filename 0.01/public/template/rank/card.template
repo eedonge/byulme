@@ -1,4 +1,4 @@
-<div class="dashboardItem isotope-item" data-starId="{{starId}}}" data-menuId="{{menuId}}">
+<div class="dashboardItem isotope-item span4" data-starId="{{starId}}}" data-menuId="{{menuId}}">
 	<div class="sbox">
 		<p class="rank" style="display:none;">{{rank}}</p>
 		<h1 class="typo-pressed typo-pressed-title starName">{{rank}}위 {{starName}}</h1>

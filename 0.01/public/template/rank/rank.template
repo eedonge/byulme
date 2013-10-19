@@ -1,4 +1,4 @@
-<div class="dashboard_wrapper">
-  <div id="dashboard_container" style="position: relative; overflow: hidden; height: 600px;">    
+<div class="container-fluid">
+  <div class="row-fluid" id="dashboard_container" style="position: relative; overflow: hidden; height: 600px;">    
   </div>
 </div>
