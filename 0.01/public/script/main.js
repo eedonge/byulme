@@ -7,6 +7,7 @@ requirejs.config({
 		"mainView": "view/main/mainView",
 		"rankView": "view/rank/rankView",
 		"aboutView": "view/about/aboutView",
+        "makeView": "view/make/makeView",
         "express": "../../node_modules/express"
 	},
 	
@@ -34,6 +35,10 @@ requirejs.config({
 
         "aboutView": {
         	deps:["app-container"]
+        },
+
+        "makeView": {
+            deps:["app-container"]
         }
 	}
 });
