@@ -9,6 +9,7 @@ var fs = require('fs')
 var path = require('path');
 var mysql = require('mysql')
 var dbcontroller = require('./lib/dbcontroller');
+var graph = require('fbgraph');
 
 var app = express();
 
@@ -72,6 +73,76 @@ app.get('/bmdb/:operation', function(req, res){
 app.post('/bmdb/add', function(req, res){
   //req.body.name
 });
+
+/***************************************************/
+/* FaceBook Auth                                   */
+/***************************************************/
+app.post('/bm/fb/auth', function(req, res){
+
+    //Short Token 을 Long Token 으로 Extend  
+    graph.setAccessToken(req.body.shorttoken);
+    graph.extendAccessToken({
+        "client_id": '533349720068935'
+      , "client_secret": '6f61d913f18f56f394c592a2c694ed35'
+    }, function (err, facebookRes) {
+
+      var fbParam = {
+        uid : req.body.uid,
+        token : facebookRes.access_token,
+        expires : facebookRes.expires
+      };
+
+      pool.getConnection(function(err, connection){
+        connection.query(dbcontroller.fb_query("SET_TOKEN", fbParam), function(err, rows){
+            res.send(rows)
+            connection.release();
+        });
+      });
+         
+    });
+});
+
+/***************************************************/
+/* FaceBook Neews Feed                             */
+/***************************************************/
+app.post('/bm/fb/feed', function(req, res){
+    //사용자의 Long Token Select
+    pool.getConnection(function(err, connection){
+      connection.query(dbcontroller.fb_query("GET_TOKEN", req.body), function(err, rows){
+        
+          //사용자의 Lonf Token이 존재하면 사용자의 Facebook ID를 조회 한다.
+          if(rows.length > 0){
+            var options = {
+                timeout:  3000
+              , pool:     { maxSockets:  Infinity }
+              , headers:  { connection:  "keep-alive" }
+            };
+
+            graph.setAccessToken(rows[0].token);
+
+            graph.get("me", function(err, res) {
+
+              //사용자의 ID가 존재하면 Feeding Post
+              if(err == null){
+                var wallPost = {
+                  message: "별미 테스트 입니다.",
+                  link: "http://www.youtube.com/watch?v=gAal8xHfV0c"
+                };
+
+                graph.post(res.id + "/feed", wallPost, function(err, res) {
+                  //console.log("Success");
+                });
+
+              }
+            });
+          }
+          res.send("Success");
+          connection.release();
+      });
+    });
+});
+
+
 
 /*************** MY SQL POOL Manager ***************/
 

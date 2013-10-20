@@ -3,11 +3,13 @@ define(
 		'jquery', 
 		'backbone',
 		'template!../template/about/about',
+		'util/bm.facebook',
 		'style!../style/main/main'
 	], function(
 		$, 
 		Backbone,
-		template
+		template,
+		BmFaceBook
 	){
 	var MainView = Backbone.View.extend({
 		el : 'div#contentsView',
@@ -28,39 +30,14 @@ define(
         	}).fail(function(data){
 				console.log(data);
         	});
-        	/*
-    		$.get( "bmdb/1", function( data ) {
-				alert('success!!');
-				console.log(data);
-			})
-			.fail(function(data){
-				alert('fail!!');
-				console.log(data);
-			});
-*/
-
-			$('#bmUploaderModal').modal({
-  				keyboard: false,
-  				backdrop: 'static'
-			});
-
-
-
-			$('#bmUploaderModal').on('hide.bs.modal', function () {
-				//return false;
-			});
-
-			$('#bmUploaderModal').on('hidden.bs.modal', function () {
-				$(this).remove();
-				window.history.back();
-			});
-
-			/*
-			$('#bmDataTest').click(function(){
-
-			});*/	
-
         });
+
+        BmFaceBook.init('facebookauthtest');
+
+        $("#facebookfeedtest").click(function(){
+        	BmFaceBook.feed();	
+        });
+
         return this;
     }
 	});

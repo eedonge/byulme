@@ -8,4 +8,11 @@
   <p>
 	<button id="uploadtest" class="btn btn-large btn-success" type="button">Card Make TEST</button>
   </p>
+  <p>
+  	<div id="fb-root"></div>
+	<button id="facebookauthtest" class="btn btn-large btn-success" type="button">FaceBook 추가</button>
+  </p>
+  <p>
+	<button id="facebookfeedtest" class="btn btn-large btn-success" type="button">FaceBook Feeding TEST</button>
+  </p>
 </form>
