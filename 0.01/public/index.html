@@ -12,9 +12,34 @@
 		<link href="cornerstone/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 		
 		<!-- 코너스톤 스타일 -->
-		<link href="cornerstone/ui/theme/dark/css/cornerstone.css" rel="stylesheet" />
+		<link href="cornerstone/ui/theme/white/css/cornerstone.css" rel="stylesheet" />
 		<link href="style/common.css" rel="stylesheet" />
-		
+		<style>
+			@media (max-width: 767px) {
+			  #contentsView{
+			    margin-top: 170px;
+			  }
+			}
+			@media (min-width: 768px) and (max-width: 979px) {
+			  #contentsView{
+			    margin-top: 170px;
+			  }
+			}
+			@media (min-width: 979px) {
+				#contentsView{
+			    margin-top: 60px;
+			  }
+			}
+			.navbar-inner {
+				min-height: 70px;
+			}
+			.container {
+				margin-top: 10px;
+			}
+			.ul {
+				height: 50px;
+			}
+		</style>
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -30,25 +55,18 @@
 				<div class="scroller">
 					<!-- Contents Area -->
 					<div class="container">
-						<div class="masthead">
-			        <div class="navbar">
-			          <div class="navbar-inner">
-			            <div class="container">
-			              <ul class="nav">
-			                <li><a href="#rank/newly">Newly</a></li>
-			                <li><a href="#rank/daily">Daily</a></li>
-			                <li><a href="#rank/weekly">Weekly</a></li>
-			                <li><a href="#about">About</a></li>
-			              </ul>
-			            </div>
-			          </div>
-			        </div><!-- /.navbar -->
-			      </div>
-						<!-- Head BreadCrumb -->
-						<div class="row">
-							<div class="span12">
-							</div>
-						</div>
+		        <nav class="navbar navbar-fixed-top">
+		          <div class="navbar-inner">
+		            <div class="container">
+		              <ul class="nav">
+		                <li><a href="#rank/newly">Newly</a></li>
+		                <li><a href="#rank/daily">Daily</a></li>
+		                <li><a href="#rank/weekly">Weekly</a></li>
+		                <li><a href="#about">About</a></li>
+		              </ul>
+		            </div>
+		          </div>
+		        </nav><!-- /.navbar -->
 						<div id="contentsView">
 							<!-- 처음 화면은 로딩 화면으로 -->
 							<div id="default">
@@ -62,8 +80,6 @@
 								</div>
 							</div>
 						</div>
-						<footer>
-						</footer>
 					</div>
 				</div>
 			</div>

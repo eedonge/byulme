@@ -22,8 +22,8 @@ define(
 		menuId : null,	//메뉴아이디 (랭킹 종류)
     maxRank : 0,
 		render: function() {
+      this.maxRank = 0;
       $(this.el).html(template());
-      // this.currentList = ;
     	this.makeCardList(DummyData.cardData(this.menuId, this.maxRank));
       this.maxRank = 20;
     	//isotope 처리
@@ -45,8 +45,7 @@ define(
     },
 
     appendCardListCall: function() {
-      if($(window).scrollTop() == $(document).height() - $(window).height()) {
-        console.log(this.maxRank);
+      if($(window).scrollTop() == $(document).height() - $(window).height() - 1) {
         this.appendCardList(DummyData.cardData(this.menuId, this.maxRank));
         this.maxRank = this.maxRank + 20;
       }
@@ -73,8 +72,7 @@ define(
     	var board = $('.dashboardItem'); //카드 그룹
     	var cardData = null;
     	var cardElem = null;
-    	
-    	//새로운 카드 리스트 객체를 루프돌면서 새로운 카드를 추가한다.
+    	    	//새로운 카드 리스트 객체를 루프돌면서 새로운 카드를 추가한다.
     	for(sId in list) {
     		cardData = list[sId];
     		cardElem = board.filter('[data-starId="' + sId + '"]');
@@ -95,7 +93,9 @@ define(
 
     sortCardList: function(id) {
       this.maxRank = 0;
-     	this.updateCardList(DummyData.cardData(this.menuId, this.maxRank));
+      var self = this;
+      $(window).scrollTop(0)
+      this.updateCardList(DummyData.cardData(id, this.maxRank));
       this.maxRank = 20
     },
 
