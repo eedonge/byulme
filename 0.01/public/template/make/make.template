@@ -15,7 +15,7 @@
 		    	<br/>
 		    	<br/>
 		    	<div id="progress" class="progress progress-striped">
-		    		<div class="bar bar-info" style="width: 0%;></div>
+		    		<div class="bar bar-info" style="width: 0%;"></div>
 		    	</div>
 		    	<div id="files" class="files"></div>
 			</section>
@@ -37,7 +37,7 @@
 		    	<br/>
 		    	<br/>
 		    	<div id="imgprogress" class="progress progress-striped">
-		    		<div class="bar bar-info" style="width: 0%;></div>
+		    		<div class="bar bar-info" style="width: 0%;"></div>
 		    	</div>
 		    	<div id="files" class="files"></div>
 			</section>

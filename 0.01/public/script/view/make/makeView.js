@@ -19,6 +19,12 @@ define(
 		render: function() {
         	$(this.el).html(template());
         	require( [ 'util/bm.mv.uploader', 'util/bm.img.uploader'], function( BmMVUploader, BmImgUploader) {
+
+        	$('#makemodal').modal({
+  					keyboard: false, 
+  					backdrop: 'static'
+					});
+
     			BmMVUploader.init('test1');
     			BmImgUploader.init('test1');
 			});
