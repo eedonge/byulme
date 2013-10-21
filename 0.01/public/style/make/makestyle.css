@@ -28,3 +28,58 @@
   cursor: pointer;
   display:block;
 }
+
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: #2a6496;
+  text-decoration: underline;
+}
+
+a:active, a:hover {
+  outline: 0;
+}
+
+.bm-nav{
+  margin-bottom: 0px;
+}
+
+.bm-nav > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+.bm-nav > li > a:hover, 
+.bm-nav > li > a:focus {
+  text-decoration: none;
+  background-color: #eeeeee;
+  color: #3b72a2;
+  padding: 10px 15px;
+}
+
+.bm-nav > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+
+.bm-pills > li.active > a, 
+.bm-pills > li.active > a:hover, 
+.bm-pills > li.active > a:focus {
+  color: #ffffff;
+  background-color: #3b72a2;
+  padding: 10px 15px;
+}
+
+.bm-pills > li > a {
+  border-radius: 5px;
+}
+
+
+
+
+

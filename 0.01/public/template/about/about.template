@@ -16,3 +16,102 @@
 	<button id="facebookfeedtest" class="btn btn-large btn-success" type="button">FaceBook Feeding TEST</button>
   </p>
 </form>
+
+<div class="modal fade" id="makemodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!--
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">카드 만들기</h4>
+      </div>
+  		-->
+      <div class="modal-body">
+
+      	<!-- Card Make Template -->
+		<div class="tabbable">
+
+			<div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<ul class="nav nav-pills bm-nav bm-pills">
+					<li class="active"><a href="#1" data-toggle="tab">동영상 카드</a></li>
+					<li><a href="#2" data-toggle="tab">이미지 카드</a></li>
+				</ul>
+		    </div>
+
+			<div class="tab-content">
+				<div class="tab-pane active" id="1">
+					<!-- 파일 업로드 화면 -->
+					<section class="page">
+					    <span id="span_mv" class="btn btn-primary fileinput-button">
+					        <img src="../style/image/upload_mv.png" alt="동영상을 선택해 주세요">
+					        <input id="movieupload" type="file" name="files" title="동영상을 선택해 주세요"/>
+				   		</span>
+				   		<span id="fileinfo">
+				   			<span class="label label-primary">...동영상을 선택해 주세요...</span>
+				   		</span>
+				    	<!-- The global progress bar -->
+				    	<br/>
+				    	<br/>
+				    	<div id="progress" class="progress progress-striped">
+				    		<div class="bar bar-info" style="width: 0%;"></div>
+				    	</div>
+				    	<div id="errmsg" ></div>
+				    	<!--<div id="files" class="files"></div>-->
+					</section>
+					<!--
+					<section id="fileinfo"></section>
+					<section>
+					-->
+						<div style="text-align:center;">
+							<button id="makebutton" class="btn btn-primary" type="button" disabled>동영상 카드만들기</button>
+						</div>
+					</section>
+				</div>
+				<div class="tab-pane" id="2">
+					<!-- 파일 업로드 화면 -->
+					<section id="upload-section" class="page">
+
+					    <span id="span_img" class="btn btn-primary fileinput-button">
+					        <img src="../style/image/upload_img.png" alt="이미지를 선택해 주세요">
+					        <input id="imageupload" type="file" name="files" title="이미지를 선택해 주세요">
+				   		</span>
+				   		<span id="imgfileinfo">
+				   			<span class="label label-primary">...이미지를 선택해 주세요...</span>
+				   		</span>
+				    	<!-- The global progress bar -->
+				    	<br/>
+				    	<br/>
+				    	<div id="imgprogress" class="progress progress-striped">
+				    		<div class="bar bar-info" style="width: 0%;"></div>
+				    	</div>
+				    	<div id="imgerrmsg" ></div>
+				    	<!--<div id="files" class="files"></div>-->
+					</section>
+					<!--
+					<section>
+						<div id="imgfileinfo"></div>
+					</section>
+					-->
+					<section>
+						<div style="text-align:center;">
+							<button id="imgmakebutton" class="btn btn-primary" type="button" disabled>이미지 카드만들기</button>
+						</div>
+					</section>
+				</div>
+			</div>
+
+
+		</div>
+
+      </div>
+      <!--
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">완료</button>
+      </div>
+  	  -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

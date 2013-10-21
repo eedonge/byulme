@@ -8,11 +8,18 @@ define(
 
 	    //var url = 'http://localhost/byulmefileserver/index.php',
 	    var url = 'http://14.49.42.89/BMFileUpload.php',
+	    uploadFileInfo = $('<span/>')
+	    	.addClass('label')
+	    	.addClass('label-primary')
+	    	.addClass('img_upload_file_list');
+
+	    /*
 	    uploadFileInfo = $('<input/>')
 	    	.addClass('form-control')
 	    	.addClass('img_upload_file_list')
 	    	.attr('type', 'text')
 	    	.prop('readOnly', true);
+		*/
 
 		this.init = function(pUserID){
 
@@ -32,14 +39,24 @@ define(
 		    	//Image 일 경우 Single File 만 Upload 가능
 		    	$('#imgfileinfo').children().remove();
 
-		        data.context = $('<div/>').appendTo('#imgfileinfo');
+		        //data.context = $('<div/>').appendTo('#imgfileinfo');
 		        $.each(data.files, function (index, file) {
+		        	if (!index) {
+						data.context = uploadFileInfo
+							.clone(true)
+							.text(file.name)
+							.data(data)
+							.appendTo('#imgfileinfo');
+		        	}
+
+		        	/*
 		        	var node = $('<p/>');
 		        	if (!index) {
 		        		node
 		        			.append(uploadFileInfo.clone(true).val(file.name).data(data));
 		            }
 					node.appendTo(data.context);
+					*/
 		        });
 
 		    }).on('fileuploadprocessalways', function (e, data) {
@@ -53,9 +70,14 @@ define(
 		                .prepend('<br>')
 		                .prepend(file.preview);
 		        }
+
+		        $("#imgerrmsg").children().remove();
 		        if (file.error) {
+		        	$("#imgerrmsg").append($('<div class="alert"><strong>'+ file.error +'</stron></div>')); 
+		        	/*
 		            node
 		                .append($('<div class="alert"><strong>'+ file.error +'</stron></div>'));
+		            */
 		        }
 		        if (index + 1 === data.files.length) {
 		        	$("#imgmakebutton").attr('disabled', !!data.files.error);
@@ -69,22 +91,26 @@ define(
         		);
 		    }).on('fileuploaddone', function (e, data) {
 		    	
-				$('#makemodal').modal({
-  					keyboard: false, 
-  					backdrop: 'static'
-				});
+				alert("Success!!");
 
+				/*
 				$('#makemodal')
 					.off('hidden.bs.modal')
 					.on('hidden.bs.modal', function(){
 					document.location = '#rank/newly';
 				});
+		    */
 		    }).on('fileuploadfail', function (e, data) {
 		        $.each(data.files, function (index, file) {
+
+		        	$("#imgerrmsg").children().remove();
+		        	$("#imgerrmsg").append($('<div class="alert"><strong>업로드에 실패했습니다. 다시 시도해 주세요!!</stron></div>'));
+		        	/*
 		        	var error = $('<div class="alert"><strong>업로드에 실패했습니다. 다시 시도해 주세요!!</stron></div>');
 		        	var datanode = $(data.context.children()[index]);
 		        	datanode.find('.alert').remove();
 		        	datanode.append(error);
+		        	*/
 		        });
 		    }).on('fileuploadsubmit', function (e, data) {
 
