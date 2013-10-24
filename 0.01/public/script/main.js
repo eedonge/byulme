@@ -43,6 +43,30 @@ requirejs.config({
 	}
 });
 
+require(['jquery'], function($) {
+    $("document").ready(function($){
+        var nav = $('#main-menu-container');
+        var lastScrollTop = 0;
+        $(window).scroll(function () {
+            var st = $(window).scrollTop();
+            var topsize = (nav.width() == 455) && '200' || '100';
+            if(st > lastScrollTop) {
+                if(nav.offset().top == $(this).scrollTop() && $(this).scrollTop() > 300) {
+                    nav.animate({
+                       top: "-" + topsize + "px",
+                    }, 200);
+                }
+            } else {
+                if(nav.offset().top == ($(this).scrollTop() - parseInt(topsize,10)) && $(this).scrollTop() > 300) {
+                    nav.animate({
+                       top: "0px",
+                    }, 200);
+                }
+            }
+            lastScrollTop = st;
+        });
+    });
+});
 
 define(['router', 'widget-plugins'], function(Router) {
 	return {
