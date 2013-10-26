@@ -4,6 +4,7 @@ requirejs.config({
 		"transition": Cornerstone.PATH + "util/transition",
 		"navigation":"../lib/navigation",
 		"isotope": "../lib/jquery.isotope",
+        "iosocket": "../lib/socket.io.min",
 		"mainView": "view/main/mainView",
 		"rankView": "view/rank/rankView",
 		"aboutView": "view/about/aboutView",
