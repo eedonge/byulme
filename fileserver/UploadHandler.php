@@ -957,23 +957,25 @@ class UploadHandler
             $file_full_name = $this->options['upload_basic_dir']."/".$this->options['user_path']."/".$value->name;
 
             $file_id = time().$key; //ID : time + index
+            $value->cid = $file_id; //해당 Card ID 저장 
+
             if($file_type=="MOVIE"){ 
 
                 $this->bmMySql->bm_insert_card_info($user_id, $file_id, "MV");
                 $this->bmMySql->bm_insert_movie_info($file_id, $file_full_name);
                 //YouTube Upload
-                //exec("php ./BMYoutubeExe.php ./".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
+                exec("php ./BMYoutubeExe.php ./".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
                 //Vimeo Upload
-                //exec("php ./BMVimeoExe.php ./".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
+                exec("php ./BMVimeoExe.php ./".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
 
             }else{
 
-                $file_thumb_name = $this->options['upload_basic_dir']."/thumb/".$this->options['user_path']."/".$value->name;
+                $file_thumb_name = $this->options['upload_basic_dir']."/thumbnail/".$this->options['user_path']."/".$value->name;
 
                 $this->bmMySql->bm_insert_card_info($user_id, $file_id, "IMG");
                 $this->bmMySql->bm_insert_image_info($file_id, $file_full_name, $file_thumb_name);
 
-                //exec("php ./BMFacebookExe.php ".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
+                exec("php ./BMFacebookExe.php ".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
             }
         }
         $this->bmMySql->bm_close();
@@ -1035,6 +1037,16 @@ class UploadHandler
                 );
             }
         } else {
+
+            //파일 이름을 지정해 준다.
+            $ext = 'tmp';
+            if (isset($upload['name'])){
+                $ext = substr(strrchr($upload['name'],"."),1);    //확장자앞 .을 제거하기 위하여 substr()함수를 이용
+                $ext = strtolower($ext);            //확장자를 소문자로 변환
+            }
+            
+            $file_name = time().".".$ext;
+
             // param_name is a single object identifier like "file",
             // $_FILES is a one-dimensional array:
             $files[] = $this->handle_file_upload(

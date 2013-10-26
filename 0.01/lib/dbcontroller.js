@@ -4,11 +4,23 @@ exports.get_query = function(operation, params){
 
 	switch (operation)
 	{
-		case 1:
-			_query = "select email, pw, uid, '" + params.name + "' as name from bmdb.bm_user_mast";
+		case "GET_MOVIE_MAKE": //Movie Encoding 완료 확인
+			_query = "select case when vimeo_url is not null or youtube_url is not null then '1' ";
+			_query = _query + "else '0' end as result ";
+			_query = _query + "from bmdb.bm_movie_mast ";
+			_query = _query + "where cid = '" + params.cid + "' ";
+			break;
+		case "GET_FB_TOKEN_CF": //Face Book Token이 현재 유효한지 확인
+			_query = "select ";
+			_query = _query + " case when now() <= date_add(rst.last_date, interval + 58 day) then '1' ";
+		    _query = _query + " else '0' end as result ";
+		    _query = _query + " from ( ";
+			_query = _query + " select ifnull(max(last_date), date_add(now(), interval - 100 day)) as last_date ";
+			_query = _query + " from bmdb.bm_facebook_auth ";
+			_query = _query + " where uid = '" + params.uid + "' ) rst ";
 			break;
 		default:
-			_query = "";
+			_query = "select 'TEST' from dual";
 			break;
 	}
 

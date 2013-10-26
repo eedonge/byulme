@@ -8,10 +8,11 @@ define(
 
 	    //var url = 'http://localhost/byulmefileserver/index.php',
 	    var url = 'http://14.49.42.89/BMFileUpload.php',
-	    uploadFileInfo = $('<span/>')
-	    	.addClass('label')
-	    	.addClass('label-primary')
-	    	.addClass('img_upload_file_list');
+	    	upType = 'IMAGE',
+		    uploadFileInfo = $('<span/>')
+		    	.addClass('label')
+		    	.addClass('label-primary')
+		    	.addClass('img_upload_file_list');
 
 	    /*
 	    uploadFileInfo = $('<input/>')
@@ -21,7 +22,7 @@ define(
 	    	.prop('readOnly', true);
 		*/
 
-		this.init = function(pUserID){
+		this.init = function(pUserID, cardMakeInit){
 
 			$('#imageupload').fileupload({
 		        url: url,
@@ -48,7 +49,6 @@ define(
 							.data(data)
 							.appendTo('#imgfileinfo');
 		        	}
-
 		        	/*
 		        	var node = $('<p/>');
 		        	if (!index) {
@@ -91,15 +91,34 @@ define(
         		);
 		    }).on('fileuploaddone', function (e, data) {
 		    	
-				alert("Success!!");
+		    	//File 1개만 업로드 가능
+		    	$.each(data.result.files, function (index, file) {
 
-				/*
-				$('#makemodal')
-					.off('hidden.bs.modal')
-					.on('hidden.bs.modal', function(){
-					document.location = '#rank/newly';
-				});
-		    */
+		    		cardMakeInit();
+
+            		$('.modal-footer').show();
+            		$('.tabbable').hide();
+				    $('.succable').show();
+					$('#cardinform').hide();
+
+		            if (file.url) {
+		            	$('#cardrstheader').text('카드 생성 완료');
+
+				    	$('#cardkind').text('이미지');
+				    	var curD = new Date();
+						$('#cardgendate').text(curD.getFullYear() + "년 " + (curD.getMonth() + 1) + "월 " + curD.getDate() + "일 " + curD.getHours() + "시 " + curD.getMinutes() + "분");
+				    	
+				    	$('#cardkindcode').val(upType);
+				    	$('#cardid').val(file.cid);
+
+		            } else if (file.error) {
+		            	$('#cardrstheader').text('카드 생성 실패');
+
+				    	$('#cardkind').text('이미지');
+				    	$('#cardgendate').text('이미지 업로드 실패(다시 시도해 주세요)');
+		            }
+		        });
+
 		    }).on('fileuploadfail', function (e, data) {
 		        $.each(data.files, function (index, file) {
 
@@ -114,7 +133,7 @@ define(
 		        });
 		    }).on('fileuploadsubmit', function (e, data) {
 
-				data.formData = {userid: pUserID, type: "IMAGE"};
+				data.formData = {userid: pUserID, type: upType};
 
 		    }).on('fileuploadchunksend', function (e, data) {})
 		    .on('fileuploadchunkdone', function (e, data) {})

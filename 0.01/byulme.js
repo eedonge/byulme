@@ -10,6 +10,7 @@ var path = require('path');
 var mysql = require('mysql')
 var dbcontroller = require('./lib/dbcontroller');
 var graph = require('fbgraph');
+var io = require('socket.io');
 
 var app = express();
 
@@ -58,12 +59,14 @@ var pool = mysql.createPool(bmMysqlConfig);
 /* operation : 조회를 원하는 쿼리 번호              */
 /***************************************************/
 app.get('/bmdb/:operation', function(req, res){
+  
   	pool.getConnection(function(err, connection){
-    	connection.query(dbcontroller.get_query(parseInt(req.params.operation), req.query), function(err, rows){
+    	connection.query(dbcontroller.get_query(req.params.operation, req.query), function(err, rows){
       		res.send(rows)
       		connection.release();
     }); 
   });
+
 });
       
 
@@ -104,8 +107,9 @@ app.post('/bm/fb/auth', function(req, res){
 
 /***************************************************/
 /* FaceBook Neews Feed                             */
+/* operation : 1 CONTENTS UPDATE 완료 후 호출       */
 /***************************************************/
-app.post('/bm/fb/feed', function(req, res){
+app.post('/bm/fb/feed/:operation', function(req, res){
     //사용자의 Long Token Select
     pool.getConnection(function(err, connection){
       connection.query(dbcontroller.fb_query("GET_TOKEN", req.body), function(err, rows){
@@ -123,11 +127,20 @@ app.post('/bm/fb/feed', function(req, res){
             graph.get("me", function(err, res) {
 
               //사용자의 ID가 존재하면 Feeding Post
-              if(err == null){
-                var wallPost = {
-                  message: "별미 테스트 입니다.",
-                  link: "http://www.youtube.com/watch?v=gAal8xHfV0c"
-                };
+              if(err != null){
+
+                var wallPost;
+                if (req.params.operation == "1"){
+                  wallPost = {
+                    message: "새로운 컨텐츠를 업로드 하였습니다.",
+                    link: "http://www.youtube.com/watch?v=gAal8xHfV0c"
+                  };
+                }else{
+                  wallPost = {
+                    message: "별미 테스트 입니다.",
+                    link: "http://www.youtube.com/watch?v=gAal8xHfV0c"
+                  };
+                }
 
                 graph.post(res.id + "/feed", wallPost, function(err, res) {
                   //console.log("Success");
@@ -146,7 +159,50 @@ app.post('/bm/fb/feed', function(req, res){
 
 /*************** MY SQL POOL Manager ***************/
 
-
-http.createServer(app).listen(app.get('port'), function(){
+var serverHandler = http.createServer(app);
+serverHandler.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+});
+
+
+
+/***************  SOCKET IO ****************************/
+var app_io = io.listen(serverHandler);
+app_io.set('log level', 1); //Log Disable
+app_io.sockets.on('connection', function(socket){
+
+  socket.on('setMovieMake', function(data){
+    var pParam = {
+      cid : data.cid
+    };
+
+    var curCnt = 0;
+    //Movie Encoding 확인
+    
+    var intervalId = setInterval(function(){
+      
+      var isEmit = false;
+      pool.getConnection(function(err, connection){
+        connection.query(dbcontroller.get_query("GET_MOVIE_MAKE", pParam), function(err, rows){
+
+          if(rows.length > 0){
+            if(rows[0].result == "1"){
+
+              socket.emit('getMovieMake', {status: 'success'}); 
+              isEmit = true;
+            }
+          }
+
+          connection.release(); 
+        });      
+      }); 
+      
+      curCnt = curCnt + 1;
+      if(isEmit == true || curCnt > 60){ //최대 60회 시도 후 접속 해지
+        clearInterval(intervalId);
+      }
+    }, 20000); //20초 단위로 체크
+
+  });
+
 });

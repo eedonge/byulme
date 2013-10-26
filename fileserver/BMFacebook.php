@@ -14,10 +14,10 @@ class BMFacebook{
   			'secret' => '6f61d913f18f56f394c592a2c694ed35',
 		));
 		//MySQL Connect
-      $this->bmMySql = new BMMySQL(); 
+      	$this->bmMySql = new BMMySQL(); 
 
-      $this->bmMySql->bm_connect();
-  		$token_info = $this->bmMySql->bm_select_facebook_token();
+     	$this->bmMySql->bm_connect();
+  		$token_info = $this->bmMySql->bm_select_facebook_token("admin");
   		$this->bmMySql->bm_close();
 
   		if(count($token_info) > 0){
@@ -52,18 +52,18 @@ class BMFacebook{
 		}
 
 		/*****************2. Facebook Image Upload******************/
-    $photo_details = array(
-        'message'=> 'byulme upload folder'
-    );
+	    $photo_details = array(
+	        'message'=> 'byulme upload folder'
+	    );
 
-    $photo_details['source'] = '@' . realpath($file_path_with_name);
+	    $photo_details['source'] = '@' . realpath($file_path_with_name);
 
-    $upload_photo = $this->facebook->api('/'.$user_album_id.'/photos', 'post', $photo_details);
+	    $upload_photo = $this->facebook->api('/'.$user_album_id.'/photos', 'post', $photo_details);
 
 		/*****************3. Facebook Image ID UPDATE TO DataBase******************/
 		$this->bmMySql->bm_update_facebook_info($img_id, $upload_photo['id']);
 
-    $this->bmMySql->bm_close();
+    	$this->bmMySql->bm_close();
 	}
 
 }

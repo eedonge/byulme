@@ -95,7 +95,7 @@ class BMMySQL{
     $que = $que."local_url,  ";
     $que = $que."local_thumb_url,  ";
     $que = $que."facebook_url,  ";
-    $que = $que."img_del_status)  ";
+    $que = $que."del_status)  ";
     $que = $que." VALUES( ";
     $que = $que."'".$cid."', ";
     $que = $que."'".$local_url."', ";
@@ -126,8 +126,8 @@ class BMMySQL{
     mysql_query( $que, $this->connect );
   }
 
-  function bm_select_facebook_token(){
-    $que = "SELECT * FROM bmdb.bm_facebook_auth ";
+  function bm_select_facebook_token($uid){
+    $que = "SELECT * FROM bmdb.bm_facebook_auth WHERE uid = '".$uid."'";
     $data = mysql_query( $que, $this->connect );  
     return $this->bm_make_array_for_result( $data );
   }
