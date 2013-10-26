@@ -2,7 +2,7 @@
 <html lang="ko">
     <head>
 		<meta charset="utf-8"/>
-		<title>별</title>
+		<title>BM</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="">
@@ -17,27 +17,63 @@
 		<style>
 			@media (max-width: 767px) {
 			  #contentsView{
-			    margin-top: 170px;
+			    margin-top: 160px;
 			  }
 			}
 			@media (min-width: 768px) and (max-width: 979px) {
 			  #contentsView{
-			    margin-top: 170px;
+			    margin-top: 160px;
 			  }
 			}
 			@media (min-width: 979px) {
 				#contentsView{
-			    margin-top: 60px;
+			    margin-top: 50px;
 			  }
-			}
-			.navbar-inner {
-				min-height: 70px;
 			}
 			.container {
 				margin-top: 10px;
 			}
 			.ul {
 				height: 50px;
+			}
+
+			.navbar-inner {
+				min-height: 70px;
+			}
+
+
+			@media (max-width: 957px) {
+				.f-nav{
+			    z-index: 9999;
+			    position: fixed;
+			    /*left: 0;*/
+			    top: 0;
+			    width: 455px;
+				}
+			}
+
+			@media (min-width: 958px) and (max-width: 1200px) {
+				.f-nav{
+			    z-index: 9999;
+			    position: fixed;
+			    /*left: 0;*/
+			    top: 0;
+			    width: 790px;
+				}
+			}
+
+			@media (min-width: 1200px) {
+				.f-nav{
+			    z-index: 9999;
+			    position: fixed;
+			    /*left: 0;*/
+			    top: 0;
+			    width: 1170px;
+				}
+			}
+
+			#main-menu-container {
+		    text-align: center; 
 			}
 		</style>
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -55,6 +91,7 @@
 				<div class="scroller">
 					<!-- Contents Area -->
 					<div class="container">
+		        <!--
 		        <nav class="navbar navbar-fixed-top">
 		          <div class="navbar-inner">
 		            <div class="container">
@@ -67,6 +104,24 @@
 		            </div>
 		          </div>
 		        </nav><!-- /.navbar -->
+
+		        <div id="main-menu-container" class="f-nav">
+		        		<div class="container-fluid">
+									<div class="row-fluid">
+										<!-- left menu -->
+										<div class="span12 navbar">
+			          			<div class="navbar-inner">
+						              <ul class="nav">
+						                <li><a href="#rank/newly">Newly</a></li>
+						                <li><a href="#rank/daily">Daily</a></li>
+						                <li><a href="#rank/weekly">Weekly</a></li>
+						                <li><a href="#about">About</a></li>
+							            </ul>
+								      </div>
+										</div>
+									</div>
+								</div>
+		        </div>
 						<div id="contentsView">
 							<!-- 처음 화면은 로딩 화면으로 -->
 							<div id="default">
@@ -83,6 +138,10 @@
 					</div>
 				</div>
 			</div>
+			<script>
+			
+    
+			</script>
 	    <script src="cornerstone/launcher.js" data-target="script/main"></script> 
     </body>
 </html>
