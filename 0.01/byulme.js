@@ -56,10 +56,9 @@ var pool = mysql.createPool(bmMysqlConfig);
 
 /***************************************************/
 /* SELECT : GET                                    */
-/* operation : 조회를 원하는 쿼리 번호              */
+/* operation : 조회를 원하는 쿼리                   */
 /***************************************************/
 app.get('/bmdb/:operation', function(req, res){
-  
   	pool.getConnection(function(err, connection){
     	connection.query(dbcontroller.get_query(req.params.operation, req.query), function(err, rows){
       		res.send(rows)
@@ -72,9 +71,27 @@ app.get('/bmdb/:operation', function(req, res){
 
 /***************************************************/
 /* INSERT, UPDATE : POST                           */
+/* operation : 조회를 원하는 쿼리                   */
 /***************************************************/
-app.post('/bmdb/add', function(req, res){
-  //req.body.name
+app.post('/bmdb/:operation', function(req, res){
+
+});
+
+
+/***************************************************/
+/* Star 신청                                       */
+/***************************************************/
+app.post('/bm/regstar', function(req, res){
+  //Star Path 생성
+  var starPath = new Date().getTime();
+  req.body.path = starPath;
+  pool.getConnection(function(err, connection){
+    connection.query(dbcontroller.get_query("SET_REG_STAR_INFO", req.body), function(err, rows){
+        res.send(rows)
+        connection.release();
+    });
+  }); 
+  
 });
 
 /***************************************************/

@@ -19,6 +19,17 @@ exports.get_query = function(operation, params){
 			_query = _query + " from bmdb.bm_facebook_auth ";
 			_query = _query + " where uid = '" + params.uid + "' ) rst ";
 			break;
+		case "SET_REG_STAR_INFO": //Star 신청 정보 
+			_query = "INSERT INTO bmdb.bm_user_star ";
+			_query = _query + "(uid, ";
+			_query = _query + "pf_img_url, ";
+			_query = _query + "alias, ";
+			_query = _query + "intro, ";
+			_query = _query + "path, ";
+			_query = _query + "fb_album_id) ";
+			_query = _query + "VALUES( ";
+			_query = _query + "'" + params.uid + "', '" + params.pf_img_url + "', '" + params.alias + "', '" + params.intro + "', '" + params.path + "', null) ";
+			break;
 		default:
 			_query = "select 'TEST' from dual";
 			break;

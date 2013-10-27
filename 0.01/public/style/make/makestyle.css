@@ -80,7 +80,7 @@ a:active, a:hover {
 }
 
 .bm-cm{
-  padding: 5px 10px;
+  padding: 3px 5px;
   font-size: 12px;
   line-height:1.5;
   border-radius:3px;
@@ -89,3 +89,5 @@ a:active, a:hover {
 .bm-alert{
   min-height:50px ! important;
 }
+
+

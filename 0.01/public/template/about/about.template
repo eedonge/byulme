@@ -16,6 +16,14 @@
   	<img id="bm_fb_auth" src="../style/image/lout_fb.png">
   </p>
   <!-- Facebook -->
+
+  <!-- Star Registration -->
+  <div>
+  	<button id="reg_star" type="button" class="btn btn-danger bm-rs">
+  		<img src="../style/image/reg_star.png">
+  	</button>
+  </div>
+
 </form>
 
 
@@ -123,3 +131,56 @@
   	<strong>동영상 인코딩이 완료되었습니다.</strong>
 </div>
 <!-- Card Make -->
+
+
+
+<!-- Star Registration -->
+6f
+
+<!-- Modal -->
+<div class="modal fade" id="regStarModal" tabindex="-1" role="dialog"  aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			  <h4 class="modal-title"><strong>스타 등록</strong></h4>
+			</div>
+			<div class="modal-body">
+				<div class="well">
+				    <div class="row">
+				    	<div class="col-sm-6 col-md-3 bm-md-3">
+				    		<div class="thumbnail bm-thumbnail">
+								<img id="profile_img" src="../style/image/bm_profile.png">
+								<div class="caption" style="text-align:center;">
+									<button type="button" class="btn btn-primary btn-xs bm-rs">
+										<img  src="../style/image/upload_img.png">
+										<input id="profile_upload" type="file" name="files" title="이미지를 선택해 주세요"/>
+									</button>
+								</div>
+				    		</div>
+						</div>
+						<br>
+						<div class="input-group input-group-sm bm-input-group">
+						    <span class="input-group-addon bm-group-addon">이름</span>
+						    <input id="reg_star_name" type="text" class="form-control bm-form-control" placeholder="이름 또는 별명">
+						</div>
+						<br>
+						<div class="input-group input-group-sm bm-input-group">
+							<span class="input-group-addon bm-group-addon">소개</span>
+							<input id="reg_star_intro" type="text" class="form-control bm-form-control" placeholder="자기를 소개하는 글">
+						</div>
+						<br>
+						<span id="reg_star_alert" class="alert">동영상업로드가능!!</span>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+			  <button id="reg_star_submit" type="button" class="btn btn-primary">스타등록</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Star Registration -->

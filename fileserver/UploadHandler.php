@@ -935,7 +935,7 @@ class UploadHandler
         return $this->generate_response($response, $print_response);
     }
 
-    protected function set_user_upload_path($p_user_id){
+    protected function set_user_upload_path($p_user_id, $p_file_type=null){
         
         $this->bmMySql->bm_connect();
 
@@ -943,6 +943,11 @@ class UploadHandler
 
         if(count($user_info) > 0){
             $this->options['user_path'] = $user_info[0]["path"];    
+        }
+
+        //Profile 이미지는 폴더 지정
+        if($p_file_type == "PROFILE"){
+            $this->options['user_path'] = 'profile';
         }
 
         $this->bmMySql->bm_close();
@@ -1000,7 +1005,7 @@ class UploadHandler
         $_REQUEST[$this->options['param_type']] : null;
 
         //해당 ID의 File Upload PATH를 설정한다.
-        $this->set_user_upload_path($user_id);
+        $this->set_user_upload_path($user_id, $file_type);
 
         $upload = isset($_FILES[$this->options['param_name']]) ?
             $_FILES[$this->options['param_name']] : null;
@@ -1063,8 +1068,11 @@ class UploadHandler
             );
         }
 
-        //DB에 정보 생성후 Third Part에 업로드한다.
-        $this->set_file_info_and_upload($file_type, $user_id, $files);
+        //DB에 정보 생성후 Third Part에 업로드한다. (profile image 제외)
+        if($file_type != "PROFILE"){
+            $this->set_file_info_and_upload($file_type, $user_id, $files);
+        }
+        
 
         return $this->generate_response(
             array($this->options['param_name'] => $files),

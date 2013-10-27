@@ -12,7 +12,8 @@ define(
         'util/jquery-ui.min', //Card Make
         'iosocket', 
 		'style!../style/main/main', 
-        'style!../style/make/makestyle' //Card Make
+        'style!../style/make/makestyle', //Card Make
+        'style!../style/regstar/regstarstyle', //Register Star
 	], function(
 		$, 
 		Backbone,
@@ -132,6 +133,56 @@ define(
         BmFaceBook.auth('bm_fb_auth', uid, isAdmin);
 
         /***********  Facebook **************/
+
+        /***********  스타 등록 **************/
+        $("#reg_star").click(function(){
+
+            require( [ 'util/bm.prof.uploader'], function( BmProfUploader) {
+                BmProfUploader.init(uid);
+                
+                $("#reg_star_alert").hide();
+
+                $("#regStarModal").modal({
+                        keyboard:false,
+                        backdrop:'static'}); 
+
+                $("#reg_star_submit").click(function(){
+
+                   $("#reg_star_alert").hide();
+                   $("#reg_star_name").val('');
+                   $("#reg_star_intro").val('');
+                   $("#profile_img").attr("src", '../style/image/bm_profile.png');
+
+                    var starName = $("#reg_star_name").val();
+                    var starIntro = $("#reg_star_intro").val();
+                    var starProfThumb = $("#profile_img").attr("src");
+                    
+                    if(starName.length <= 0 || starIntro.length <= 0 || starProfThumb.indexOf("bm_profile") > 0){
+                        $("#reg_star_alert").show();
+                        $("#reg_star_alert").text('프로필 사진, 이름, 소개는 필수입니다!!');
+                    }else{
+                        $.ajax({
+                                type:"POST",
+                                url:"/bm/regstar",
+                                data:{
+                                    uid: uid, 
+                                    pf_img_url: starProfThumb,
+                                    alias: starName,
+                                    intro: starIntro
+                                }
+                            }).done(function(data){
+                                $("#regStarModal").modal("hide");
+                            }).fail(function(data){
+                                
+                            });
+                    }
+
+                });
+            });
+        });
+
+
+        /***********  스타 등록 **************/
 
         return this;
     }
