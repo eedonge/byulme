@@ -1,0 +1,11 @@
+<form class="form-horizontal">
+  <div>
+    별미는...
+  </div>
+  <p>
+	<button id="test" class="btn btn-large btn-success" type="button">Data Get TEST</button>
+  </p>
+  <p>
+	<button id="uploadtest" class="btn btn-large btn-success" type="button">Card Make TEST</button>
+  </p>
+</form>

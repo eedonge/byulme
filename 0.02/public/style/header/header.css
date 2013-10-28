@@ -1,0 +1,39 @@
+#header {
+	text-align: center;
+}
+
+
+@media (max-width: 767px) {
+	.f-nav{
+    z-index: 9999;
+    position: fixed;
+    /*left: 0;*/
+    top: 0;
+    /*width: auto;*/
+	}
+}
+
+@media (min-width: 979px) and (max-width: 768px) {
+	.f-nav{
+    z-index: 9999;
+    position: fixed;
+    /*left: 0;*/
+    top: 0;
+    width: 790px;
+	}
+}
+
+@media (min-width: 980px) {
+	.f-nav{
+    z-index: 9999;
+    position: fixed;
+    /*left: 0;*/
+    top: 0;
+    width: 1170px;
+	}
+}
+
+.nav2 {
+    position: absolute;
+    right: 0;
+}
