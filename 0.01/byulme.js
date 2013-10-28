@@ -9,11 +9,12 @@ var fs = require('fs')
 var path = require('path');
 var mysql = require('mysql')
 var dbcontroller = require('./lib/dbcontroller');
+var requirejs = require('requirejs');
 
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 8082);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -35,7 +36,18 @@ app.get('/', function(){
 	});
 });
 
-app.get('/')
+requirejs.config({
+  paths: {
+    "dummyData": "public/script/util/dummyData"
+  }
+});
+
+app.get('/card/:menuId/:maxRank', function(req, res){
+  requirejs(['dummyData'], function(DummyData){
+    res.send(DummyData.cardData(req.params.menuId, req.params.maxRank));
+  });
+})
+
 /*************** DB Control Process ****************/ 
 
 /*************** MY SQL POOL Manager ***************/
