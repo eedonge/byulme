@@ -36,4 +36,9 @@
 .nav2 {
     position: absolute;
     right: 0;
+    height:100%;
+}
+
+#myMenu {
+    left:100px;
 }

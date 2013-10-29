@@ -47,9 +47,9 @@ define(function(require) {
 						// cardListView.viewDidAppear();
 					}); //새로운 랭킹 리스트로 정렬한다.
 				}
-				$(window).scroll(function(){
-					cardListView.appendCardListCall();
-				});
+				// $(window).scroll(function(){
+				// 	cardListView.appendCardListCall();
+				// });
 			})
 		},
 

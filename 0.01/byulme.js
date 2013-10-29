@@ -14,7 +14,7 @@ var requirejs = require('requirejs');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 8082);
+app.set('port', process.env.PORT || 8080);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());

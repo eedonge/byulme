@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+		<meta name="author" content="www.frebsite.nl" />
+		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+
+		<title>jQuery.mmenu - Documentation</title>
+
+		<link type="text/css" rel="stylesheet" href="style/demo.css" />
+		<link type="text/css" rel="stylesheet" href="source/jquery.mmenu.css" />
+		<link type="text/css" rel="stylesheet" href="source/extensions/jquery.mmenu.widescreen.css" media="all and (min-width: 900px)" />
+		<link type="text/css" rel="stylesheet" href="source/extensions/jquery.mmenu.themes.css" media="all and (min-width: 900px)" />
+
+		<style type="text/css">
+			@media all and (min-width: 900px) {
+				html, body {
+					height: 100%;
+				}
+				#menu {
+					background: #eee;
+				}
+				#page {
+					border-left: 1px solid #ccc;
+					min-height: 100%;
+				}
+				/* hide open-button */
+				a[href="#menu"]
+				{
+					display: none !important;
+				}
+			}
+		</style>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script type="text/javascript" src="source/jquery.mmenu.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('nav#menu').mmenu({
+					classes: 'mm-light'
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header">
+				<a href="#menu"></a>
+				BYUM ME
+			</div>
+			<div id="content">
+			</div>
+			<nav id="menu">
+				<ul>
+					<li><a href="#rank/newly">Newly</a></li>
+					<li><a href="#rank/daily"	>Daily</a></li>
+					<li><a href="#rank/weekly">Weekly</a></li>
+					<li><a href="about">About</a></li>
+				</ul>
+			</nav>
+		</div>
+	<script src="cornerstone/launcher.js" data-target="script/main"></script>
+	</body>
+</html>

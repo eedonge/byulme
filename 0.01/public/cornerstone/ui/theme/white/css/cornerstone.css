@@ -3497,7 +3497,7 @@ z.btn-group.open .btn-inverse.dropdown-toggle:hover {
 .navbar-inner {
   text-align: center;
   min-height: 51px;
-  padding: 0 10px;
+  padding: 0;
   /*background-color: #d6d6d7;*/
   background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.05));
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0, 0, 0, 0.1)), to(rgba(255, 255, 255, 0.05)));
@@ -3697,7 +3697,10 @@ z.btn-group.open .btn-inverse.dropdown-toggle:hover {
   left: 0;
   display: block;
   float: left;
-  margin: 0;
+  margin-left:10px;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
   padding: 9px 0 0;
   z-index: 1;
 }

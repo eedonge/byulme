@@ -19,7 +19,7 @@ define(
 		bm
 	){
 		var cardListView = Backbone.View.extend({
-		el : 'div#contentsView',	//뷰가 그려질 공간
+		el : 'div#content',	//뷰가 그려질 공간
 		con : '#cardList_container',	//랭킹 공간 (카드들이 위치할 컨테이너)
 		menuId : null,	//메뉴아이디 (랭킹 종류)
 		maxRank : 0,
@@ -59,11 +59,21 @@ define(
 		},
 
 		appendCardList: function(list){
-			bm.log('appendCardList');
+			$(window).unbind('scroll');
+			var self = this;
+			var allTemplate;
 			for(sId in list) {
 				var card = new Card();
-				$(this.con).isotope('insert',$(card.template(list[sId])));
+				// $(this.con).isotope('insert',$(card.template(list[sId])));
+				allTemplate += card.template(list[sId]);
 			}
+			$(this.con).isotope('insert', $(allTemplate), function(){
+				bm.log('okkkkkkkkkkkkkkkkk');	
+			});
+			
+			$(window).scroll(function(){
+				self.appendCardListCall();
+			});
 		},
 
 		//랭킹메뉴가 최초 실행될 경우 랭킹 리스트를 새로 만든다.
@@ -108,36 +118,13 @@ define(
 			this.maxRank = 20;
 		},
 
-		// viewDidAppear: function() {
-		//   var self = this;
-		//   var options = {
-		//     offset: 'bottom-in-view'
-		//   };
-
-		//   options.handler = function(direction) {
-		//     var $this;
-
-		//     if (direction === 'down' || direction === 'right') {
-		//       $this = $(this);
-		//       bm.log('id:' + $this.attr('id'));
-		//       $this.waypoint('destroy');
-		//       return $.get('/card/' + self.menuId + '/' + self.maxRank, function(data) {
-		//         // if ($newMore.length) {
-		//         //   $more.replaceWith($newMore);
-		//         //   $this.waypoint('enable');
-		//         // } else {
-		//         //   $this.waypoint('destroy');
-		//         // }
-
-		//         self.appendCardList(data);
-		//         self.maxRank = self.maxRank + 20;
-		//         // return options.onAfterPageLoad();
-		//       });
-		//     }
-		//   };
-
-		//   $('#cardList_container').waypoint(options);
-		// },
+		/*
+		무한 스크롤 적용
+		jquery.infinitescroll.min.js 로....
+		 */
+		viewDidAppear: function() {
+			//
+		},
 
 		setAppendData: function(){
 
