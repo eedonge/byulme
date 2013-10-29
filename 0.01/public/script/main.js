@@ -8,68 +8,68 @@ requirejs.config({
         "waypoints": "../lib/waypoints.min",
         "waypoints-infinite": "../lib/waypoints-infinite",
 		"mainView": "view/main/mainView",
-        "headerView": "view/header/headerView",
-        "cardListView": "view/cardList/cardListView",
-        "cardView": "view/cardList/cardView",
+				"headerView": "view/header/headerView",
+				"cardListView": "view/cardList/cardListView",
+				"cardView": "view/cardList/cardView",
 		"rankView": "view/rank/rankView",
 		"aboutView": "view/about/aboutView",
-        "makeView": "view/make/makeView",
-        "express": "../../node_modules/express",
-        "dummyData": "util/dummyData",
-        "bm": "util/bm"
+				"makeView": "view/make/makeView",
+				"express": "../../node_modules/express",
+				"dummyData": "util/dummyData",
+				"bm": "util/bm"
 	},
 	
 	shim: {
-        "transition":{
-            deps:["jquery"],
-            exports: "Transition"
-        },
-        
-        "navigation": {
-        	deps:["transition"]
-        },
-        
-        "isotope": {
-            deps:["jquery"]
-        },
+				"transition":{
+						deps:["jquery"],
+						exports: "Transition"
+				},
+				
+				"navigation": {
+					deps:["transition"]
+				},
+				
+				"isotope": {
+						deps:["jquery"]
+				},
 
-        "waypoints": {
-            deps:["jquery"]
-        },
+				"waypoints": {
+						deps:["jquery"]
+				},
 
-        "mainView": {
-            deps:["app-container"]
-        },
+				"mainView": {
+						deps:["app-container"]
+				},
 
-        "headerView": {
-            deps:["app-container"]
-        },
+				"headerView": {
+						deps:["app-container"]
+				},
 
-        "cardListView": {
-            deps:["app-container"]
-        },
+				"cardListView": {
+						deps:["app-container"]
+				},
 
-        "cardView": {
-            deps:["app-container"]
-        },
+				"cardView": {
+						deps:["app-container"]
+				},
 
-        "rankView": {
-        	deps:["app-container"]
-        },
+				"rankView": {
+					deps:["app-container"]
+				},
 
-        "aboutView": {
-        	deps:["app-container"]
-        },
+				"aboutView": {
+					deps:["app-container"]
+				},
 
-        "makeView": {
-            deps:["app-container"]
-        }
+				"makeView": {
+						deps:["app-container"]
+				}
 	}
 });
 
-require(["headerView"], function(headerView) {
-    headerView.render();
-});
+// require(["headerView"], function(headerView) {
+// 		headerView.render();
+// });
 
 define(['router', 'widget-plugins'], function(Router) {
 	return {

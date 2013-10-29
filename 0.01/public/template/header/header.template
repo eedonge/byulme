@@ -1,13 +1,12 @@
 <div id="header-container" class="f-nav navbar navbar-inner">
-  <ul class="nav">
-    <li><a href="#rank/newly">Newly</a></li>
-    <li><a href="#rank/daily">Daily</a></li>
-    <li><a href="#rank/weekly">Weekly</a></li>
-    <li><a href="#about">About</a></li>
-  </ul>
-  <div class="nav2">
-  	<ul class="nav">
-  		<li><a href="">my menu</a></li>
-  	</ul>
-  </div>
+	<div id="commonMenu">
+		<ul class="nav">
+			<li><a href="#rank/newly">Newly</a></li>
+			<li><a href="#rank/daily">Daily</a></li>
+			<li><a href="#rank/weekly">Weekly</a></li>
+			<li><a href="#about">About</a></li>
+		</ul>
+	</div>
+	<div id="myMenu"  style="width:200px; height:50px; left:100px; background:red;">
+	</div>
 </div>
