@@ -5,11 +5,18 @@ requirejs.config({
 		"navigation":"../lib/navigation",
 		"isotope": "../lib/jquery.isotope",
         "iosocket": "../lib/socket.io.min",
+        "waypoints": "../lib/waypoints.min",
+        "waypoints-infinite": "../lib/waypoints-infinite",
 		"mainView": "view/main/mainView",
+        "headerView": "view/header/headerView",
+        "cardListView": "view/cardList/cardListView",
+        "cardView": "view/cardList/cardView",
 		"rankView": "view/rank/rankView",
 		"aboutView": "view/about/aboutView",
         "makeView": "view/make/makeView",
-        "express": "../../node_modules/express"
+        "express": "../../node_modules/express",
+        "dummyData": "util/dummyData",
+        "bm": "util/bm"
 	},
 	
 	shim: {
@@ -23,11 +30,27 @@ requirejs.config({
         },
         
         "isotope": {
-        	deps:["jquery"]
+            deps:["jquery"]
+        },
+
+        "waypoints": {
+            deps:["jquery"]
         },
 
         "mainView": {
-        	deps:["app-container"]
+            deps:["app-container"]
+        },
+
+        "headerView": {
+            deps:["app-container"]
+        },
+
+        "cardListView": {
+            deps:["app-container"]
+        },
+
+        "cardView": {
+            deps:["app-container"]
         },
 
         "rankView": {
@@ -44,29 +67,8 @@ requirejs.config({
 	}
 });
 
-require(['jquery'], function($) {
-    $("document").ready(function($){
-        var nav = $('#main-menu-container');
-        var lastScrollTop = 0;
-        $(window).scroll(function () {
-            var st = $(window).scrollTop();
-            var topsize = (nav.width() == 455) && '200' || '100';
-            if(st > lastScrollTop) {
-                if(nav.offset().top == $(this).scrollTop() && $(this).scrollTop() > 300) {
-                    nav.animate({
-                       top: "-" + topsize + "px",
-                    }, 200);
-                }
-            } else {
-                if(nav.offset().top == ($(this).scrollTop() - parseInt(topsize,10)) && $(this).scrollTop() > 300) {
-                    nav.animate({
-                       top: "0px",
-                    }, 200);
-                }
-            }
-            lastScrollTop = st;
-        });
-    });
+require(["headerView"], function(headerView) {
+    headerView.render();
 });
 
 define(['router', 'widget-plugins'], function(Router) {

@@ -11,6 +11,7 @@ var mysql = require('mysql')
 var dbcontroller = require('./lib/dbcontroller');
 var graph = require('fbgraph');
 var io = require('socket.io');
+var requirejs = require('requirejs');
 
 var app = express();
 
@@ -36,6 +37,18 @@ app.get('/', function(){
 		}
 	});
 });
+
+requirejs.config({
+  paths: {
+    "dummyData": "public/script/util/dummyData"
+  }
+});
+
+app.get('/card/:menuId/:maxRank', function(req, res){
+  requirejs(['dummyData'], function(DummyData){
+    res.send(DummyData.cardData(req.params.menuId, req.params.maxRank));
+  });
+})
 
 /*************** DB Control Process ****************/ 
 

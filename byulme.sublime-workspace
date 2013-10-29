@@ -55,9 +55,17 @@
 	"build_system": "Packages/JSLint/JSLint.sublime-build",
 	"command_palette":
 	{
-		"height": 51.0,
+		"height": 181.0,
 		"selected_items":
 		[
+			[
+				"listp",
+				"Package Control: List Packages"
+			],
+			[
+				"list p",
+				"Package Control: List Packages"
+			],
 			[
 				"insap",
 				"Package Control: Install Package"
@@ -143,11 +151,15 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 435.0
+		"width": 507.0
 	},
 	"console":
 	{
-		"height": 125.0
+		"height": 125.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
 	},
 	"distraction_free":
 	{
@@ -160,6 +172,11 @@
 	},
 	"file_history":
 	[
+		"/Users/dodolee/byulme/0.02/public/script/router.js",
+		"/Users/dodolee/byulme/0.02/public/script/view/cardList/cardListView.js",
+		"/Users/dodolee/byulme/0.02/public/index.html",
+		"/Users/dodolee/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/dodolee/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/dodolee/byulme/site/public/stylesheets/custom.css",
 		"/Users/dodolee/byulme/site/views/layout.jade",
 		"/Users/dodolee/byulme/site/routes/index.js",
@@ -282,16 +299,11 @@
 		"/D/FnSource/FnGuide/FnGuideRenewal/asp/test.html",
 		"/D/FnSource/FnGuide/FnGuideRenewal/asp/js/main.js",
 		"/D/FnSource/FnGuide/FnGuideRenewal/asp/ebiz.asp",
-		"/D/FnSource/FnGuide/FnGuideRenewal/asp/js/fng.js",
-		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/todos.html",
-		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/rtindex.asp",
-		"/D/FnSource/FnGuide/FnGuideRenewal/ebiz/ebiz.html",
-		"/D/FnSource/FnGuide/FnGuideRenewal/asp/cal.asp",
-		"/D/FnSource/FnGuide/FnGuideRenewal/asp/error.asp"
+		"/D/FnSource/FnGuide/FnGuideRenewal/asp/js/fng.js"
 	],
 	"find":
 	{
-		"height": 36.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
@@ -475,7 +487,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 24.0
 	},
 	"input":
 	{
@@ -516,9 +528,10 @@
 	{
 		"height": 120.0
 	},
+	"project": "byulme.sublime-project",
 	"replace":
 	{
-		"height": 64.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -526,6 +539,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"scviewcardl",
+				"0.02/public/script/view/cardList/cardListView.js"
+			],
 			[
 				"javascriptonly/pie",
 				"rsch/AmChart/basicSamples/javaScriptOnly/pie.html"
@@ -545,10 +562,24 @@
 		],
 		"width": 380.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 133.0,
-	"status_bar_visible": true
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }
