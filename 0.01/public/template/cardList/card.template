@@ -1,6 +1,9 @@
 <div class="card" data-starId="{{starId}}" data-menuId="{{menuId}}">
 	<div class="sbox">
 		<p class="rank">{{rank}}</p>
-		<h1 class="typo-pressed typo-pressed-title">{{rank}}위 {{starName}}</h1>
+		<div style="padding-top:30px; text-align:center;">
+			<h5 class="typo-pressed typo-pressed-title" style="font-size:70px; color:#047091;">{{rank}}</h5>
+			<div style="padding-top:10px;color:#007F91; font-size:30px;">{{starName}}</div>
+		</div>
 	</div>
 </div>

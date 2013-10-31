@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html class="mm-light">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+		<meta name="author" content="www.frebsite.nl" />
+		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+
+		<title>jQuery.mmenu - Examples</title>
+
+		<link type="text/css" rel="stylesheet" href="style/demo.css" />
+		<link type="text/css" rel="stylesheet" href="source/jquery.mmenu.all.css" />
+		
+		<!-- for the one page -->
+		<style type="text/css">
+			#content
+			{
+				padding-top: 40px;
+			}
+		</style>
+		
+		<!-- for the fixed header -->
+		<style type="text/css">
+			#header,
+			#footer	{
+				position: fixed;
+
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-ms-box-sizing: border-box;
+				-o-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+
+			.mm-page {
+				box-shadow: none !important;
+				background: inherit;
+				width: 80% !important;
+				min-height: 100%;
+				margin: 0 !important;
+				top: 0 !important;
+				position: relative;
+				z-index: 1;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-ms-box-sizing: border-box;
+				-o-box-sizing: border-box;
+				box-sizing: border-box; 
+			}
+
+			#menu-left {
+				position: fixed;
+				z-index: 0;
+				padding: 0; 
+			}
+			
+			#header, #footer {
+				right: auto !important;
+				width:80%;
+			}
+
+			.mm-menu:first-child, .mm-menu.mm-current {
+				display: block; 
+			}
+
+			@media (min-width: 900px) {				
+				#menu-left {
+				 	width: 177px; 
+				}
+				 #page {
+				 	left: 177px !important;
+				}
+				#header, #footer {
+					left: 177px !important;
+				}
+
+				#open-icon-menu {
+					display: none;
+				}
+			}
+			@media (min-width: 550px) {
+				
+				#menu-left {
+					width: 20%;
+				}
+				#page {
+					left: 20%;
+				}
+				#header, #footer {
+					left: 20%; 
+				}
+				#open-icon-header {
+					display: none !important;
+				}
+			}
+			@media (max-width: 549px) {
+				html.mm-opened.mm-opening .mm-page, html.mm-opened.mm-opening #mm-blocker, html.mm-opened.mm-opening .mm-fixed-top, html.mm-opened.mm-opening .mm-fixed-bottom {
+					left: 110px;
+				}
+				#open-icon-menu {
+					display: none;
+				}
+			}
+		</style>
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script type="text/javascript" src="source/jquery.mmenu.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var $menuLeft = $('nav#menu-left');
+				var $menuRight = $('nav#menu-right');
+
+
+				$menuLeft.mmenu({
+					onClick: {
+						preventDefault	: true,
+						setSelected		: false
+					}
+				});
+
+				$('#open-icon-menu a').click(function( e ) {
+					e.stopImmediatePropagation();
+					e.preventDefault();
+					console.log($menuLeft.hasClass( 'mm-opened' ) );
+					$menuLeft.trigger( $menuLeft.hasClass( 'mm-opened' ) ? 'close.mm' : 'open.mm' );					
+				});
+
+				$menuRight.mmenu({
+					position	: 'right',
+					classes		: 'mm-light',
+					counters	: true,
+					searchfield	: true,
+					header		: {
+						add			: true,
+						update		: true,
+						title		: 'Contacts' 
+					}
+				});
+
+				//	Click a menu-item
+				$menuRight.find( 'li a' ).not( '.mm-subopen' ).not( '.mm-subclose' ).bind(
+					'click',
+					function( e )
+					{
+						e.preventDefault();
+						$('#menu-right').trigger( 'close' );
+					}
+				);
+			});
+		</script>
+	</head>
+	<body>
+		<div id="page">
+			<div id="header" class="mm-fixed-top">
+				<a id="open-icon-header" href="#menu-left"></a>
+				BYUL ME
+				<a href="#menu-right" class="friends right"></a>
+			</div>
+			<div id="content">
+				Loading.....
+			</div>
+			<div id="footer" class="mm-fixed-bottom">
+				FOOTER
+			</div>
+			<nav id="menu-left" class="mm-light">
+				<ul>
+					<li id="open-icon-menu"><a href="#"><i class="icon icon-white icon-th-list"></i>menu</a></li>
+					<li><a href="#rank/newly">N &nbsp;&nbsp;newly</a></li>
+					<li><a href="#rank/daily">D &nbsp;&nbsp;daily</a></li>
+					<li><a href="#rank/weekly">W &nbsp;&nbsp;weekly</a></li>
+					<li><a href="#about">A &nbsp;&nbsp;about</a></li>
+				</ul>
+			</nav>
+			<nav id="menu-right">
+				<ul>
+					<li>
+						<span>Friends</span>
+						<ul>
+							<li class="Label">A</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/1/" />
+									Alexa<br />
+									<small>Johnson</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/2/" />
+									Alexander<br />
+									<small>Brown</small>
+								</a>
+							</li>
+
+							<li class="Label">F</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/3/" />
+									Fred<br />
+									<small>Smith</small>
+								</a>
+							</li>
+
+							<li class="Label">J</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/4/" />
+									James<br />
+									<small>Miller</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/5/" />
+									Jefferson<br />
+									<small>Jackson</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/6/" />
+									Jordan<br />
+									<small>Lee</small>
+								</a>
+							</li>
+
+							<li class="Label">K</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/7/" />
+									Kim<br />
+									<small>Adams</small>
+								</a>
+							</li>
+
+							<li class="Label">M</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/8/" />
+									Meagan<br />
+									<small>Miller</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/9/" />
+									Melissa<br />
+									<small>Johnson</small>
+								</a>
+							</li>
+							
+							<li class="Label">N</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/10/" />
+									Nicole<br />
+									<small>Smith</small>
+								</a>
+							</li>
+
+							<li class="Label">S</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/1/" />
+									Samantha<br />
+									<small>Harris</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/2/" />
+									Scott<br />
+									<small>Thompson</small>
+								</a>
+							</li>
+						</ul>
+					</li>
+					
+					<li>
+						<span>Family</span>
+						<ul>
+							<li class="Label">A</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/3/" />
+									Adam<br />
+									<small>White</small>
+								</a>
+							</li>
+
+							<li class="Label">B</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/4/" />
+									Ben<br />
+									<small>Robinson</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/5/" />
+									Bruce<br />
+									<small>Lee</small>
+								</a>
+							</li>
+
+							<li class="Label">E</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/6/" />
+									Eddie<br />
+									<small>Williams</small>
+								</a>
+							</li>
+
+							<li class="Label">J</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/7/" />
+									Jack<br />
+									<small>Johnson</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/8/" />
+									John<br />
+									<small>Jackman</small>
+								</a>
+							</li>
+
+							<li class="Label">M</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/9/" />
+									Martina<br />
+									<small>Thompson</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/10/" />
+									Matthew<br />
+									<small>Watson</small>
+								</a>
+							</li>
+
+							<li class="Label">O</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/1/" />
+									Olivia<br />
+									<small>Taylor</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/2/" />
+									Owen<br />
+									<small>Wilson</small>
+								</a>
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<span>Work colleagues</span>
+						<ul>
+							<li class="Label">D</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/3/" />
+									David<br />
+									<small>Harris</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/4/" />
+									Dennis<br />
+									<small>King</small>
+								</a>
+							</li>
+							
+							<li class="Label">E</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/5/" />
+									Eliza<br />
+									<small>Walker</small>
+								</a>
+							</li>
+							
+							<li class="Label">L</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/6/" />
+									Larry<br />
+									<small>Turner</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/7/" />
+									Lisa<br />
+									<small>Wilson</small>
+								</a>
+							</li>
+							
+							<li class="Label">M</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/8/" />
+									Michael<br />
+									<small>Jordan</small>
+								</a>
+							</li>
+							
+							<li class="Label">R</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/9/" />
+									Rachelle<br />
+									<small>Cooper</small>
+								</a>
+							</li>
+							<li class="img">
+								<a href="#">
+									<img src="http://lorempixel.com/50/50/people/10/" />
+									Rick<br />
+									<small>James</small>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	<script src="cornerstone/launcher.js" data-target="script/main"></script>
+	</body>
+</html>

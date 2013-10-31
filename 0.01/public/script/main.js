@@ -4,66 +4,48 @@ requirejs.config({
 		"transition": Cornerstone.PATH + "util/transition",
 		"navigation":"../lib/navigation",
 		"isotope": "../lib/jquery.isotope",
-        "iosocket": "../lib/socket.io.min",
-        "waypoints": "../lib/waypoints.min",
-        "waypoints-infinite": "../lib/waypoints-infinite",
-		"mainView": "view/main/mainView",
-				"headerView": "view/header/headerView",
-				"cardListView": "view/cardList/cardListView",
-				"cardView": "view/cardList/cardView",
-		"rankView": "view/rank/rankView",
+		"iosocket": "../lib/socket.io.min",
+		"waypoints": "../lib/waypoints.min",
+		"waypoints-infinite": "../lib/waypoints-infinite",
+		"headerView": "view/header/headerView",
+		"cardListView": "view/cardList/cardListView",
+		"cardView": "view/cardList/cardView",
 		"aboutView": "view/about/aboutView",
-				"makeView": "view/make/makeView",
-				"express": "../../node_modules/express",
-				"dummyData": "util/dummyData",
-				"bm": "util/bm"
+		"makeView": "view/make/makeView",
+		"express": "../../node_modules/express",
+		"dummyData": "util/dummyData",
+		"bm": "util/bm"
 	},
 	
 	shim: {
-				"transition":{
-						deps:["jquery"],
-						exports: "Transition"
-				},
-				
-				"navigation": {
-					deps:["transition"]
-				},
-				
-				"isotope": {
-						deps:["jquery"]
-				},
+		
+		"isotope": {
+				deps:["jquery"]
+		},
 
-				"waypoints": {
-						deps:["jquery"]
-				},
+		"waypoints": {
+				deps:["jquery"]
+		},
 
-				"mainView": {
-						deps:["app-container"]
-				},
+		"headerView": {
+				deps:["app-container"]
+		},
 
-				"headerView": {
-						deps:["app-container"]
-				},
+		"cardListView": {
+				deps:["app-container"]
+		},
 
-				"cardListView": {
-						deps:["app-container"]
-				},
+		"cardView": {
+				deps:["app-container"]
+		},
+		
+		"aboutView": {
+			deps:["app-container"]
+		},
 
-				"cardView": {
-						deps:["app-container"]
-				},
-
-				"rankView": {
-					deps:["app-container"]
-				},
-
-				"aboutView": {
-					deps:["app-container"]
-				},
-
-				"makeView": {
-						deps:["app-container"]
-				}
+		"makeView": {
+				deps:["app-container"]
+		}
 	}
 });
 

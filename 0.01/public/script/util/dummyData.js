@@ -101,6 +101,8 @@ define(function(require){
 		this.tmpNewCardList = setRandomCardlist('newly');
 		this.tmpDailyCardList = setRandomCardlist('daily');
 		this.tmpWeeklyCardList = setRandomCardlist('weekly');
+		this.tmpMonthlyCardList = setRandomCardlist('monthly');
+		this.tmpSeasonCardList = setRandomCardlist('season');
 
 	};
 
@@ -115,6 +117,12 @@ define(function(require){
 			case 'weekly' :
 				cardList = this.tmpWeeklyCardList;
 				break;
+			case 'monthly' :
+				cardList = this.tmpMonthlyCardList;
+				break;
+			case 'season' :
+				cardList = this.tmpSeasonCardList;
+				break;
 			default :
 				cardList = this.tmpNewCardList;
 				break;
@@ -124,7 +132,6 @@ define(function(require){
 	};
 
 	DummyData.prototype.getCardData = function(list, limit) {
-		console.log(limit);
 		var tmpList = {}
 		for(sId in list) {			
 			if (list[sId].rank > limit && list[sId].rank <= limit + 20) {

@@ -607,7 +607,6 @@
     // used on collection of atoms (should be filtered, and sorted before )
     // accepts atoms-to-be-laid-out to start with
     layout : function( $elems, callback ) {
-
       var layoutMode = this.options.layoutMode;
 
       // layout logic
@@ -804,6 +803,7 @@
 
     // removes elements from Isotope widget
     remove: function( $content, callback ) {
+      this._isInserting = false;
       // remove elements from Isotope instance in callback
       var instance = this;
       // remove() as a callback, for after transition / animation
@@ -814,7 +814,6 @@
           callback.call( instance.element );
         }
       };
-
       if ( $content.filter( ':not(.' + this.options.hiddenClass + ')' ).length ) {
         // if any non-hidden content needs to be removed
         this.styleQueue.push({ $el: $content, style: this.options.hiddenStyle });
