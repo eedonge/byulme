@@ -12,18 +12,13 @@
 		<link type="text/css" rel="stylesheet" href="style/layout.css" />
 		<link type="text/css" rel="stylesheet" href="style/demo.css" />
 		<link type="text/css" rel="stylesheet" href="source/jquery.mmenu.all.css" />
-		<link type="text/css" rel="stylesheet" href="source/extensions/jquery.mmenu.widescreen.css" media="all and (min-width: 900px)" />
-		<link type="text/css" rel="stylesheet" href="style/iconbar.css" media="all and (min-width: 500px) and (max-width: 899px)" />
+		<link type="text/css" rel="stylesheet" href="source/extensions/jquery.mmenu.widescreen.css" media="all" />
+		<link type="text/css" rel="stylesheet" href="style/iconbar.css" media="all and (min-width: 500px)" />
 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script type="text/javascript" src="source/jquery.mmenu.js"></script>
 		<style type="text/css">
-			.mm-menu {
-				width: 50%;
-			}
-			html.mm-opened.mm-opening .mm-page, html.mm-opened.mm-opening #header, html.mm-opened.mm-opening  #footer {
-				left: 50%;
-			}
+			
 			#content {
 				padding-top:40px;
 			}
@@ -32,41 +27,7 @@
 				width:100%;
 				padding-top:110px;
 			}
-			#header,
-			#footer	{
-				position: fixed;
-				right: 0px;
-				width: auto !important;
-			}
-
-			@media (min-width: 900px) {
-				#header, #footer {
-					left: 24% !important;
-				}
-				.mm-menu {
-					width:24% !important;
-				}
-				.mm-page {
-					left:24% !important;
-					width:76% !important;
-				}
-			}
 			
-			@media (min-width: 550px) {
-				.mm-menu {
-					width: 220px;
-				}
-				html.mm-opened.mm-opening .mm-page, html.mm-opened.mm-opening #header, html.mm-opened.mm-opening #footer {
-					left: 220px; 
-				}
-			}
-
-			@media (max-width: 899px) and (min-width: 500px) {
-				#header, #footer {
-					left: 60px;
-					width:;
-				}
-			}
 
 		</style>
 		<script type="text/javascript">
@@ -118,10 +79,6 @@
 				BYUL ME
 			</div>
 			
-			<div id="footer" class="mm-fixed-bottom">
-				FOOTER
-			</div>
-
 			<nav id="menu">
 				<ul>
 					<li id="open-icon-menu"><a href="#">
