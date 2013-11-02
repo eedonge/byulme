@@ -35,6 +35,12 @@
   	</button>
   </p>
 
+  <p>
+  	<button id="member_test" type="button" class="btn">
+  		Sign In, Log In
+  	</button>
+  </p>
+
 
 </form>
 

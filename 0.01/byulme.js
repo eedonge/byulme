@@ -12,6 +12,7 @@ var dbcontroller = require('./lib/dbcontroller');
 var graph = require('fbgraph');
 var io = require('socket.io');
 var requirejs = require('requirejs');
+var email = require('emailjs');
 
 var app = express();
 
@@ -184,6 +185,42 @@ app.post('/bm/fb/feed/:operation', function(req, res){
       });
     });
 });
+
+
+/*
+var server  = email.server.connect({
+   user:    'wizardp80@gmail.com', 
+   password: '84018401', 
+   host:    'smtp.gmail.com', 
+   ssl:     true
+});
+*/
+
+/***************************************************/
+/* Sign In Process                                 */
+/***************************************************/
+app.post('/bm/sign/:operation', function(req, res){
+  if(req.params.operation == "LOGIN"){
+    console.log('LOG IN : ' + req.body.email + ' : ' + req.body.pass);
+
+  }else if(req.params.operation == "SIGNIN"){
+    console.log('SIGN IN : ' + req.body.email + ' : ' + req.body.pass);
+
+    /*
+    server.send({
+       text:    '', 
+       from:    '별미관리<wizardp80@gmail.com>', 
+       to:      '<wizardp@naver.com>',
+       subject: 'testing emailjs',
+       attachment: 
+       [
+          {data:'<html>i <i>hope</i> this works!<br/> <a href="http://www.naver.com" target="_blank">네이버</a></html>', alternative:true}
+       ]
+    }, function(err, message) { console.log(err || message); });
+    */
+  }
+});
+
 
 
 

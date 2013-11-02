@@ -231,10 +231,10 @@ define(
                 backdrop:'static'}); 
         });
 
-
-        
         /***********  Contents View **********/
-
+        $("#member_test").click(function(){
+            document.location.href="#member";
+        });
         return this;
     }
 	});
