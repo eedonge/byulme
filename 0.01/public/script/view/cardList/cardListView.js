@@ -30,16 +30,11 @@ define(
 			this.maxRank = 20;
 			//isotope 처리
 			$(this.con).isotope({
+				animationEngine:'jquery',
 				itemSelector : '.card',
 				getSortData : {
-					starId : function ( $elem ) {
-						return $elem.attr('data-starId');
-					},
 					rank : function ( $elem ) {
 						return parseInt($elem.find('.rank').text(),10);
-					},
-					name : function ( $elem ) {
-						return $elem.find('.starName').text();
 					}
 				},
 				sortBy : 'rank'
@@ -48,8 +43,6 @@ define(
 		},
 
 		appendCardListCall: function(callback) {
-			// bm.log($(window).scrollTop());
-			// bm.log($(document).height() - $(window).height());
 			if($(window).scrollTop() == $(document).height() - $(window).height() - 1) {
 				this.appendCardList(DummyData.cardData(this.menuId, this.maxRank));
 				this.maxRank = this.maxRank + 20;
@@ -86,10 +79,11 @@ define(
 		},
 
 		//랭킹 리스트가 이미 있는 상태에서 새로운 리스트로 업데이트한다.
-		updateCardList: function(list, callback) {
+		updateCardList: function(list) {
 			var board = $('.card'); //카드 그룹
 			var cardElem = null;
-						//새로운 카드 리스트 객체를 루프돌면서 새로운 카드를 추가한다.
+			var tmpTemplate = '';
+			//새로운 카드 리스트 객체를 루프돌면서 새로운 카드를 추가한다.
 			for(sId in list) {
 				cardElem = board.filter('[data-starId="' + sId + '"]');
 				if (cardElem.length > 0) {	//이전 리스트에 해당 카드가 있다면
@@ -98,23 +92,25 @@ define(
 					cardElem.attr('data-menuId',this.menuId);			//해당 카드의 menuId 변경
 				} else {	//이전 리스트에 해당 카드가 없다면 랭킹에 추가한다.
 					var card = new Card();
-					$(this.con).isotope('insert',$(card.template(list[sId])));
+					tmpTemplate += card.template(list[sId]);
 				}
 			}
-
+			var self = this;
 			//menuId가 다른 카드는 새로운 순위 리스트에 포함되지 않으므로 삭제한다.
-			$(this.con).isotope('remove',board.filter('[data-menuId!="' + this.menuId + '"]'));	//isotope 객체에서 삭제
-			board.filter('[data-menuId!="' + this.menuId + '"]').remove();	//실제 해당 엘리먼트 삭제
-			$(this.con).isotope('reloadItems').isotope({sortBy:'rank'});	//isotope reload 하고 정렬을 실행한다.
-
-			callback && callback();
+			$(this.con)
+				// .append($(tmpTemplate))
+				.isotope('remove',board.filter('[data-menuId!="' + self.menuId + '"]'))	//isotope 객체에서 삭제
+				.isotope('insert',$(tmpTemplate), function() {
+						$(self.con).isotope('reloadItems');
+						$(self.con).isotope({sortBy:'rank'});					
+					});
 		},
 
-		sortCardList: function(id,callback) {
+		sortCardList: function(id) {
 			this.maxRank = 0;
 			var self = this;
 			$(window).scrollTop(0)
-			this.updateCardList(DummyData.cardData(id, this.maxRank), callback);
+			this.updateCardList(DummyData.cardData(id, this.maxRank));
 			this.maxRank = 20;
 		},
 

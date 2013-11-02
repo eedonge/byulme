@@ -593,7 +593,7 @@
 			var $a = $('ul.' + _c.list + ' > li > a', this.$menu)
 				.not( '.' + _c.subopen )
 				.not( '.' + _c.subclose )
-//				.not( '[href^="#"]' )
+				.not( '[href^="#"]' )
 				.not( '[rel="external"]' )
 				.not( '[target="_blank"]' );
 
@@ -610,12 +610,14 @@
 						{
 							$t.parent().trigger( _e.setSelected );
 						}
-
+						console.log('click');
 						//	Prevent default / don't follow link. Default: false
 						var preventDefault = that.__valueOrFn( that.opts.onClick.preventDefault, $t, href.slice( 0, 1 ) == '#' );
 						if ( preventDefault )
 						{
-							e.preventDefault();
+							if (href.indexOf('#rank') < 0) {
+								e.preventDefault();
+							}
 							e.stopPropagation();
 						}
 
@@ -722,9 +724,9 @@
 		modal			: false,
 		classes			: '',
 		onClick			: {
-//			close				: true,
-//			blockUI				: null,
-//			preventDefault		: null,
+			// close				: true,
+			// blockUI				: null,
+			// preventDefault		: null,
 			setSelected			: true
 		}
 	};

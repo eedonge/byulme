@@ -32,9 +32,11 @@ html.mm-opened.mm-opening #mm-blocker {
   left: 0; }
 
 .mm-fixed-top {
+  z-index:1;
   top: 0; }
 
 .mm-fixed-bottom {
+  z-index:1;
   bottom: 0; }
 
 html.mm-opened .mm-page,
