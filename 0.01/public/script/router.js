@@ -19,7 +19,7 @@ define(function(require) {
 			'' : 'rankRoute',
 			'rank/:menuId' : 'rankRoute',
 			'about' : 'aboutRoute',
-			'make' : 'makeRoute'
+			'member' : 'memberRoute'
 		},
 
 		initialize: function() {
@@ -62,10 +62,10 @@ define(function(require) {
 			})
 		},
 
-		makeRoute : function() {
-			require(["makeView"], function(MakeView) {
-				var direction = BreadCrumb.manager.route('make', 'Make');
-				PageTransition.page.transition(direction, MakeView);
+		memberRoute : function() {
+			require(["memberView"], function(MemberView) {
+				var direction = BreadCrumb.manager.route('member', 'Member');
+				PageTransition.page.transition(direction, MemberView);
 			})
 		},
 
