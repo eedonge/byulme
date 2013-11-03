@@ -7,3 +7,23 @@
 .bm-viewer-body{
 	width:650px;
 }
+
+.zoom {
+	display:inline-block;
+	position: relative;
+}
+
+.zoom img {
+	display: block;
+}
+
+.zoom img::selection { background-color: transparent; }
+.zoom{text-align:center;width:555px;height:320px;line-height:0;font-size:0;}
+
+.bm_zoom {			
+			height:100%;
+			max-width:555px;
+			max-height:320px;
+		}
+	
+.zoom .bm_zoom{margin:0 auto;}	

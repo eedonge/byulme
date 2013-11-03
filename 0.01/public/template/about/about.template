@@ -1,4 +1,17 @@
 <form class="form-horizontal">
+
+
+	<iframe id="sc_player"
+            width="100%"
+            height="150"
+            scrolling="no"
+            frameborder="no">
+  </iframe>
+
+	<div class='zoom' id='img_player'>
+		<img src='http://cfs8.tistory.com/image/8/tistory/2008/08/29/14/19/48b786fbb02e7' class="bm_zoom"/>
+	</div>
+
   <!-- Card Make -->
   <div>
   	<button id="cardmake" type="button" class="btn btn-success bm-cm">

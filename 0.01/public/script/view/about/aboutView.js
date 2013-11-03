@@ -10,6 +10,7 @@ define(
         'util/jquery.fileupload-process', //Card Make
         'util/jquery.fileupload-validate', //Card Make
         'util/jquery-ui.min', //Card Make
+        'util/jquery.zoom', 
         'iosocket', 
 		'style!../style/main/main', 
         'style!../style/make/makestyle', //Card Make
@@ -235,6 +236,11 @@ define(
         $("#member_test").click(function(){
             document.location.href="#member";
         });
+
+
+        $("#sc_player").attr("src", "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/118329744&auto_play=true&buying=false&sharing=false&download=false&show_playcount=false&show_bpm=true&show_comments=false&show_artwork=false&show_user=false");
+
+        $('#img_player').zoom();
         return this;
     }
 	});
