@@ -13,6 +13,7 @@ var graph = require('fbgraph');
 var io = require('socket.io');
 var requirejs = require('requirejs');
 var email = require('emailjs');
+var crypto = require('crypto');
 
 var app = express();
 
@@ -60,6 +61,7 @@ var bmMysqlConfig={
   port:"11000",
   user:"bmmast",
   password:"qufal13818",
+  multipleStatements: true,
   waitForConnections:true, //사용자가 많을 경우 대기 유지
   connectionLimit:100, //동시에 최대 100명 접속
   queueLimit:0 //Queue에 사용자 제한없음
@@ -100,13 +102,16 @@ app.post('/bm/regstar', function(req, res){
   var starPath = new Date().getTime();
   req.body.path = starPath;
   pool.getConnection(function(err, connection){
-    connection.query(dbcontroller.get_query("SET_REG_STAR_INFO", req.body), function(err, rows){
-        res.send(rows)
-        connection.release();
+    connection.query(dbcontroller.get_query("SET_REG_STAR_INFO", req.body) + "; " + dbcontroller.get_query("SET_USER_TYPE_FOR_STAR", req.body), function(err, results){
+      //console.log(results[0]);
+      //console.log(results[1]);
+      res.send(results[0]);
+      connection.release();
     });
   }); 
   
 });
+
 
 /***************************************************/
 /* FaceBook Auth                                   */
@@ -189,8 +194,8 @@ app.post('/bm/fb/feed/:operation', function(req, res){
 
 /*
 var server  = email.server.connect({
-   user:    'wizardp80@gmail.com', 
-   password: '84018401', 
+   user:    '', 
+   password: '', 
    host:    'smtp.gmail.com', 
    ssl:     true
 });
@@ -201,20 +206,50 @@ var server  = email.server.connect({
 /***************************************************/
 app.post('/bm/sign/:operation', function(req, res){
   if(req.params.operation == "LOGIN"){
-    console.log('LOG IN : ' + req.body.email + ' : ' + req.body.pass);
+
+    pool.getConnection(function(err, connection){
+      connection.query(dbcontroller.get_query("GET_LOGIN", req.body), function(err, rows){
+        if(err){
+          res.send(err)
+        }else{
+          res.send(rows)
+        }
+        connection.release();
+      });
+    });    
 
   }else if(req.params.operation == "SIGNIN"){
-    console.log('SIGN IN : ' + req.body.email + ' : ' + req.body.pass);
+
+    //Auth Key 만들기
+    var authKey = new Date().getTime() + crypto.createHash('md5').update(req.body.email).digest("hex");
+    var uid = crypto.createHash('md5').update(req.body.email).digest("hex");
+    var signParam = {
+      uid : uid,
+      email : req.body.email,
+      pw : req.body.pass,
+      auth : authKey
+    };
+
+    pool.getConnection(function(err, connection){
+      connection.query(dbcontroller.get_query("SET_SIGN_INFO", signParam), function(err, rows){
+        if(err){
+          res.send(err)
+        }else{
+          res.send(rows)
+        }
+        connection.release();
+      });
+    });
 
     /*
     server.send({
        text:    '', 
        from:    '별미관리<wizardp80@gmail.com>', 
-       to:      '<wizardp@naver.com>',
+       to:      '<' + req.body.email + '>',
        subject: 'testing emailjs',
        attachment: 
        [
-          {data:'<html>i <i>hope</i> this works!<br/> <a href="http://www.naver.com" target="_blank">네이버</a></html>', alternative:true}
+          {data:'<html>i <i>hope</i> this works!<br/> <a href="http://localhost:8080/bm/auth/' + authKey + '" target="_blank">별미인증하기</a></html>', alternative:true}
        ]
     }, function(err, message) { console.log(err || message); });
     */
@@ -222,6 +257,21 @@ app.post('/bm/sign/:operation', function(req, res){
 });
 
 
+app.get('/bm/auth/:authkey', function(req, res){
+
+  pool.getConnection(function(err, connection){
+    var authParam = {
+      auth : req.params.authkey
+    }
+    connection.query(dbcontroller.get_query("SET_AUTH", authParam), function(err, rows){
+      if(data.affectedRows == 1){
+          //성공
+      }
+      res.send(rows)
+      connection.release();
+    });
+  });
+});
 
 
 /*************** MY SQL POOL Manager ***************/

@@ -22,7 +22,7 @@ define(
 		BmFaceBook
 	){
 	var MainView = Backbone.View.extend({
-		el : 'div#contentsView',
+		el : 'div#content',
 		render: function() {
         $(this.el).html(template());
 
