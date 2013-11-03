@@ -22,7 +22,7 @@ define(
 		BmFaceBook
 	){
 	var MainView = Backbone.View.extend({
-		el : 'div#contentsView',
+		el : 'div#content',
 		render: function() {
         $(this.el).html(template());
 
@@ -231,10 +231,10 @@ define(
                 backdrop:'static'}); 
         });
 
-
-        
         /***********  Contents View **********/
-
+        $("#member_test").click(function(){
+            document.location.href="#member";
+        });
         return this;
     }
 	});
