@@ -44,6 +44,15 @@ class BMMySQL{
     return mysql_query( $que, $this->connect );
   }
 
+  function bm_update_soundcloud_info($cid=null,  $sd_id=null, $sd_url=null){
+    $que = "UPDATE bmdb.bm_sound_mast ";
+    $que = $que."  SET soundcloud_id = '".$sd_id."' ";
+    $que = $que."  , soundcloud_url = '".$sd_url."' ";
+    $que = $que."  WHERE cid = '".$cid."' ";
+
+    return mysql_query( $que, $this->connect );
+  }
+
   function bm_update_facebook_info($cid=null, $img_facebook_id=null){
     $que = "UPDATE bmdb.bm_image_mast ";
     $que = $que."  SET facebook_url = '".$img_facebook_id."' ";
@@ -104,6 +113,19 @@ class BMMySQL{
     $que = $que."'N') ";    
 
     return mysql_query( $que, $this->connect );
+  }
+
+  function bm_insert_soundcloud_token($token){
+    $que = "DELETE FROM bmdb.bm_soundcloud_auth ";
+    mysql_query( $que, $this->connect );
+    $que = "INSERT INTO bmdb.bm_soundcloud_auth (TOKEN) VALUES ('".$token."') ";
+    mysql_query( $que, $this->connect );
+  }
+
+  function bm_select_soundcloud_token(){
+    $que = "SELECT * FROM bmdb.bm_soundcloud_auth ";
+    $data = mysql_query( $que, $this->connect );  
+    return $this->bm_make_array_for_result( $data );
   }
 
   function bm_insert_youtube_token($token){
