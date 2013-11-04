@@ -15,7 +15,7 @@ define(function(require) {
 			'' : 'rankRoute',
 			'rank/:menuId' : 'rankRoute',
 			'about' : 'aboutRoute',
-			'make' : 'makeRoute'
+			'member' : 'memberRoute'
 		},
 
 		initialize: function() {
@@ -48,14 +48,11 @@ define(function(require) {
 			})
 		},
 
-		makeRoute : function() {
-			require(["makeView"], function(MakeView) {
-				var direction = BreadCrumb.manager.route('make', 'Make');
-				MakeView.render();
+		memberRoute : function() {
+			require(["memberView"], function(MemberView) {
+				MemberView.render();
 			})
 		},
-
-
 	});
 
 	new MainRouter();

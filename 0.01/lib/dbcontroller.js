@@ -30,11 +30,34 @@ exports.get_query = function(operation, params){
 			_query = _query + "VALUES( ";
 			_query = _query + "'" + params.uid + "', '" + params.pf_img_url + "', '" + params.alias + "', '" + params.intro + "', '" + params.path + "', null) ";
 			break;
+
+		case "SET_USER_TYPE_FOR_STAR": //User type을 Star로 수정 
+			_query = "UPDATE bmdb.bm_user_mast set type = 'S' where uid = '" + params.uid + "' ";
+			break;
+
+		case "SET_SIGN_INFO": //회원가입 신청
+			_query = "INSERT INTO bmdb.bm_user_mast ";
+			_query = _query + "(uid, ";
+			_query = _query + "email, ";
+			_query = _query + "pw, ";
+			_query = _query + "type, ";
+			_query = _query + "auth) ";
+			_query = _query + "VALUES( ";
+			_query = _query + "'" + params.uid + "', '" + params.email + "', '" + params.pw + "', 'N', '" + params.auth + "') ";
+			break;
+
+		case "SET_AUTH": //회원가입 인증
+			_query = "update bmdb.bm_user_mast set auth = 'Y'  where auth = '" + params.auth + "' ";			
+			break;
+
+		case "GET_LOGIN": //로그인 
+			_query = "select uid, email, type from bmdb.bm_user_mast where email = '" + params.email + "' and pw = '" + params.pass + "' and auth = 'Y' ";
+			break;
+
 		default:
 			_query = "select 'TEST' from dual";
 			break;
 	}
-
 	return _query;
 
 };

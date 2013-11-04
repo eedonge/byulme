@@ -30,18 +30,88 @@
 			
 
 		</style>
+		<script type="text/javascript">
+			$(function() {
+				var $menu = $('#menu');
+
+				//	Toggle menu 
+				$('#open-icon-menu a').click(function( e ) {
+					e.stopImmediatePropagation();
+					e.preventDefault();
+					$menu.trigger( $menu.hasClass( 'mm-opened' ) ? 'close.mm' : 'open.mm' );					
+				});
+
+				//	Create the menu
+				$menu.mmenu({
+					onClick: {
+						preventDefault	: true,
+						setSelected		: false,
+					},
+					counters	: true,
+					searchfield	: true,
+					header		: {
+						add			: true,
+						update		: true,
+						title		: 'Contacts' 
+					}
+				});
+
+
+				console.log($('a.mm-subopen').html());
+
+				$('a.mm-subopen').click(function( e ) {
+					console.log('click');
+					e.stopImmediatePropagation();
+					e.preventDefault();
+					!$menu.hasClass( 'mm-opened' ) && $menu.trigger( 'open.mm');
+				});
+
+				/*
+				var options = {
+					classes			: 'mm-light',
+					modal			: true
+				};
+
+				options.position = 'top';
+				options.zposition = 'front';
+				$('#popup-2').mmenu( options );*/
+
+			});
+		</script>
 	</head>
-	<body>
 		<div id="page">
+
+			<!--<a href="#popup-2">Tool</a>-->
+
 			<div id="content">
 				<h2>Loading...</h2>
 			</div>
 
+			
 			<div id="header" class="mm-fixed-top">
 				<a id="open-icon-header" href="#menu"></a>
 				BYUL ME
 			</div>
 			
+			<!--
+			<div id="tooltips">
+				<div id="popup-2" class="tip">
+					<div>
+						<div>
+							<a href="#page">x</a>
+							<h4>Notification center</h4>
+							<p><em>Notification Center is a feature in iOS and OS X that provides an overview of alerts from applications. It displays notifications until the user completes an associated action, rather than requiring instant resolution.</em></p>
+							<p>Wikipedia<br />
+								http://en.wikipedia.org/wiki/Notification_Center</p>
+						</div>
+					</div>
+				</div>
+			</div>-->
+
+			<div id="footer" class="mm-fixed-bottom">
+				FOOTER
+			</div>
+
 			<nav id="menu">
 				<ul>
 					<li id="open-icon-menu"><a href="#">
@@ -336,6 +406,7 @@
 				</ul>
 			</nav>
 		</div>
+<<<<<<< HEAD
 		<script type="text/javascript">
 			$(function() {
 				var $menu = $('#menu');
@@ -401,5 +472,9 @@
 
 		</script>
 		<script src="cornerstone/launcher.js" data-target="script/main"></script>
+=======
+
+	<script src="cornerstone/launcher.js" data-target="script/main"></script>
+>>>>>>> 0b5dd145f8ae73da8a2026edfb01a659038cee6b
 	</body>
 </html>

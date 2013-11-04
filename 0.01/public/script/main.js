@@ -4,20 +4,30 @@ requirejs.config({
 		"transition": Cornerstone.PATH + "util/transition",
 		"navigation":"../lib/navigation",
 		"isotope": "../lib/jquery.isotope",
-		"iosocket": "../lib/socket.io.min",
-		"waypoints": "../lib/waypoints.min",
-		"waypoints-infinite": "../lib/waypoints-infinite",
+    "iosocket": "../lib/socket.io.min",
+    "waypoints": "../lib/waypoints.min",
+    "waypoints-infinite": "../lib/waypoints-infinite",
+		"mainView": "view/main/mainView",
 		"headerView": "view/header/headerView",
 		"cardListView": "view/cardList/cardListView",
 		"cardView": "view/cardList/cardView",
+		"rankView": "view/rank/rankView",
 		"aboutView": "view/about/aboutView",
-		"makeView": "view/make/makeView",
+		"memberView": "view/member/memberView",
 		"express": "../../node_modules/express",
 		"dummyData": "util/dummyData",
 		"bm": "util/bm"
 	},
 	
 	shim: {
+		"transition":{
+				deps:["jquery"],
+				exports: "Transition"
+		},
+		
+		"navigation": {
+			deps:["transition"]
+		},
 		
 		"isotope": {
 				deps:["jquery"]
@@ -25,6 +35,10 @@ requirejs.config({
 
 		"waypoints": {
 				deps:["jquery"]
+		},
+
+		"mainView": {
+				deps:["app-container"]
 		},
 
 		"headerView": {
@@ -38,12 +52,16 @@ requirejs.config({
 		"cardView": {
 				deps:["app-container"]
 		},
-		
+
+		"rankView": {
+			deps:["app-container"]
+		},
+
 		"aboutView": {
 			deps:["app-container"]
 		},
 
-		"makeView": {
+		"memberView": {
 				deps:["app-container"]
 		}
 	}
