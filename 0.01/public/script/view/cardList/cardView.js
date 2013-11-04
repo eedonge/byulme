@@ -3,22 +3,30 @@ define(
 		'jquery', 
 		'backbone',
 		'template!../template/cardList/card',
-		'style!../style/cardList/card'
+		'colorbox',
+		'style!../style/cardList/card',
+		'style!../style/colorbox'
 	], function(
 		$, 
 		Backbone,
 		template
 	){
+
 	var cardView = Backbone.View.extend({
 		render: function(con, data) {
 			$(con).append(template(data));
+			$(".youtube").colorbox({iframe:true, innerWidth:640, innerHeight:390, overlayClose:false});
 		},
 		template: function(data) {
 			return template(data);
 		},
 		eventSet: function(){
-			$('.card').click(function(){
-				alert($(this).attr('data-starId'));
+			$('.youtube').click(function(){
+			});
+			$('#cboxOverlay').click(function(e){
+				e.preventDefault();
+				console.log($(this).html());
+				return false;
 			});
 		}
 	});

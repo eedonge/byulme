@@ -3,7 +3,6 @@ define(function(require) {
 	var Backbone = require("backbone");
 	var bm = require("bm");
 
-	
 	/**
 	 * 라우트를 정의
 	 */

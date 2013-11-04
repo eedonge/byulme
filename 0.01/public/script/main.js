@@ -4,9 +4,9 @@ requirejs.config({
 		"transition": Cornerstone.PATH + "util/transition",
 		"navigation":"../lib/navigation",
 		"isotope": "../lib/jquery.isotope",
-    "iosocket": "../lib/socket.io.min",
-    "waypoints": "../lib/waypoints.min",
-    "waypoints-infinite": "../lib/waypoints-infinite",
+		"iosocket": "../lib/socket.io.min",
+		"waypoints": "../lib/waypoints.min",
+		"waypoints-infinite": "../lib/waypoints-infinite",
 		"mainView": "view/main/mainView",
 		"headerView": "view/header/headerView",
 		"cardListView": "view/cardList/cardListView",
@@ -16,7 +16,8 @@ requirejs.config({
 		"memberView": "view/member/memberView",
 		"express": "../../node_modules/express",
 		"dummyData": "util/dummyData",
-		"bm": "util/bm"
+		"bm": "util/bm",
+		"colorbox":"../lib/jquery.colorbox-min"
 	},
 	
 	shim: {
@@ -62,7 +63,11 @@ requirejs.config({
 		},
 
 		"memberView": {
-				deps:["app-container"]
+			deps:["app-container"]
+		},
+
+		"colorbox":{
+			deps:["jquery"]
 		}
 	}
 });

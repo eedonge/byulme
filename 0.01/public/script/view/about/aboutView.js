@@ -4,6 +4,7 @@ define(
 		'backbone',
 		'template!../template/about/about',
 		'util/bm.facebook', //Card Make
+
         'bootstrap', //Card Make
         'util/vendor/jquery.ui.widget', //Card Make
         'util/jquery.fileupload', //Card Make
@@ -25,6 +26,7 @@ define(
 	var MainView = Backbone.View.extend({
 		el : 'div#content',
 		render: function() {
+
         $(this.el).html(template());
 
         /***********  Card Make **************/
@@ -243,7 +245,7 @@ define(
         $('#img_player').zoom();
         return this;
     }
->>>>>>> 0b5dd145f8ae73da8a2026edfb01a659038cee6b
+
 	});
 	return new MainView;
 });

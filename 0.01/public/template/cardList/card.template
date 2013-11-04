@@ -3,7 +3,7 @@
 		<p class="rank">{{rank}}</p>
 		<div style="padding-top:30px; text-align:center;">
 			<h5 class="typo-pressed typo-pressed-title" style="font-size:70px; color:#047091;">{{rank}}</h5>
-			<div style="padding-top:10px;color:#007F91; font-size:30px;">{{starName}}</div>
+			<a class='youtube' href="http://player.vimeo.com/video/2285902" title="R&ouml;yksopp: Remind Me" style="padding-top:10px;color:#007F91; font-size:30px;">{{starName}}</a>
 		</div>
 	</div>
 </div>

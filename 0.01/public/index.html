@@ -5,20 +5,24 @@
 		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
 		<meta name="author" content="www.frebsite.nl" />
 		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
-
 		<title>Coolest responsive menu example ever.</title>
-
 		<link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
 		<link type="text/css" rel="stylesheet" href="style/layout.css" />
 		<link type="text/css" rel="stylesheet" href="style/demo.css" />
 		<link type="text/css" rel="stylesheet" href="source/jquery.mmenu.all.css" />
-		<link type="text/css" rel="stylesheet" href="source/extensions/jquery.mmenu.widescreen.css" media="all" />
 		<link type="text/css" rel="stylesheet" href="style/iconbar.css" media="all and (min-width: 500px)" />
-
 		<script type="text/javascript" src="lib/jquery-2.0.3.min.js"></script>
 		<script type="text/javascript" src="source/jquery.mmenu.js"></script>
 		<style type="text/css">
-			
+			.mm-page {
+				position: relative;
+			}
+			#header {
+				position:fixed;
+				right: 0px;
+				width:auto;
+				z-index: 0;
+			}
 			#content {
 				padding-top:40px;
 			}
@@ -27,94 +31,42 @@
 				width:100%;
 				padding-top:110px;
 			}
-			
-
+			.btnpop {
+				left:auto !important;
+				right: 10px !important;
+			}
+			#menu {
+				display:block !important;
+			}
 		</style>
-		<script type="text/javascript">
-			$(function() {
-				var $menu = $('#menu');
-
-				//	Toggle menu 
-				$('#open-icon-menu a').click(function( e ) {
-					e.stopImmediatePropagation();
-					e.preventDefault();
-					$menu.trigger( $menu.hasClass( 'mm-opened' ) ? 'close.mm' : 'open.mm' );					
-				});
-
-				//	Create the menu
-				$menu.mmenu({
-					onClick: {
-						preventDefault	: true,
-						setSelected		: false,
-					},
-					counters	: true,
-					searchfield	: true,
-					header		: {
-						add			: true,
-						update		: true,
-						title		: 'Contacts' 
-					}
-				});
-
-
-				console.log($('a.mm-subopen').html());
-
-				$('a.mm-subopen').click(function( e ) {
-					console.log('click');
-					e.stopImmediatePropagation();
-					e.preventDefault();
-					!$menu.hasClass( 'mm-opened' ) && $menu.trigger( 'open.mm');
-				});
-
-				/*
-				var options = {
-					classes			: 'mm-light',
-					modal			: true
-				};
-
-				options.position = 'top';
-				options.zposition = 'front';
-				$('#popup-2').mmenu( options );*/
-
-			});
-		</script>
 	</head>
-		<div id="page">
-
-			<!--<a href="#popup-2">Tool</a>-->
+		<div id="page">	
 
 			<div id="content">
 				<h2>Loading...</h2>
 			</div>
-
 			
 			<div id="header" class="mm-fixed-top">
 				<a id="open-icon-header" href="#menu"></a>
 				BYUL ME
 			</div>
 			
-			<!--
-			<div id="tooltips">
-				<div id="popup-2" class="tip">
+			<div id="tooltips" >
+				<div id="popup-1" class="tip">
 					<div>
 						<div>
 							<a href="#page">x</a>
-							<h4>Notification center</h4>
-							<p><em>Notification Center is a feature in iOS and OS X that provides an overview of alerts from applications. It displays notifications until the user completes an associated action, rather than requiring instant resolution.</em></p>
+							<h4>Popups and modal windows</h4>
+							<p><em>In user interface design, a modal window is a child window that requires users to interact with it before they can return to operating the parent application, thus preventing the workflow on the application main window.</em></p>
 							<p>Wikipedia<br />
-								http://en.wikipedia.org/wiki/Notification_Center</p>
+								http://en.wikipedia.org/wiki/Modal_window</p>
 						</div>
 					</div>
 				</div>
-			</div>-->
-
-			<div id="footer" class="mm-fixed-bottom">
-				FOOTER
-			</div>
 
 			<nav id="menu">
 				<ul>
-					<li id="open-icon-menu"><a href="#">
+					<li id="open-icon-menu"><a href="#menu">
 						<i class="icon icon-white icon-list-alt"></i></a></li>
 					<li><a href="#rank/newly">
 						<i class="icon icon-white icon-star"></i>
@@ -403,24 +355,27 @@
 					<li><a href="#about">
 						<i class="icon icon-white icon-question-sign"></i>
 						About</a></li>
+					<li>
+						
+			<a id="btnShow" href="#popup-1" >Tool1</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
-<<<<<<< HEAD
 		<script type="text/javascript">
 			$(function() {
 				var $menu = $('#menu');
 
-				//	Toggle menu 
+					// Toggle menu 
 				$('#open-icon-menu a, #open-icon-header').click(function( e ) {
 					e.stopImmediatePropagation();
 					e.preventDefault();
 					if($menu.hasClass( 'mm-opened' ) ){
 						var opened = true;
 					}		
+					// console.log('click');
 					$menu.trigger( $menu.hasClass( 'mm-opened' ) ? 'close.mm' : 'open.mm' );
 					if(opened) {
-						console.log('close');
 						reWidth(60);
 					}
 				});
@@ -440,41 +395,51 @@
 					}
 				});
 
-
-				console.log($('a.mm-subopen').html());
-
-				$('a.mm-subopen').click(function( e ) {
-					e.stopImmediatePropagation();
-					e.preventDefault();
-					!$menu.hasClass( 'mm-opened' ) && $menu.trigger( 'open.mm');
-				});
-
 				$('.mm-page').click(function(){
 					if($menu.hasClass( 'mm-opened' ) )
 						reWidth(75);
 					$menu.trigger('close.mm');
 				});
 
+				$('a.mm-subopen').click(function( e ) {
+					console.log('click');
+					e.stopImmediatePropagation();
+					e.preventDefault();
+					!$menu.hasClass( 'mm-opened' ) && $menu.trigger( 'open.mm');
+				});
+
 				function reWidth(offset) {
 					var pos = $('#page').position();
 					offset = offset || pos.left;
-					console.log($(window).width() - offset);
+					// console.log($(window).width() - offset);
 					$('#page').width(($(window).width() - offset) + 'px')
 				}
 
 				$(window).resize(function(){
+					console.log($(window).width());
+					if($(window).width() < 486) {
+						$('#page').width('auto');
+						return;
+					}
 					if($menu.hasClass( 'mm-opened' ) )
 						reWidth(220);
 					else
 						reWidth(60);
 				});
+				
+				var options = {
+					classes			: 'mm-light',
+					modal			: true
+				};
+
+				options.position = 'top';
+				options.zposition = 'front';
+				$('#popup-1').mmenu( options );
+
+
 			});
 
 		</script>
 		<script src="cornerstone/launcher.js" data-target="script/main"></script>
-=======
-
-	<script src="cornerstone/launcher.js" data-target="script/main"></script>
->>>>>>> 0b5dd145f8ae73da8a2026edfb01a659038cee6b
 	</body>
 </html>

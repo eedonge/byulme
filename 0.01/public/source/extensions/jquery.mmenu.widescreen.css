@@ -27,7 +27,7 @@ body {
   /*width: 220px !important;*/
   padding: 0; }
   .mm-menu.mm-top, .mm-menu.mm-right, .mm-menu.mm-bottom {
-    top: 0 !important;
+    top: 0;
     right: auto !important;
     bottom: auto !important;
     left: 0 !important; }
