@@ -13,9 +13,9 @@ define(
         'util/jquery.zoom', 
         'iosocket', 
 		'style!../style/main/main', 
-        'style!../style/make/makestyle', //Card Make
-        'style!../style/regstar/regstarstyle', //Register Star
-        'style!../style/viewer/viewerstyle' //Viewer 
+				'style!../style/make/makestyle', //Card Make
+				'style!../style/regstar/regstarstyle', //Register Star
+				'style!../style/viewer/viewerstyle' //Viewer 
 	], function(
 		$, 
 		Backbone,
@@ -243,6 +243,7 @@ define(
         $('#img_player').zoom();
         return this;
     }
+>>>>>>> 0b5dd145f8ae73da8a2026edfb01a659038cee6b
 	});
 	return new MainView;
 });

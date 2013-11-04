@@ -12,18 +12,13 @@
 		<link type="text/css" rel="stylesheet" href="style/layout.css" />
 		<link type="text/css" rel="stylesheet" href="style/demo.css" />
 		<link type="text/css" rel="stylesheet" href="source/jquery.mmenu.all.css" />
-		<link type="text/css" rel="stylesheet" href="source/extensions/jquery.mmenu.widescreen.css" media="all and (min-width: 900px)" />
-		<link type="text/css" rel="stylesheet" href="style/iconbar.css" media="all and (min-width: 500px) and (max-width: 899px)" />
+		<link type="text/css" rel="stylesheet" href="source/extensions/jquery.mmenu.widescreen.css" media="all" />
+		<link type="text/css" rel="stylesheet" href="style/iconbar.css" media="all and (min-width: 500px)" />
 
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/jquery-2.0.3.min.js"></script>
 		<script type="text/javascript" src="source/jquery.mmenu.js"></script>
 		<style type="text/css">
-			.mm-menu {
-				width: 50%;
-			}
-			html.mm-opened.mm-opening .mm-page, html.mm-opened.mm-opening #header, html.mm-opened.mm-opening  #footer {
-				left: 50%;
-			}
+			
 			#content {
 				padding-top:40px;
 			}
@@ -32,41 +27,7 @@
 				width:100%;
 				padding-top:110px;
 			}
-			#header,
-			#footer	{
-				position: fixed;
-				right: 0px;
-				width: auto !important;
-			}
-
-			@media (min-width: 900px) {
-				#header, #footer {
-					left: 24% !important;
-				}
-				.mm-menu {
-					width:24% !important;
-				}
-				.mm-page {
-					left:24% !important;
-					width:76% !important;
-				}
-			}
 			
-			@media (min-width: 550px) {
-				.mm-menu {
-					width: 220px;
-				}
-				html.mm-opened.mm-opening .mm-page, html.mm-opened.mm-opening #header, html.mm-opened.mm-opening #footer {
-					left: 220px; 
-				}
-			}
-
-			@media (max-width: 899px) and (min-width: 500px) {
-				#header, #footer {
-					left: 60px;
-					width:;
-				}
-			}
 
 		</style>
 		<script type="text/javascript">
@@ -445,7 +406,75 @@
 				</ul>
 			</nav>
 		</div>
+<<<<<<< HEAD
+		<script type="text/javascript">
+			$(function() {
+				var $menu = $('#menu');
+
+				//	Toggle menu 
+				$('#open-icon-menu a, #open-icon-header').click(function( e ) {
+					e.stopImmediatePropagation();
+					e.preventDefault();
+					if($menu.hasClass( 'mm-opened' ) ){
+						var opened = true;
+					}		
+					$menu.trigger( $menu.hasClass( 'mm-opened' ) ? 'close.mm' : 'open.mm' );
+					if(opened) {
+						console.log('close');
+						reWidth(60);
+					}
+				});
+
+				//	Create the menu
+				$menu.mmenu({
+					onClick: {
+						preventDefault	: true,
+						setSelected		: false,
+					},
+					counters	: true,
+					searchfield	: true,
+					header		: {
+						add			: true,
+						update		: true,
+						title		: 'Contacts' 
+					}
+				});
+
+
+				console.log($('a.mm-subopen').html());
+
+				$('a.mm-subopen').click(function( e ) {
+					e.stopImmediatePropagation();
+					e.preventDefault();
+					!$menu.hasClass( 'mm-opened' ) && $menu.trigger( 'open.mm');
+				});
+
+				$('.mm-page').click(function(){
+					if($menu.hasClass( 'mm-opened' ) )
+						reWidth(75);
+					$menu.trigger('close.mm');
+				});
+
+				function reWidth(offset) {
+					var pos = $('#page').position();
+					offset = offset || pos.left;
+					console.log($(window).width() - offset);
+					$('#page').width(($(window).width() - offset) + 'px')
+				}
+
+				$(window).resize(function(){
+					if($menu.hasClass( 'mm-opened' ) )
+						reWidth(220);
+					else
+						reWidth(60);
+				});
+			});
+
+		</script>
+		<script src="cornerstone/launcher.js" data-target="script/main"></script>
+=======
 
 	<script src="cornerstone/launcher.js" data-target="script/main"></script>
+>>>>>>> 0b5dd145f8ae73da8a2026edfb01a659038cee6b
 	</body>
 </html>

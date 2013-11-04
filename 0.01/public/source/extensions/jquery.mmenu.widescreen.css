@@ -10,10 +10,8 @@ body {
 .mm-page {
   box-shadow: none !important;
   background: inherit;
-  width: 70% !important;
   min-height: 100%;
   margin: 0 !important;
-  left: 30% !important;
   top: 0 !important;
   position: relative;
   z-index: 1;
@@ -26,7 +24,7 @@ body {
 .mm-menu {
   position: fixed;
   z-index: 0;
-  width: 30% !important;
+  /*width: 220px !important;*/
   padding: 0; }
   .mm-menu.mm-top, .mm-menu.mm-right, .mm-menu.mm-bottom {
     top: 0 !important;
@@ -35,3 +33,10 @@ body {
     left: 0 !important; }
   .mm-menu:first-child, .mm-menu.mm-current {
     display: block; }
+
+
+      #header {
+        position: fixed;
+        right: 0px;
+        width: auto !important;
+      }

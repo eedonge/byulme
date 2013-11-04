@@ -11,7 +11,11 @@ html, body
 	min-height: 100%;
 	margin-right: 60px;
 	position: relative;
-	left: 60px;
+	left: 60px ;
+}
+#header
+{
+	left:60px;
 }
 .mm-menu
 {

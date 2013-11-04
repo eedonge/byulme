@@ -142,11 +142,7 @@ section > div
 		display: none;
 	}
 }
-@media all and (min-width: 900px) {
-	#open-icon-menu
-	{
-		display: none;
-	}
+@media all and (min-width: 900px) {ß
 	#mmenu-blocker
 	{
 		display: none !important;
