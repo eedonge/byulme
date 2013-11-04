@@ -15,6 +15,11 @@ define(
 		},
 		template: function(data) {
 			return template(data);
+		},
+		eventSet: function(){
+			$('.card').click(function(){
+				alert($(this).attr('data-starId'));
+			});
 		}
 	});
 

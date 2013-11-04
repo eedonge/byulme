@@ -43,7 +43,7 @@ define(
 		},
 
 		appendCardListCall: function(callback) {
-			if($(window).scrollTop() == $(document).height() - $(window).height() - 1) {
+			if($(window).scrollTop() == $(document).height() - $(window).height() ) {
 				this.appendCardList(DummyData.cardData(this.menuId, this.maxRank));
 				this.maxRank = this.maxRank + 20;
 			}
@@ -52,7 +52,7 @@ define(
 		},
 
 		appendCardList: function(list){
-			$(window).unbind('scroll');
+			// $(window).unbind('scroll');
 			var self = this;
 			var allTemplate;
 			for(sId in list) {
@@ -76,6 +76,7 @@ define(
 				var card = new Card();
 				card.render(this.con, list[sId]);
 			}
+			card.eventSet();
 		},
 
 		//랭킹 리스트가 이미 있는 상태에서 새로운 리스트로 업데이트한다.
