@@ -53,11 +53,31 @@ exports.get_query = function(operation, params){
 		case "GET_LOGIN": //로그인 
 			_query = "select uid, email, type from bmdb.bm_user_mast where email = '" + params.email + "' and pw = '" + params.pass + "' and auth = 'Y' ";
 			break;
-
+		case "GET_NEWLY"://newly
+			_query = "select	a.rownum";
+			_query = _query + "		,a.cid";
+			_query = _query + "		,b.uid";
+			_query = _query + "		,a.type";
+			_query = _query + "		,b.alias";
+			_query = _query + "		,b.pf_img_url";
+			_query = _query + "		,a.mast_url";
+			_query = _query + "		,a.mast_thumb_url";
+			_query = _query + " from	(";
+			_query = _query + "		select	@RNUM := @RNUM + 1 AS rownum, a.*";
+			_query = _query + "		from	bmdb.bm_card_mast a,";
+			_query = _query + "		( SELECT @RNUM := 0 ) R";
+			_query = _query + "		order by date desc";
+			_query = _query + "		) a,";
+			_query = _query + "		bmdb.bm_user_star b";
+			_query = _query + " where	a.uid = b.uid";
+			_query = _query + " and		rownum between " + params.curMaxIndex + " + 1 and " + params.curMaxIndex + " + 20";
+			break;
 		default:
 			_query = "select 'TEST' from dual";
 			break;
 	}
+
+	console.log(_query);
 	return _query;
 
 };

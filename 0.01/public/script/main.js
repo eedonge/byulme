@@ -5,8 +5,6 @@ requirejs.config({
 		"navigation":"../lib/navigation",
 		"isotope": "../lib/jquery.isotope",
 		"iosocket": "../lib/socket.io.min",
-		"waypoints": "../lib/waypoints.min",
-		"waypoints-infinite": "../lib/waypoints-infinite",
 		"mainView": "view/main/mainView",
 		"headerView": "view/header/headerView",
 		"cardListView": "view/cardList/cardListView",
@@ -31,10 +29,6 @@ requirejs.config({
 		},
 		
 		"isotope": {
-				deps:["jquery"]
-		},
-
-		"waypoints": {
 				deps:["jquery"]
 		},
 

@@ -2,18 +2,16 @@ define(
 	[
 		'jquery', 
 		'backbone',
-		'util/dummyData',
+		'util/cardDataUtil',
 		'cardView',
 		'template!../template/cardList/cardList',
 		'bm',
 		'isotope',
-		'waypoints',
-		'waypoints-infinite',
 		'style!../style/cardList/cardList'
 	], function(
 		$, 
 		Backbone,
-		DummyData,
+		cardDataUtil,
 		Card,
 		template,
 		bm
@@ -26,46 +24,48 @@ define(
 		render: function() {
 			this.maxRank = 0;
 			$(this.el).html(template());
-			this.makeCardList(DummyData.cardData(this.menuId, this.maxRank));
-			this.maxRank = 20;
-			//isotope 처리
-			$(this.con).isotope({
-				animationEngine:'jquery',
-				itemSelector : '.card',
-				getSortData : {
-					rank : function ( $elem ) {
-						return parseInt($elem.find('.rank').text(),10);
-					}
-				},
-				sortBy : 'rank'
+			var that  = this;
+
+			cardDataUtil.cardData(this.menuId, this.maxRank, function(list){
+				
+				that.makeCardList(list);
+				that.maxRank = 20;
+				//isotope 처리
+				$(that.con).isotope({
+					animationEngine:'jquery',
+					itemSelector : '.card',
+					getSortData : {
+						rank : function ( $elem ) {
+							return parseInt($elem.find('.rank').text(),10);
+						}
+					},
+					sortBy : 'rank'
+				});
 			});
-
 		},
-
-		appendCardListCall: function(callback) {
+		
+		appendCardListCall: function() {
 			if($(window).scrollTop() == $(document).height() - $(window).height() ) {
-				this.appendCardList(DummyData.cardData(this.menuId, this.maxRank));
-				this.maxRank = this.maxRank + 20;
+				var that = this;
+				$(window).unbind('scroll');
+				cardDataUtil.cardData(this.menuId, this.maxRank, function(list){
+					that.appendCardList(list);
+					that.maxRank  = that.maxRank + 20;
+				});
 			}
-			// this.appendCardList(DummyData.cardData(this.menuId, this.maxRank));
-			// this.maxRank = this.maxRank + 20;
 		},
 
 		appendCardList: function(list){
-			// $(window).unbind('scroll');
-			var self = this;
+			var that = this;
 			var allTemplate;
 			for(sId in list) {
 				var card = new Card();
-				// $(this.con).isotope('insert',$(card.template(list[sId])));
 				allTemplate += card.template(list[sId]);
 			}
 			$(this.con).isotope('insert', $(allTemplate), function(){
-				bm.log('okkkkkkkkkkkkkkkkk');	
-			});
-			
-			$(window).scroll(function(){
-				self.appendCardListCall();
+				$(window).scroll(function(){
+					that.appendCardListCall();
+				});
 			});
 		},
 
@@ -76,7 +76,7 @@ define(
 				var card = new Card();
 				card.render(this.con, list[sId]);
 			}
-			card.eventSet();
+			// card.eventSet();
 		},
 
 		//랭킹 리스트가 이미 있는 상태에서 새로운 리스트로 업데이트한다.
@@ -97,22 +97,24 @@ define(
 				}
 			}
 			var self = this;
-			//menuId가 다른 카드는 새로운 순위 리스트에 포함되지 않으므로 삭제한다.
+			//menuId가 다른 카드는 새로운 순위 리스트에 포함되지 않으므로 삭제한다.		
 			$(this.con)
-				// .append($(tmpTemplate))
+				// .append($(tmpTemplate))	
 				.isotope('remove',board.filter('[data-menuId!="' + self.menuId + '"]'))	//isotope 객체에서 삭제
 				.isotope('insert',$(tmpTemplate), function() {
 						$(self.con).isotope('reloadItems');
-						$(self.con).isotope({sortBy:'rank'});					
+						$(self.con).isotope({sortBy:'rank'});	
 					});
 		},
 
 		sortCardList: function(id) {
 			this.maxRank = 0;
-			var self = this;
+			var that = this;
 			$(window).scrollTop(0)
-			this.updateCardList(DummyData.cardData(id, this.maxRank));
-			this.maxRank = 20;
+			cardDataUtil.cardData(id, this.maxRank, function(list){
+				that.updateCardList(list);
+				that.maxRank = 20;
+			});
 		},
 
 		/*
