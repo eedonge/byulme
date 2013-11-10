@@ -50,6 +50,10 @@ exports.get_query = function(operation, params){
 			_query = "update bmdb.bm_user_mast set auth = 'Y'  where auth = '" + params.auth + "' ";			
 			break;
 
+		case "GET_USER_INFO_AUTH": //회원정보 
+			_query = "select uid, email, type from bmdb.bm_user_mast where auth = '" + params.auth + "' ";			
+			break;
+
 		case "GET_LOGIN": //로그인 
 			_query = "select uid, email, type from bmdb.bm_user_mast where email = '" + params.email + "' and pw = '" + params.pass + "' and auth = 'Y' ";
 			break;

@@ -30,15 +30,6 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', function(){
-	fs.readFile('public/index.html', function(err, data){
-		if(err){
-			res.end(err);
-		} else {
-			res.end(data);	
-		}
-	});
-});
 
 requirejs.config({
   paths: {
@@ -121,8 +112,8 @@ app.post('/bm/fb/auth', function(req, res){
     //Short Token 을 Long Token 으로 Extend  
     graph.setAccessToken(req.body.shorttoken);
     graph.extendAccessToken({
-        "client_id": '533349720068935'
-      , "client_secret": '6f61d913f18f56f394c592a2c694ed35'
+        "client_id": '462018927252937'
+      , "client_secret": '0fb2f1f2b2a89ed305fced0b4a1769b1'
     }, function (err, facebookRes) {
 
       var fbParam = {
@@ -192,15 +183,6 @@ app.post('/bm/fb/feed/:operation', function(req, res){
 });
 
 
-/*
-var server  = email.server.connect({
-   user:    '', 
-   password: '', 
-   host:    'smtp.gmail.com', 
-   ssl:     true
-});
-*/
-
 /***************************************************/
 /* Sign In Process                                 */
 /***************************************************/
@@ -241,18 +223,26 @@ app.post('/bm/sign/:operation', function(req, res){
       });
     });
 
-    /*
+    //이메일 인증 요청
+    var server  = email.server.connect({
+       user:    'star.byulme@gmail.com', 
+       password: 'sb1234!@#$', 
+       host:    'smtp.gmail.com', 
+       ssl:     true
+    });
+
+    
     server.send({
-       text:    '', 
-       from:    '별미관리<wizardp80@gmail.com>', 
+       text:    'http://localhost:8080/bm/auth/' + authKey + '', 
+       from:    'administrator<star.byulme@gmail.com>', 
        to:      '<' + req.body.email + '>',
-       subject: 'testing emailjs',
+       subject: '별미 인증 메일',
        attachment: 
        [
-          {data:'<html>i <i>hope</i> this works!<br/> <a href="http://localhost:8080/bm/auth/' + authKey + '" target="_blank">별미인증하기</a></html>', alternative:true}
+          {data:'<html>아래 링크를 클릭하신 후 서비스 이용 가능합니다.<br/> <a href="http://localhost:8080/bm/auth/' + authKey + '" target="_blank">별미인증하기</a></html>', alternative:true}
        ]
     }, function(err, message) { console.log(err || message); });
-    */
+    
   }
 });
 
@@ -263,18 +253,59 @@ app.get('/bm/auth/:authkey', function(req, res){
     var authParam = {
       auth : req.params.authkey
     }
-    connection.query(dbcontroller.get_query("SET_AUTH", authParam), function(err, rows){
-      if(data.affectedRows == 1){
-          //성공
+
+    connection.query(dbcontroller.get_query("GET_USER_INFO_AUTH", authParam), function(err, rows){
+      if(rows.length > 0){        
+        var bmUid = rows[0].uid;
+        var bmType = rows[0].type;
+
+        connection.query(dbcontroller.get_query("SET_AUTH", authParam), function(err, rows){
+
+          if(rows.affectedRows == 1){
+
+            res.cookie('bm_uid', bmUid, { maxAge: 60 * 1000 * 24});
+            res.cookie('bm_type', bmType, { maxAge: 60 * 1000 * 24});
+
+            res.redirect('/');
+
+          }else{
+            res.send('인증실패!!');
+          }
+          connection.release();
+
+        });
+      }else{
+        res.send('인증실패!!');
+        connection.release();
       }
-      res.send(rows)
-      connection.release();
     });
   });
 });
 
 
 /*************** MY SQL POOL Manager ***************/
+
+app.get('/login', function(req, res){
+  fs.readFile('public/login.html', function(err, data){
+    if(err){
+      res.end(err);
+    } else {
+      res.end(data);  
+    }
+  });
+});
+
+/*
+app.get('/', function(req, res){
+  fs.readFile('public/index.html', function(err, data){
+    if(err){
+      res.end(err);
+    } else {
+      res.end(data);  
+    }
+  });
+});
+*/
 
 var serverHandler = http.createServer(app);
 serverHandler.listen(app.get('port'), function(){
@@ -284,6 +315,7 @@ serverHandler.listen(app.get('port'), function(){
 
 
 /***************  SOCKET IO ****************************/
+/*
 var app_io = io.listen(serverHandler);
 app_io.set('log level', 1); //Log Disable
 app_io.sockets.on('connection', function(socket){
@@ -323,3 +355,5 @@ app_io.sockets.on('connection', function(socket){
   });
 
 });
+*/
+

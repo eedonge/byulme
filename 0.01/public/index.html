@@ -11,6 +11,8 @@
 		<link type="text/css" rel="stylesheet" href="style/demo.css" />
 		<link type="text/css" rel="stylesheet" href="source/jquery.mmenu.all.css" />
 		<link type="text/css" rel="stylesheet" href="style/iconbar.css" media="all and (min-width: 500px)" />
+		<link type="text/css" rel="stylesheet" href="style/make/makestyle.css"/>
+		<link type="text/css" rel="stylesheet" href="style/regstar/regstarstyle.css"/>
 		<script type="text/javascript" src="lib/jquery-2.0.3.min.js"></script>
 		<script type="text/javascript" src="source/jquery.mmenu.js"></script>
 		<style type="text/css">
@@ -38,9 +40,19 @@
 			#menu {
 				display:block !important;
 			}
+			.sns_icon {
+				text-align: right;
+			}
+			.sns_icon img{
+				margin: 5px 20px 5px 0px;
+			}
+
 		</style>
 	</head>
+	<body>
 		<div id="page">	
+
+			<div id="fb-root"></div> <!--For Facebook Script-->
 
 			<div id="content">
 				<h2>Loading...</h2>
@@ -54,15 +66,133 @@
 			<div id="tooltips" >
 				<div id="popup-1" class="tip">
 					<div>
-						<div>
-							<a href="#page">x</a>
-							<h4>Popups and modal windows</h4>
-							<p><em>In user interface design, a modal window is a child window that requires users to interact with it before they can return to operating the parent application, thus preventing the workflow on the application main window.</em></p>
-							<p>Wikipedia<br />
-								http://en.wikipedia.org/wiki/Modal_window</p>
+						<div id="star_upload_modal" style="display:none;">
+							<a href="#page" class="close">X</a>
+
+							<ul class="nav nav-tabs">
+					  		<li class="active"><a href="#nav1" data-toggle="tab"><i class="icon icon-facetime-video"></i>&nbsp;<strong>동영상</strong></a></li>
+					  		<li><a href="#nav2" data-toggle="tab"><i class="icon icon-picture"></i>&nbsp;<strong>이미지</strong></a></li>
+					  		<li><a href="#nav3" data-toggle="tab"><i class="icon icon-music"></i>&nbsp;<strong>음악</strong></a></li>
+							</ul>
+
+							<div class="tab-content">
+								<div class="tab-pane active" id="nav1">
+									<!-- 파일 업로드 화면 -->
+									<section class="page">
+											<div class="upload-file">
+												<span id="span_mv" class="btn fileinput-button">
+										       <img src="../style/image/bm_inbox.png" alt="동영상을 선택해 주세요">
+										       <input id="movieupload" type="file" name="files" title="동영상을 선택해 주세요"/>
+									   		</span>
+
+									   		<button id="makebutton" class="btn" type="button">
+													<img src="../style/image/bm_upload.png" alt="업로드">
+												</button>
+
+									   		<span id="fileinfo" class="fileinfo">
+									   		</span>
+											</div>
+								    	<!-- The global progress bar -->
+								    	<div id="progress" class="progress progress-striped">
+								    		<div class="bar bar-info" style="width: 0%;"></div>
+								    	</div>
+								    	<div id="errmsg">
+								    	</div>
+								    	<!--<div id="files" class="files"></div>-->
+									</section>									
+								</div>
+								<div class="tab-pane" id="nav2">
+									<!-- 파일 업로드 화면 -->
+									<section class="page">
+										<div class="upload-file">
+									    <span id="span_img" class="btn fileinput-button">
+									        <img src="../style/image/bm_inbox.png" alt="이미지를 선택해 주세요">
+									        <input id="imageupload" type="file" name="files" title="이미지를 선택해 주세요">
+								   		</span>
+
+								   		<button id="imgmakebutton" class="btn" type="button">
+								   			<img src="../style/image/bm_upload.png" alt="업로드">
+								   		</button>
+
+								   		<span id="imgfileinfo" class="fileinfo">
+								   		</span>
+								   	</div>
+								    <!-- The global progress bar -->
+							    	<div id="imgprogress" class="progress progress-striped">
+							    		<div class="bar bar-info" style="width: 0%;"></div>
+							    	</div>
+							    	<div id="imgerrmsg" ></div>
+							    	<!--<div id="files" class="files"></div>-->
+									</section>
+								</div>
+
+								<div class="tab-pane" id="nav3">
+									<!-- 파일 업로드 화면 -->
+									<section class="page">
+										<div class="upload-file">
+									    <span id="span_sd" class="btn fileinput-button">
+									        <img src="../style/image/bm_inbox.png" alt="음악파일을 선택해 주세요">
+									        <input id="soundupload" type="file" name="files" title="음악파일을 선택해 주세요">
+								   		</span>
+
+								   		<button id="sdmakebutton" class="btn" type="button">
+								   			<img src="../style/image/bm_upload.png" alt="업로드">
+								   		</button>
+
+								   		<span id="sdfileinfo" class="fileinfo">
+								   		</span>
+								   	</div>
+								    <!-- The global progress bar -->
+							    	<div id="sdprogress" class="progress progress-striped">
+							    		<div class="bar bar-info" style="width: 0%;"></div>
+							    	</div>
+							    	<div id="sderrmsg" ></div>
+							    	<!--<div id="files" class="files"></div>-->
+									</section>
+								</div>
+
+							</div>
 						</div>
+						<div id="upload_complete_box" class="alert alert-success complete_box"></div>
+						
+						<div id="star_reg_modal" style="display:none;">
+							<a href="#page" class="close">X</a>
+						    <div class="bm-row">
+						    	<div class="col-sm-6 col-md-3 bm-md-3">
+						    		<div class="thumbnail bm-thumbnail">
+										<img id="profile_img" src="../style/image/bm_profile.png">
+										<div class="caption" style="text-align:center;">
+											<button type="button" class="btn btn-xs bm-rs">
+												<img  src="../style/image/upload_img.png">
+												<input id="profile_upload" type="file" name="files" title="이미지를 선택해 주세요"/>
+											</button>
+										</div>
+						    		</div>
+								</div>
+								<br>
+								<div class="input-group input-group-sm bm-input-group">
+								    <span class="input-group-addon bm-group-addon">이름</span>
+								    <input id="reg_star_name" type="text" class="form-control bm-form-control" placeholder="이름 또는 별명">
+								</div>
+								<br>
+								<div class="input-group input-group-sm bm-input-group">
+									<span class="input-group-addon bm-group-addon">소개</span>
+									<input id="reg_star_intro" type="text" class="form-control bm-form-control" placeholder="자기를 소개하는 글">
+								</div>
+								<br>
+								<div style="text-align:right;">
+									<span id="reg_star_alert" class="alert" style="display:none;"></span>
+									<button id="reg_star_submit" class="btn" type="button">
+								   		<img src="../style/image/bm_upload.png" alt="등록하기">
+								   	</button>
+								</div>
+							</div>
+
+						</div>
+						
 					</div>
 				</div>
+			</div>
 
 			<nav id="menu">
 				<ul>
@@ -350,15 +480,13 @@
 									</li>
 								</ul>
 							</li>
+							<li><a id="bm_type_menu" href="#popup-1"></a></li>
+							<li class="sns_icon"><img id="bm_fb_auth" src="style/image/lout_fb.png"/></li>
 						</ul>
 					</li>
 					<li><a href="#about">
 						<i class="icon icon-white icon-question-sign"></i>
 						About</a></li>
-					<li>
-						
-			<a id="btnShow" href="#popup-1" >Tool1</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -434,9 +562,11 @@
 
 				options.position = 'top';
 				options.zposition = 'front';
-				$('#popup-1').mmenu( options );
-
-
+				$('#popup-1').mmenu( options )
+								.on("opened.mm", function(){
+									$('#tooltips').trigger("show-modal");
+									$('#tooltips').trigger("reg-show-modal");
+								});
 			});
 
 		</script>
