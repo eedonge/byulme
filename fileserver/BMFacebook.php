@@ -10,8 +10,8 @@ class BMFacebook{
 	public function __construct()
 	{
 		$this->facebook = new Facebook(array(
-  			'appId'  => '533349720068935',
-  			'secret' => '6f61d913f18f56f394c592a2c694ed35',
+  			'appId'  => '462018927252937',
+  			'secret' => '0fb2f1f2b2a89ed305fced0b4a1769b1',
 		));
 		//MySQL Connect
       	$this->bmMySql = new BMMySQL(); 

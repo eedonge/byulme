@@ -5,8 +5,8 @@ include 'BMMySql.php';
 
 class BMSoundCloud{
 	
-	private $OAUTH2_CLIENT_ID = '44756ea3874af04c8e20a7521ddc82cb';
-	private $OAUTH2_CLIENT_SECRET = '3e0abc9c50f432ee37431737307752de';
+	private $OAUTH2_CLIENT_ID = 'aeed2671db2174f479db979ffa061cbd';
+	private $OAUTH2_CLIENT_SECRET = '294134e6f38feb8c3031bc5152322542';
 
 	private $bmMySql;
 
@@ -35,6 +35,9 @@ class BMSoundCloud{
 			)));
 			// 'track[genre]' => $soundcloud_info["genre"]
 		    $this->bmMySql->bm_update_soundcloud_info($sd_id, $track->id, $track->permalink_url);
+		    //Master Table Update
+	    	$this->bmMySql->bm_update_card_mast_info($sd_id, $track->id, $file_artwork_path, false);
+	    	
 		}
 
 		$this->bmMySql->bm_close();

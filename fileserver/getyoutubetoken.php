@@ -6,8 +6,8 @@ include 'BMMySql.php';
 include 'Google_Client.php';
 include 'contrib/Google_YouTubeService.php';
 
-$OAUTH2_CLIENT_ID = '354365162992-kg9idh1oi88erk5jmvf49c7ndl046dbs.apps.googleusercontent.com';
-$OAUTH2_CLIENT_SECRET = 'nrVRrHEUbuJ3QuYi5WovHvHK';
+$OAUTH2_CLIENT_ID = '148100349774.apps.googleusercontent.com';
+$OAUTH2_CLIENT_SECRET = '441gJo6i0RU6QHzkUhNusLEp';
 
 $client = new Google_Client();
 $client->setClientId($OAUTH2_CLIENT_ID);

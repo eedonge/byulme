@@ -10,7 +10,9 @@ class BMVimeo{
 	private $bmMySql;
 	public function __construct()
 	{
-		$this->vimeo = new phpVimeo('d5f9d950a3bb9d7bd1ff7b1e999ccb94950bb1f0', '7a1f0855aec5fd9acb13571e86b1ae29edb5eb6e', '9a52c23ab4a46097f40bf56fe3a80861', '7afe94b50ce768177c89fe2b0408837bc0fb1b0a');
+		$this->vimeo = new phpVimeo('b6eabf90f23022308f7feb48d1722bd09671c26f', 'ec58774fffbc67fb12acc739f3002a1e16c4a0d6', 'b92fe632d4746f958e4a31a7359b8eff', '6d73748d41a3e35d5f363c682db336f62ca9ff7f');
+		//$vimeo = new phpVimeo('CONSUMER_KEY', 'CONSUMER_SECRET', 'ACCESS_TOKEN', 'ACCESS_TOKEN_SECRET');
+
 		$this->vimeo_default_thumbnail = "default";
 		
 		//MySQL Connect
@@ -56,6 +58,10 @@ class BMVimeo{
 
 			//echo "DB Info >> ".$user_id.", ".$mv_id.", ".$video_id.", ".$vimeo_thumbnail;
 	        $this->bmMySql->bm_update_vimeo_info($mv_id, $video_id, $vimeo_thumbnail);
+	        
+	        //Master Table Update
+	    	$this->bmMySql->bm_update_card_mast_info($mv_id, $video_id, $vimeo_thumbnail, false);
+	    	
 
 	        $this->bmMySql->bm_close();
 

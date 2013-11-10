@@ -6,21 +6,11 @@ define(
 	){
 	var BMUploader = function(){
 
-	    //var url = 'http://localhost/byulmefileserver/index.php',
 	    var url = 'http://14.49.42.89/BMFileUpload.php',
 	    	upType = 'IMAGE',
 		    uploadFileInfo = $('<span/>')
-		    	.addClass('label')
-		    	.addClass('label-primary')
+		    	.addClass('alert')
 		    	.addClass('img_upload_file_list');
-
-	    /*
-	    uploadFileInfo = $('<input/>')
-	    	.addClass('form-control')
-	    	.addClass('img_upload_file_list')
-	    	.attr('type', 'text')
-	    	.prop('readOnly', true);
-		*/
 
 		this.init = function(pUserID, cardMakeInit){
 
@@ -40,7 +30,6 @@ define(
 		    	//Image 일 경우 Single File 만 Upload 가능
 		    	$('#imgfileinfo').children().remove();
 
-		        //data.context = $('<div/>').appendTo('#imgfileinfo');
 		        $.each(data.files, function (index, file) {
 		        	if (!index) {
 						data.context = uploadFileInfo
@@ -49,14 +38,6 @@ define(
 							.data(data)
 							.appendTo('#imgfileinfo');
 		        	}
-		        	/*
-		        	var node = $('<p/>');
-		        	if (!index) {
-		        		node
-		        			.append(uploadFileInfo.clone(true).val(file.name).data(data));
-		            }
-					node.appendTo(data.context);
-					*/
 		        });
 
 		    }).on('fileuploadprocessalways', function (e, data) {
@@ -73,11 +54,7 @@ define(
 
 		        $("#imgerrmsg").children().remove();
 		        if (file.error) {
-		        	$("#imgerrmsg").append($('<div class="alert"><strong>'+ file.error +'</stron></div>')); 
-		        	/*
-		            node
-		                .append($('<div class="alert"><strong>'+ file.error +'</stron></div>'));
-		            */
+		        	$("#imgerrmsg").append($('<div class="alert alert-danger"><strong>'+ file.error +'</stron></div>')); 
 		        }
 		        if (index + 1 === data.files.length) {
 		        	$("#imgmakebutton").attr('disabled', !!data.files.error);
@@ -95,41 +72,30 @@ define(
 		    	$.each(data.result.files, function (index, file) {
 
 		    		cardMakeInit();
+					if (file.url) {
 
-            		$('.modal-footer').show();
-            		$('.tabbable').hide();
-				    $('.succable').show();
-					$('#cardinform').hide();
+						$("#upload_complete_box").text('이미지 업로드 완료!!');
+		 				$("#upload_complete_box").toggle( "bounce", { times: 3 }, "slow" );
+		 				
+		 				setTimeout(function(){
+							$( "#upload_complete_box" ).toggle( "bounce", { times: 3 }, "slow" );
+		 				}, 6000);
 
-		            if (file.url) {
-		            	$('#cardrstheader').text('카드 생성 완료');
+		 				//Facebook에 New Feed
+                    	//BmFaceBook.feed("1", uid);
 
-				    	$('#cardkind').text('이미지');
-				    	var curD = new Date();
-						$('#cardgendate').text(curD.getFullYear() + "년 " + (curD.getMonth() + 1) + "월 " + curD.getDate() + "일 " + curD.getHours() + "시 " + curD.getMinutes() + "분");
-				    	
-				    	$('#cardkindcode').val(upType);
-				    	$('#cardid').val(file.cid);
+					} else if (file.error) {
+						$("#imgerrmsg").children().remove();
+		        		$("#imgerrmsg").append($('<div class="alert alert-danger"><strong>업로드 실패!!</stron></div>'));
+					}
 
-		            } else if (file.error) {
-		            	$('#cardrstheader').text('카드 생성 실패');
-
-				    	$('#cardkind').text('이미지');
-				    	$('#cardgendate').text('이미지 업로드 실패(다시 시도해 주세요)');
-		            }
 		        });
 
 		    }).on('fileuploadfail', function (e, data) {
 		        $.each(data.files, function (index, file) {
 
 		        	$("#imgerrmsg").children().remove();
-		        	$("#imgerrmsg").append($('<div class="alert"><strong>업로드에 실패했습니다. 다시 시도해 주세요!!</stron></div>'));
-		        	/*
-		        	var error = $('<div class="alert"><strong>업로드에 실패했습니다. 다시 시도해 주세요!!</stron></div>');
-		        	var datanode = $(data.context.children()[index]);
-		        	datanode.find('.alert').remove();
-		        	datanode.append(error);
-		        	*/
+		        	$("#imgerrmsg").append($('<div class="alert alert-danger"><strong>업로드에 실패했습니다. 다시 시도해 주세요!!</stron></div>'));
 		        });
 		    }).on('fileuploadsubmit', function (e, data) {
 
@@ -145,7 +111,6 @@ define(
 		    	$(".img_upload_file_list").each(function(){
 		    		var data = $(this).data();
 		    		data.submit().always(function(){
-		    			//$(this).remove();
 		    		})
 		    	});
 		    });

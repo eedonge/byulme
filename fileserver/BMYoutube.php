@@ -6,8 +6,8 @@ include 'BMMySql.php';
 
 class BMYoutube{
 	
-	private $OAUTH2_CLIENT_ID = '354365162992-kg9idh1oi88erk5jmvf49c7ndl046dbs.apps.googleusercontent.com';
-	private $OAUTH2_CLIENT_SECRET = 'nrVRrHEUbuJ3QuYi5WovHvHK';
+	private $OAUTH2_CLIENT_ID = '148100349774.apps.googleusercontent.com';
+	private $OAUTH2_CLIENT_SECRET = '441gJo6i0RU6QHzkUhNusLEp';
 
 	private $bmMySql;
 
@@ -91,6 +91,9 @@ class BMYoutube{
 					$this->bmMySql->bm_connect();
 	    		    $this->bmMySql->bm_update_youtube_info($mv_id, $youtube_id, $youtube_thumbnail);
 
+	    		    //Master Table Update
+	    		    $this->bmMySql->bm_update_card_mast_info($mv_id, $youtube_id, $youtube_thumbnail, true);
+	    		    
 	        		$this->bmMySql->bm_close();	
 
 			  } catch (Google_ServiceException $e) {

@@ -1,7 +1,10 @@
 <form class="form-horizontal">
+	<div>
+		별미는...
+	</div>
 
-
-	<iframe id="sc_player"
+<!--	
+  <iframe id="sc_player"
             width="100%"
             height="150"
             scrolling="no"
@@ -12,33 +15,6 @@
 		<img src='http://cfs8.tistory.com/image/8/tistory/2008/08/29/14/19/48b786fbb02e7' class="bm_zoom"/>
 	</div>
 
-  <!-- Card Make -->
-  <div>
-  	<button id="cardmake" type="button" class="btn btn-success bm-cm">
-  		<img src="../style/image/card_make.png">
-  	</button>
-  </div>
-  <input type="hidden" id="cardkindcode" value=""/>
-  <input type="hidden" id="cardid" value=""/>
-
-  <!-- Card Make -->
-
-  <!-- Facebook -->
-  <p>
-  	<div id="fb-root"></div>
-  	<img id="bm_fb_auth" src="../style/image/lout_fb.png">
-  </p>
-  <!-- Facebook -->
-
-  <!-- Star Registration -->
-  <div>
-  	<button id="reg_star" type="button" class="btn btn-danger bm-rs">
-  		<img src="../style/image/reg_star.png">
-  	</button>
-  </div>
-  <!-- Star Registration -->
-
-  <br>	
   <p>
   	<button id="youtube_test" type="button" class="btn">
   		YOUTUBE TEST
@@ -47,175 +23,10 @@
   		VIMEO TEST
   	</button>
   </p>
-
-  <p>
-  	<button id="member_test" type="button" class="btn">
-  		Sign In, Log In
-  	</button>
-  </p>
-
-
+-->
 </form>
 
-
-<!-- Card Make -->
-<div class="modal fade" id="makemodal" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      	<!-- Success Message -->
-      	<div class="succable">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		       	<h4><strong id="cardrstheader"></strong></h4>
-		    </div>
-		    <div class="modal-body">
-		       <h4>카드 종류</h4>
-		       <p id="cardkind"></p>
-		       <h4>카드 생성일</h4>
-		       <p id="cardgendate"></p>
-		       <div id="cardinform" class="alert"><strong>동영상은 인코딩 시간이 필요합니다!!</stron></div>
-		    </div>
-      	</div>
-      	<!-- Card Make Template -->
-		<div class="tabbable">
-
-			<div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<ul id="card-tab" class="nav nav-pills bm-nav bm-pills">
-					<li class="active"><a href="#1" data-toggle="tab">동영상 카드</a></li>
-					<li><a href="#2" data-toggle="tab">이미지 카드</a></li>
-				</ul>
-		    </div>
-
-		    <div class="modal-body">
-				<div class="tab-content">
-					<div class="tab-pane active" id="1">
-						<!-- 파일 업로드 화면 -->
-						<section class="page">
-						    <span id="span_mv" class="btn btn-primary fileinput-button">
-						        <img src="../style/image/upload_mv.png" alt="동영상을 선택해 주세요">
-						        <input id="movieupload" type="file" name="files" title="동영상을 선택해 주세요"/>
-					   		</span>
-					   		<span id="fileinfo">
-					   		</span>
-					    	<!-- The global progress bar -->
-					    	<br/>
-					    	<br/>
-					    	<div id="progress" class="progress progress-striped">
-					    		<div class="bar bar-info" style="width: 50%;"></div>
-					    	</div>
-					    	<div id="errmsg" ></div>
-					    	<!--<div id="files" class="files"></div>-->
-						</section>
-						<!--
-						<section id="fileinfo"></section>
-						<section>
-						-->
-							<div style="text-align:center;">
-								<button id="makebutton" class="btn btn-primary" type="button">동영상 카드만들기</button>
-							</div>
-						</section>
-					</div>
-					<div class="tab-pane" id="2">
-						<!-- 파일 업로드 화면 -->
-						<section id="upload-section" class="page">
-
-						    <span id="span_img" class="btn btn-primary fileinput-button">
-						        <img src="../style/image/upload_img.png" alt="이미지를 선택해 주세요">
-						        <input id="imageupload" type="file" name="files" title="이미지를 선택해 주세요">
-					   		</span>
-					   		<span id="imgfileinfo">
-					   		</span>
-					    	<!-- The global progress bar -->
-					    	<br/>
-					    	<br/>
-					    	<div id="imgprogress" class="progress progress-striped">
-					    		<div class="bar bar-info" style="width: 50%;"></div>
-					    	</div>
-					    	<div id="imgerrmsg" ></div>
-					    	<!--<div id="files" class="files"></div>-->
-						</section>
-						<!--
-						<section>
-							<div id="imgfileinfo"></div>
-						</section>
-						-->
-						<section>
-							<div style="text-align:center;">
-								<button id="imgmakebutton" class="btn btn-primary" type="button">이미지 카드만들기</button>
-							</div>
-						</section>
-					</div>
-				</div>
-			</div>
-		</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">완료</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<div id="movie_complete_dialog" class="alert alert-warning bm-alert">
-	<button id="mcd_close" type="button" class="close" aria-hidden="true">&times;</button>
-	<br>
-  	<strong>동영상 인코딩이 완료되었습니다.</strong>
-</div>
-<!-- Card Make -->
-
-
-
-<!-- Star Registration -->
-<!-- Modal -->
-<div class="modal fade" id="regStarModal" tabindex="-1" role="dialog"  aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-			  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			  <h4 class="modal-title"><strong>스타 등록</strong></h4>
-			</div>
-			<div class="modal-body">
-				<div class="well">
-				    <div class="row">
-				    	<div class="col-sm-6 col-md-3 bm-md-3">
-				    		<div class="thumbnail bm-thumbnail">
-								<img id="profile_img" src="../style/image/bm_profile.png">
-								<div class="caption" style="text-align:center;">
-									<button type="button" class="btn btn-primary btn-xs bm-rs">
-										<img  src="../style/image/upload_img.png">
-										<input id="profile_upload" type="file" name="files" title="이미지를 선택해 주세요"/>
-									</button>
-								</div>
-				    		</div>
-						</div>
-						<br>
-						<div class="input-group input-group-sm bm-input-group">
-						    <span class="input-group-addon bm-group-addon">이름</span>
-						    <input id="reg_star_name" type="text" class="form-control bm-form-control" placeholder="이름 또는 별명">
-						</div>
-						<br>
-						<div class="input-group input-group-sm bm-input-group">
-							<span class="input-group-addon bm-group-addon">소개</span>
-							<input id="reg_star_intro" type="text" class="form-control bm-form-control" placeholder="자기를 소개하는 글">
-						</div>
-						<br>
-						<span id="reg_star_alert" class="alert">동영상업로드가능!!</span>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-			  <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-			  <button id="reg_star_submit" type="button" class="btn btn-primary">스타등록</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- Star Registration -->
-
-
-
-<!-- Play Content -->
-<!-- Modal -->
+<!--
 <div class="modal fade bm-viewer" id="playContent" tabindex="-1" role="dialog"  aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -228,7 +39,7 @@
 				<iframe id="vm_player" src="" width="640" height="390" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 				</div>
 			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- Play Content -->
+		</div>
+	</div>
+</div>
+-->

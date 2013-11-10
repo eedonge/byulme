@@ -29,65 +29,28 @@
   display:block;
 }
 
-a {
-  color: #428bca;
-  text-decoration: none;
+.close {
+  color:#333333 ! important;
+  text-decoration: none ! important;
 }
 
-a:hover, a:focus {
-  color: #2a6496;
-  text-decoration: underline;
+.page > div {
+  padding: 0px 0px 0px 0px;
 }
 
-a:active, a:hover {
-  outline: 0;
+.upload-file {
+  padding: 10px 0px 10px 0px ! important;
 }
 
-.bm-nav{
-  margin-bottom: 0px;
+.fileinfo {
+  float:right;
+  margin:10px 5px 0px 0px;
 }
 
-.bm-nav > li > a {
-  position: relative;
-  display: block;
-  padding: 10px 15px;
+.complete_box{
+  display: none;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  overflow: auto;
 }
-
-.bm-nav > li > a:hover, 
-.bm-nav > li > a:focus {
-  text-decoration: none;
-  background-color: #eeeeee;
-  color: #3b72a2;
-  padding: 10px 15px;
-}
-
-.bm-nav > li > a {
-  position: relative;
-  display: block;
-  padding: 10px 15px;
-}
-
-.bm-pills > li.active > a, 
-.bm-pills > li.active > a:hover, 
-.bm-pills > li.active > a:focus {
-  color: #ffffff;
-  background-color: #3b72a2;
-  padding: 10px 15px;
-}
-
-.bm-pills > li > a {
-  border-radius: 5px;
-}
-
-.bm-cm{
-  padding: 3px 5px;
-  font-size: 12px;
-  line-height:1.5;
-  border-radius:3px;
-}
-
-.bm-alert{
-  min-height:50px ! important;
-}
-
-

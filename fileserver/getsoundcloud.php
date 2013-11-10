@@ -26,7 +26,7 @@ if (isset($_GET['sound_code'])) {
 </body>
 <script>
   SC.initialize({
-    client_id: '44756ea3874af04c8e20a7521ddc82cb',
+    client_id: 'aeed2671db2174f479db979ffa061cbd',
     redirect_uri: 'http://localhost/callback.html',
     scope: 'non-expiring'
   });
