@@ -19,7 +19,7 @@ define(
 		        dataType: 'json',
 		        autoUpload: false,
 		        acceptFileTypes: /(\.|\/)(mp4|MP4)$/i,
-		        maxFileSize: 10000000, // 10 MB
+		        maxFileSize: 20000000, // 20 MB
 		        //maxChunkSize: 10000000, // 10 MB
 		        disableImageResize: true,
 		        //previewMaxWidth: 100,
@@ -73,7 +73,7 @@ define(
 					cardMakeInit();
 					if (file.url) {
 
-						$("#upload_complete_box").text('동영상 업로드 완료(인코딩 중...)!!');
+						$("#upload_complete_box").text('동영상 업로드 완료(인코딩 중...)');
 		 				$("#upload_complete_box").toggle( "bounce", { times: 3 }, "slow" );
 		 				
 		 				setTimeout(function(){

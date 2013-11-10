@@ -985,8 +985,7 @@ class UploadHandler
                 exec("php ./BMFacebookExe.php ".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
             }else if($file_type=="SOUND"){
 
-                $file_artwork_name = '';
-
+                $file_artwork_name = 'files/music/common.png';
                 $this->bmMySql->bm_insert_card_info($user_id, $file_id, "SD");
                 $this->bmMySql->bm_insert_sound_info($file_id, $file_full_name);
 

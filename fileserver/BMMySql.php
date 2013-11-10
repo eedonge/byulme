@@ -55,8 +55,8 @@ class BMMySQL{
 
   function bm_update_card_mast_info($cid=null, $mast_url=null, $mast_thumb_url=null, $confirm=false){
     
-    $que = " UPDATE bmdb.bm_card_mast set mast_url = '', mast_thumb_url = '' "; 
-    $que = $que." where cid = '' ";
+    $que = " UPDATE bmdb.bm_card_mast set mast_url = '".$mast_url."', mast_thumb_url = '".$mast_thumb_url."' "; 
+    $que = $que." where cid = '".$cid."' ";
     
     if($confirm == true){
       $que = $que." and mast_url IS NULL ";  
