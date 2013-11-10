@@ -14,7 +14,8 @@ define(function(require) {
 		routes : {
 			'' : 'rankRoute',
 			'rank/:menuId' : 'rankRoute',
-			'about' : 'aboutRoute',
+			'card/:menuId/:maxIndex': 'getCard',
+			'about' : 'aboutRoute',	
 			'member' : 'memberRoute'
 		},
 
@@ -50,10 +51,17 @@ define(function(require) {
 			}
 		},
 
-		rankRoute : function(menuId) {
+		getCard : function(menuId) {
+			require(["cardListView"], function(cardListView	){
+				menuId = menuId || 'newly';
+				cardListView.getCardList20();
+			})
+		},
 
-				require(["cardListView"], function(cardListView) {
+		rankRoute : function(menuId) {
+			require(["cardListView"], function(cardListView) {
 				menuId = menuId || 'newly'; //메뉴아이디가 없다면 최근 리스트로
+				if(cardListView['menuId'] === menuId) return;
 				if(cardListView['menuId'] === null) { //랭킹 메뉴 아이디가 없다면 랭킹 메뉴는 처음 실행한것, 랭킹 화면을 그린다.
 					cardListView['menuId'] = menuId;  //처음은 newly
 					cardListView.render();
@@ -63,13 +71,12 @@ define(function(require) {
 						// cardListView.viewDidAppear();
 					}); //새로운 랭킹 리스트로 정렬한다.
 				}
-				// $(window).scroll(function(){
-				// 	cardListView.appendCardListCall();
-				// });
+				$(window).scroll(function(){
+					cardListView.appendCardListCall();
+				});
 			})
 		},
 
-		
 		aboutRoute : function() {
 			require(["aboutView"], function(AboutView) {
 				require('cardListView')['menuId'] = null; //랭킹 메뉴아이디 초기화

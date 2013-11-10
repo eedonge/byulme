@@ -27,20 +27,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+	app.use(express.errorHandler());
 }
 
 
 requirejs.config({
-  paths: {
-    "dummyData": "public/script/util/dummyData"
-  }
+	paths: {
+		"dummyData": "public/script/util/dummyData"
+	}
 });
 
 app.get('/card/:menuId/:maxRank', function(req, res){
-  requirejs(['dummyData'], function(DummyData){
-    res.send(DummyData.cardData(req.params.menuId, req.params.maxRank));
-  });
+	requirejs(['dummyData'], function(DummyData){
+		res.send(DummyData.cardData(req.params.menuId, req.params.maxRank));
+	});
 })
 
 /*************** DB Control Process ****************/ 
@@ -48,14 +48,14 @@ app.get('/card/:menuId/:maxRank', function(req, res){
 /*************** MY SQL POOL Manager ***************/
 
 var bmMysqlConfig={
-  host:"14.49.42.89",
-  port:"11000",
-  user:"bmmast",
-  password:"qufal13818",
-  multipleStatements: true,
-  waitForConnections:true, //사용자가 많을 경우 대기 유지
-  connectionLimit:100, //동시에 최대 100명 접속
-  queueLimit:0 //Queue에 사용자 제한없음
+	host:"14.49.42.89",
+	port:"11000",
+	user:"bmmast",
+	password:"qufal13818",
+	multipleStatements: true,
+	waitForConnections:true, //사용자가 많을 경우 대기 유지
+	connectionLimit:100, //동시에 최대 100명 접속
+	queueLimit:0 //Queue에 사용자 제한없음
 };
 
 
@@ -66,15 +66,15 @@ var pool = mysql.createPool(bmMysqlConfig);
 /* operation : 조회를 원하는 쿼리                   */
 /***************************************************/
 app.get('/bmdb/:operation', function(req, res){
-  	pool.getConnection(function(err, connection){
-    	connection.query(dbcontroller.get_query(req.params.operation, req.query), function(err, rows){
-      		res.send(rows)
-      		connection.release();
-    }); 
-  });
+	pool.getConnection(function(err, connection){
+		connection.query(dbcontroller.get_query(req.params.operation, req.query), function(err, rows){
+			res.send(rows);
+			connection.release();
+		}); 
+	});
 
 });
-      
+			
 
 /***************************************************/
 /* INSERT, UPDATE : POST                           */
@@ -89,18 +89,18 @@ app.post('/bmdb/:operation', function(req, res){
 /* Star 신청                                       */
 /***************************************************/
 app.post('/bm/regstar', function(req, res){
-  //Star Path 생성
-  var starPath = new Date().getTime();
-  req.body.path = starPath;
-  pool.getConnection(function(err, connection){
-    connection.query(dbcontroller.get_query("SET_REG_STAR_INFO", req.body) + "; " + dbcontroller.get_query("SET_USER_TYPE_FOR_STAR", req.body), function(err, results){
-      //console.log(results[0]);
-      //console.log(results[1]);
-      res.send(results[0]);
-      connection.release();
-    });
-  }); 
-  
+	//Star Path 생성
+	var starPath = new Date().getTime();
+	req.body.path = starPath;
+	pool.getConnection(function(err, connection){
+		connection.query(dbcontroller.get_query("SET_REG_STAR_INFO", req.body) + "; " + dbcontroller.get_query("SET_USER_TYPE_FOR_STAR", req.body), function(err, results){
+			//console.log(results[0]);
+			//console.log(results[1]);
+			res.send(results[0]);
+			connection.release();
+		});
+	}); 
+	
 });
 
 
@@ -137,49 +137,49 @@ app.post('/bm/fb/auth', function(req, res){
 /* operation : 1 CONTENTS UPDATE 완료 후 호출       */
 /***************************************************/
 app.post('/bm/fb/feed/:operation', function(req, res){
-    //사용자의 Long Token Select
-    pool.getConnection(function(err, connection){
-      connection.query(dbcontroller.fb_query("GET_TOKEN", req.body), function(err, rows){
-        
-          //사용자의 Lonf Token이 존재하면 사용자의 Facebook ID를 조회 한다.
-          if(rows.length > 0){
-            var options = {
-                timeout:  3000
-              , pool:     { maxSockets:  Infinity }
-              , headers:  { connection:  "keep-alive" }
-            };
+		//사용자의 Long Token Select
+		pool.getConnection(function(err, connection){
+			connection.query(dbcontroller.fb_query("GET_TOKEN", req.body), function(err, rows){
+				
+					//사용자의 Lonf Token이 존재하면 사용자의 Facebook ID를 조회 한다.
+					if(rows.length > 0){
+						var options = {
+								timeout:  3000
+							, pool:     { maxSockets:  Infinity }
+							, headers:  { connection:  "keep-alive" }
+						};
 
-            graph.setAccessToken(rows[0].token);
+						graph.setAccessToken(rows[0].token);
 
-            graph.get("me", function(err, res) {
+						graph.get("me", function(err, res) {
 
-              //사용자의 ID가 존재하면 Feeding Post
-              if(err != null){
+							//사용자의 ID가 존재하면 Feeding Post
+							if(err != null){
 
-                var wallPost;
-                if (req.params.operation == "1"){
-                  wallPost = {
-                    message: "새로운 컨텐츠를 업로드 하였습니다.",
-                    link: "http://www.youtube.com/watch?v=gAal8xHfV0c"
-                  };
-                }else{
-                  wallPost = {
-                    message: "별미 테스트 입니다.",
-                    link: "http://www.youtube.com/watch?v=gAal8xHfV0c"
-                  };
-                }
+								var wallPost;
+								if (req.params.operation == "1"){
+									wallPost = {
+										message: "새로운 컨텐츠를 업로드 하였습니다.",
+										link: "http://www.youtube.com/watch?v=gAal8xHfV0c"
+									};
+								}else{
+									wallPost = {
+										message: "별미 테스트 입니다.",
+										link: "http://www.youtube.com/watch?v=gAal8xHfV0c"
+									};
+								}
 
-                graph.post(res.id + "/feed", wallPost, function(err, res) {
-                  //console.log("Success");
-                });
+								graph.post(res.id + "/feed", wallPost, function(err, res) {
+									//console.log("Success");
+								});
 
-              }
-            });
-          }
-          res.send("Success");
-          connection.release();
-      });
-    });
+							}
+						});
+					}
+					res.send("Success");
+					connection.release();
+			});
+		});
 });
 
 
@@ -309,7 +309,7 @@ app.get('/', function(req, res){
 
 var serverHandler = http.createServer(app);
 serverHandler.listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+	console.log('Express server listening on port ' + app.get('port'));
 });
 
 
@@ -320,39 +320,39 @@ var app_io = io.listen(serverHandler);
 app_io.set('log level', 1); //Log Disable
 app_io.sockets.on('connection', function(socket){
 
-  socket.on('setMovieMake', function(data){
-    var pParam = {
-      cid : data.cid
-    };
+	socket.on('setMovieMake', function(data){
+		var pParam = {
+			cid : data.cid
+		};
 
-    var curCnt = 0;
-    //Movie Encoding 확인
-    
-    var intervalId = setInterval(function(){
-      
-      var isEmit = false;
-      pool.getConnection(function(err, connection){
-        connection.query(dbcontroller.get_query("GET_MOVIE_MAKE", pParam), function(err, rows){
+		var curCnt = 0;
+		//Movie Encoding 확인
+		
+		var intervalId = setInterval(function(){
+			
+			var isEmit = false;
+			pool.getConnection(function(err, connection){
+				connection.query(dbcontroller.get_query("GET_MOVIE_MAKE", pParam), function(err, rows){
 
-          if(rows.length > 0){
-            if(rows[0].result == "1"){
+					if(rows.length > 0){
+						if(rows[0].result == "1"){
 
-              socket.emit('getMovieMake', {status: 'success'}); 
-              isEmit = true;
-            }
-          }
+							socket.emit('getMovieMake', {status: 'success'}); 
+							isEmit = true;
+						}
+					}
 
-          connection.release(); 
-        });      
-      }); 
-      
-      curCnt = curCnt + 1;
-      if(isEmit == true || curCnt > 60){ //최대 60회 시도 후 접속 해지
-        clearInterval(intervalId);
-      }
-    }, 20000); //20초 단위로 체크
+					connection.release(); 
+				});      
+			}); 
+			
+			curCnt = curCnt + 1;
+			if(isEmit == true || curCnt > 60){ //최대 60회 시도 후 접속 해지
+				clearInterval(intervalId);
+			}
+		}, 20000); //20초 단위로 체크
 
-  });
+	});
 
 });
 */
