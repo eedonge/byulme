@@ -42,7 +42,7 @@ define(
                       url:"/bm/regstar",
                       data:{
                           uid: uid, 
-                          pf_img_url: starProfThumb,
+                          pf_img_url: starProfThumb.replace('http://14.49.42.89/', ''),
                           alias: starName,
                           intro: starIntro
                       }
