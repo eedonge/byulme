@@ -50,7 +50,7 @@
 				</div>
 			</div>
 			
-			<div id="header" class="mm-fixed-top">
+			<div id="header" class="mm-fixed-top" style='z-index:1;'>
 				<a id="open-icon-header" href="#menu"></a>
 				BYUL ME
 			</div>
@@ -420,7 +420,6 @@
 				}
 
 				$(window).resize(function(){
-					console.log($(window).width());
 					if($(window).width() < 486) {
 						$('#page').width('auto');
 						return;
