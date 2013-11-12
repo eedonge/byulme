@@ -73,7 +73,7 @@ class UploadHandler
             // is enabled, set to 0 to disable chunked reading of files:
             'readfile_chunk_size' => 10 * 1024 * 1024, // 10 MiB
             // Defines which files can be displayed inline when downloaded:
-            'inline_file_types' => '/\.(gif|jpe?g|png|mp4)$/i',
+            'inline_file_types' => '/\.(gif|jpe?g|png|mp4|mp3)$/i',
             // Defines which files (based on their names) are accepted for upload:
             'accept_file_types' => '/.+$/i',
             // The php.ini settings upload_max_filesize and post_max_size
@@ -973,14 +973,23 @@ class UploadHandler
                 //Vimeo Upload
                 exec("php ./BMVimeoExe.php ./".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
 
-            }else{
+            }else if($file_type=="IMAGE"){
 
-                $file_thumb_name = $this->options['upload_basic_dir']."/thumbnail/".$this->options['user_path']."/".$value->name;
+                $file_thumb_name = $this->options['upload_basic_dir']."/".$this->options['user_path']."/thumbnail/".$value->name;
 
                 $this->bmMySql->bm_insert_card_info($user_id, $file_id, "IMG");
                 $this->bmMySql->bm_insert_image_info($file_id, $file_full_name, $file_thumb_name);
+                //Master Table Update
+                $this->bmMySql->bm_update_card_mast_info($file_id, $file_full_name, $file_thumb_name, false);
 
                 exec("php ./BMFacebookExe.php ".$file_full_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
+            }else if($file_type=="SOUND"){
+
+                $file_artwork_name = 'files/music/common.png';
+                $this->bmMySql->bm_insert_card_info($user_id, $file_id, "SD");
+                $this->bmMySql->bm_insert_sound_info($file_id, $file_full_name);
+
+                exec("php ./BMSoundCloudExe.php ".$file_full_name." ".$file_artwork_name." ".$user_id." ".$file_id." > /dev/null 2> /dev/null &");
             }
         }
         $this->bmMySql->bm_close();

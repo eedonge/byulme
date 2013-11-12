@@ -7,20 +7,16 @@ define(
 	var BMFacebook = function(){
 		
 		this.auth = function(elementid, fbUserId, isAdmin){
-			var fbAppId = "533349720068935";
+			var fbAppId = "462018927252937";
 
 			$.ajax({
         		type:"GET",
         		url:"bmdb/GET_FB_TOKEN_CF",
         		data:{uid:fbUserId}
         	}).done(function(data){
+
         		if(data.length > 0 && data[0].result == "1"){
 
-					$("#" + elementid).tooltip({
-				        title: 'FaceBook',
-				        placement: 'right',
-				        trigger:'hover'
-			    	});
 			    	$("#" + elementid).attr("src", "../style/image/lin_fb.png");
 
         		}else{
@@ -46,12 +42,6 @@ define(
 					ref.parentNode.insertBefore(js, ref);
 
 					$("#" + elementid).css('cursor', 'pointer');
-					$("#" + elementid).popover({
-				        title: "FaceBook",
-				        content:"클릭하시면 FaceBook과 함께 하실 수 있습니다.",
-				        placement: 'right',
-				        trigger:"hover"
-			    	});
 
 			    	$("#" + elementid).attr("src", "../style/image/lout_fb.png");
 			        $("#" + elementid).click(function(){
@@ -65,14 +55,7 @@ define(
 					        		
 					        		if(data.affectedRows >= 1){
 					        			//FaceBook Icon으로 수정 
-					        			$("#" + elementid).attr("src", "../style/image/lin_fb.png");
-					        			$("#" + elementid).popover('disable').popover("hide");
-					        			$("#" + elementid).tooltip({
-									        title: "FaceBook",
-									        placement: 'right',
-									        trigger:"hover"
-								    	});
-										
+					        			$("#" + elementid).attr("src", "../style/image/lin_fb.png");										
 					        		}else{
 					        			
 					        		}

@@ -3,18 +3,27 @@
 include 'Google_Client.php';
 include 'contrib/Google_YouTubeService.php';
 include 'BMMySql.php';
+require_once("log/Logger.php"); 
+
+//ini 설정 
+Logger::configure('log/config.xml'); 
 
 class BMYoutube{
 	
-	private $OAUTH2_CLIENT_ID = '354365162992-kg9idh1oi88erk5jmvf49c7ndl046dbs.apps.googleusercontent.com';
-	private $OAUTH2_CLIENT_SECRET = 'nrVRrHEUbuJ3QuYi5WovHvHK';
+	private $OAUTH2_CLIENT_ID = '148100349774.apps.googleusercontent.com';
+	private $OAUTH2_CLIENT_SECRET = '441gJo6i0RU6QHzkUhNusLEp';
 
 	private $bmMySql;
+
+	protected $bm_Logger;
 
 	public function __construct()
 	{
 		//MySQL Connect
         $this->bmMySql = new BMMySQL(); 
+
+        //Log Setting
+        $this->bm_Logger = Logger::getLogger("bm_logger");
 	}
 
   	function bm_upload($file_path_with_name, $youtube_info, $user_id, $mv_id){
@@ -29,12 +38,15 @@ class BMYoutube{
 		$this->bmMySql->bm_connect();
   		$token_info = $this->bmMySql->bm_select_youtube_token();
   		
+  		
     	if(count($token_info) > 0){
+
   			$client->setAccessToken(unserialize(base64_decode($token_info[0]["token"])));
   			$sessionToken = json_decode($client->getAccessToken());
   			$client->refreshToken($sessionToken->refresh_token);
 
   			$safe_string_to_store = base64_encode(serialize($client->getAccessToken()));
+
   			$this->bmMySql->bm_insert_youtube_token($safe_string_to_store);
 
   			  try{
@@ -91,12 +103,17 @@ class BMYoutube{
 					$this->bmMySql->bm_connect();
 	    		    $this->bmMySql->bm_update_youtube_info($mv_id, $youtube_id, $youtube_thumbnail);
 
+	    		    //Master Table Update
+	    		    $this->bmMySql->bm_update_card_mast_info($mv_id, $youtube_id, $youtube_thumbnail, true);
+	    		    
 	        		$this->bmMySql->bm_close();	
 
 			  } catch (Google_ServiceException $e) {
+			  	$this->bm_Logger->info("Google_ServiceException : ".$e->getMessage());
 			    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
 			    //    htmlspecialchars($e->getMessage()));
 			  } catch (Google_Exception $e) {
+			  	$this->bm_Logger->info("Google_Exception : ".$e->getMessage());
 			    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',
 			    //    htmlspecialchars($e->getMessage()));
 			  }

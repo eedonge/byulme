@@ -12,9 +12,12 @@ requirejs.config({
 		"rankView": "view/rank/rankView",
 		"aboutView": "view/about/aboutView",
 		"memberView": "view/member/memberView",
+		"makeView": "view/make/makeView",
+		"regstarView": "view/regstar/regstarView",
 		"express": "../../node_modules/express",
 		"dummyData": "util/dummyData",
 		"bm": "util/bm",
+		"fb": "util/bm.facebook",
 		"colorbox":"../lib/jquery.colorbox-min"
 	},
 	
@@ -57,6 +60,14 @@ requirejs.config({
 		},
 
 		"memberView": {
+			deps:["app-container"]
+		},
+
+		"makeView": {
+			deps:["app-container"]
+		},
+
+		"regstarView": {
 			deps:["app-container"]
 		},
 

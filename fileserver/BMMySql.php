@@ -53,6 +53,19 @@ class BMMySQL{
     return mysql_query( $que, $this->connect );
   }
 
+  function bm_update_card_mast_info($cid=null, $mast_url=null, $mast_thumb_url=null, $confirm=false){
+    
+    $que = " UPDATE bmdb.bm_card_mast set mast_url = '".$mast_url."', mast_thumb_url = '".$mast_thumb_url."' "; 
+    $que = $que." where cid = '".$cid."' ";
+    
+    if($confirm == true){
+      $que = $que." and mast_url IS NULL ";  
+    }
+    
+    return mysql_query( $que, $this->connect );
+  }
+
+
   function bm_update_facebook_info($cid=null, $img_facebook_id=null){
     $que = "UPDATE bmdb.bm_image_mast ";
     $que = $que."  SET facebook_url = '".$img_facebook_id."' ";
@@ -114,6 +127,15 @@ class BMMySQL{
 
     return mysql_query( $que, $this->connect );
   }
+
+  function bm_insert_sound_info($cid=null, $local_url=null){
+    
+    $que = "insert into bmdb.bm_sound_mast (cid, local_url, soundcloud_id, soundcloud_url) ";
+    $que = $que."values ('".$cid."', '".$local_url."', null, null) ";
+
+    return mysql_query( $que, $this->connect );
+  }
+
 
   function bm_insert_soundcloud_token($token){
     $que = "DELETE FROM bmdb.bm_soundcloud_auth ";

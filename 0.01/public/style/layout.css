@@ -70,7 +70,8 @@ body
 
 #page
 {
-	background: #1ab8d3;
+	/*background: #1ab8d3;*/
+	background: url(./image/bg.png) repeat;
 	box-shadow: none !important;
 }
 #page nav

@@ -2,6 +2,7 @@ define(function(require) {
 	var $ = require("jquery");
 	var Backbone = require("backbone");
 	var bm = require("bm");
+	var BmFaceBook  = require("fb");
 
 	/**
 	 * 라우트를 정의
@@ -17,13 +18,36 @@ define(function(require) {
 			'member' : 'memberRoute'
 		},
 
-		initialize: function(menuId) {
-			//로그인 쿠키 체크 로직 추가
-			// if(!menuId && (menuId !== 'newly'))
-			// {
-			// 	this.memberRoute();
-			// }
+		initialize: function() {
+			if(bm.isLogIn() === false){
+				document.location.href="/login";	
+			}else{
+				//LogIn Setting // Time 초기화 
+				bm.loginRefresh();
 
+				//사용자별 메뉴 설정 
+				if(bm.getUserType() === "S"){ //Star
+					$('#bm_type_menu').html('<i class="icon icon-white icon-upload"></i>카드만들기');
+					$('#star_upload_modal').show();
+
+					//카드만들기 초기화 
+					require(["makeView"], function(MakeView) {
+						MakeView.init(bm.getUserID());
+					});
+
+				}else if(bm.getUserType() === "N"){ //Normal
+					$('#bm_type_menu').html('<i class="icon icon-white icon-star"></i>스타신청하기');
+					$('#star_reg_modal').show();
+
+					//스타등록 초기화
+					require(["regstarView"], function(RegStarView) {
+						RegStarView.init(bm.getUserID());
+					});
+				}
+
+				//Facebook Init
+				BmFaceBook.auth('bm_fb_auth', bm.getUserID(), (bm.getUserType() === "A") ? true : false) ;
+			}
 		},
 
 		rankRoute: function(menuId) {

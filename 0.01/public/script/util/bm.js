@@ -46,6 +46,20 @@ define(function() {
     document.cookie="bm_type=" + escape(type) + ((exdate==null) ? "" : "; expires="+exdate.toUTCString());
   };
 
+  exports.loginRefresh = function(){
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate() + 1);
+
+    document.cookie="bm_uid=" + escape(getCookieValue('bm_uid')) + ((exdate==null) ? "" : "; expires="+exdate.toUTCString());
+    document.cookie="bm_type=" + escape(getCookieValue('bm_type')) + ((exdate==null) ? "" : "; expires="+exdate.toUTCString());
+  };
+
+  exports.setStarType = function(){
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate() + 1);
+    document.cookie="bm_type=S" + ((exdate==null) ? "" : "; expires="+exdate.toUTCString());
+  };
+
   //로그아웃
   exports.logout = function(){
     var exdate=new Date();
@@ -58,7 +72,7 @@ define(function() {
   //로그인,아웃 확인
   exports.isLogIn = function(){
     var status = getCookieValue('bm_uid');
-    if (status!=null && status!=""){
+    if (status!=null && status!="" && typeof status != "undefined"){
       return true;
     }else{
       return false;
@@ -79,5 +93,4 @@ define(function() {
   }
 
   return exports;
-
 })

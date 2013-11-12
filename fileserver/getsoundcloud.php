@@ -26,14 +26,14 @@ if (isset($_GET['sound_code'])) {
 </body>
 <script>
   SC.initialize({
-    client_id: '44756ea3874af04c8e20a7521ddc82cb',
-    redirect_uri: 'http://localhost/callback.html',
+    client_id: 'aeed2671db2174f479db979ffa061cbd',
+    redirect_uri: 'http://14.49.42.89/callback.html',
     scope: 'non-expiring'
   });
 
   function getTokenExe(){
     SC.connect(function() {
-      document.location.href="http://localhost/getsoundcloud.php?sound_code=" + SC.accessToken();
+      document.location.href="http://14.49.42.89/getsoundcloud.php?sound_code=" + SC.accessToken();
     });
   }
 
