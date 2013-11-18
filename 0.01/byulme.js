@@ -50,8 +50,10 @@ app.get('/card/:menuId/:maxRank', function(req, res){
 /*************** MY SQL POOL Manager ***************/
 
 var bmMysqlConfig={
-	host:"14.49.42.89",
-	port:"11000",
+  // host:"14.49.42.89",
+  // port:"11000",
+  host:"172.27.150.164",
+  port:"3306",
 	user:"bmmast",
 	password:"qufal13818",
 	multipleStatements: true,
