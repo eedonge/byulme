@@ -1,6 +1,6 @@
 define(
 	[
-		'jquery', 
+		'jquery',
 		'backbone',
 		'util/cardDataUtil',
 		'cardView',
@@ -9,7 +9,7 @@ define(
 		'isotope',
 		'style!../style/cardList/cardList'
 	], function(
-		$, 
+		$,
 		Backbone,
 		cardDataUtil,
 		Card,
@@ -27,7 +27,7 @@ define(
 			var that  = this;
 
 			cardDataUtil.cardData(this.menuId, this.maxRank, function(list){
-				
+
 				that.makeCardList(list);
 				that.maxRank = 20;
 				//isotope 처리
@@ -43,11 +43,10 @@ define(
 				});
 			});
 		},
-		
+
 		appendCardListCall: function() {;
 			if($(window).scrollTop() == $(document).height() - $(window).height() ) {
 				var that = this;
-				util.log('asdfsadfasdfasdf');
 				$(window).unbind('scroll');
 				cardDataUtil.cardData(this.menuId, this.maxRank, function(list){
 					that.appendCardList(list);
@@ -98,13 +97,13 @@ define(
 				}
 			}
 			var self = this;
-			//menuId가 다른 카드는 새로운 순위 리스트에 포함되지 않으므로 삭제한다.		
+			//menuId가 다른 카드는 새로운 순위 리스트에 포함되지 않으므로 삭제한다.
 			$(this.con)
-				// .append($(tmpTemplate))	
+				// .append($(tmpTemplate))
 				.isotope('remove',board.filter('[data-menuId!="' + self.menuId + '"]'))	//isotope 객체에서 삭제
 				.isotope('insert',$(tmpTemplate), function() {
 						$(self.con).isotope('reloadItems');
-						$(self.con).isotope({sortBy:'rank'});	
+						$(self.con).isotope({sortBy:'rank'});
 					});
 		},
 
@@ -131,7 +130,7 @@ define(
 		}
 	});
 
-		
+
 
 	return new cardListView;
 });
