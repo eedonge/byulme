@@ -1,6 +1,7 @@
 <div class="card" data-starId="{{starId}}" data-menuId="{{menuId}}">
 	<div class="sbox">
 		<p class="rank">{{rank}}</p>
+        <img class="thumb" src="{{mast_thumb_url}}">
 		<div style="padding-top:30px; text-align:center;">
 			<h5 class="typo-pressed typo-pressed-title" style="font-size:70px; color:#047091;">{{rank}}</h5>
 			<a class='viewer' href="{{mast_url}}" title="뷰어파일입니다." style="padding-top:10px;color:#007F91; font-size:30px;">{{starName}}</a>

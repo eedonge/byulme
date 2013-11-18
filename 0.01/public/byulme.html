@@ -50,7 +50,7 @@
 		</style>
 	</head>
 	<body>
-		<div id="page">	
+		<div id="page">
 
 			<div id="fb-root"></div> <!--For Facebook Script-->
 
@@ -61,12 +61,12 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div id="header" class="mm-fixed-top">
 				<a id="open-icon-header" href="#menu"></a>
 				BYUL ME
 			</div>
-			
+
 			<div id="tooltips" >
 				<div id="popup-1" class="tip">
 					<div>
@@ -103,7 +103,7 @@
 								    	<div id="errmsg">
 								    	</div>
 								    	<!--<div id="files" class="files"></div>-->
-									</section>									
+									</section>
 								</div>
 								<div class="tab-pane" id="nav2">
 									<!-- 파일 업로드 화면 -->
@@ -158,7 +158,7 @@
 							</div>
 						</div>
 						<div id="upload_complete_box" class="alert alert-success complete_box"></div>
-						
+
 						<div id="star_reg_modal" style="display:none;">
 							<a href="#page" class="close">X</a>
 						    <div class="bm-row">
@@ -193,7 +193,7 @@
 							</div>
 
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -222,7 +222,7 @@
 							<a href="#">
 							<i class="icon icon-white icon-user"></i>
 							User</a>
-						</span>					
+						</span>
 						<ul>
 							<li>
 								<span>Friends</span>
@@ -299,7 +299,7 @@
 											<small>Johnson</small>
 										</a>
 									</li>
-									
+
 									<li class="Label">N</li>
 									<li class="img">
 										<a href="#">
@@ -326,7 +326,7 @@
 									</li>
 								</ul>
 							</li>
-							
+
 							<li>
 								<span>Family</span>
 								<ul>
@@ -432,7 +432,7 @@
 											<small>King</small>
 										</a>
 									</li>
-									
+
 									<li class="Label">E</li>
 									<li class="img">
 										<a href="#">
@@ -441,7 +441,7 @@
 											<small>Walker</small>
 										</a>
 									</li>
-									
+
 									<li class="Label">L</li>
 									<li class="img">
 										<a href="#">
@@ -457,7 +457,7 @@
 											<small>Wilson</small>
 										</a>
 									</li>
-									
+
 									<li class="Label">M</li>
 									<li class="img">
 										<a href="#">
@@ -466,7 +466,7 @@
 											<small>Jordan</small>
 										</a>
 									</li>
-									
+
 									<li class="Label">R</li>
 									<li class="img">
 										<a href="#">
@@ -498,13 +498,13 @@
 			$(function() {
 				var $menu = $('#menu');
 
-					// Toggle menu 
+					// Toggle menu
 				$('#open-icon-menu a, #open-icon-header').click(function( e ) {
 					e.stopImmediatePropagation();
 					e.preventDefault();
 					if($menu.hasClass( 'mm-opened' ) ){
 						var opened = true;
-					}		
+					}
 					// console.log('click');
 					$menu.trigger( $menu.hasClass( 'mm-opened' ) ? 'close.mm' : 'open.mm' );
 					if(opened) {
@@ -523,7 +523,7 @@
 					header		: {
 						add			: true,
 						update		: true,
-						title		: 'Contacts' 
+						title		: 'Contacts'
 					}
 				});
 
@@ -548,7 +548,6 @@
 				}
 
 				$(window).resize(function(){
-					console.log($(window).width());
 					if($(window).width() < 486) {
 						$('#page').width('auto');
 						return;
@@ -558,7 +557,7 @@
 					else
 						reWidth(60);
 				});
-				
+
 				var options = {
 					classes			: 'mm-light',
 					modal			: true
