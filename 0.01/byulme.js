@@ -241,7 +241,7 @@ app.post('/bm/sign/:operation', function(req, res){
        subject: '별미 인증 메일',
        attachment:
        [
-          {data:'<html>아래 링크를 클릭하신 후 서비스 이용 가능합니다.<br/> <a href="http://localhost:8080/bm/auth/' + authKey + '" target="_blank">별미인증하기</a></html>', alternative:true}
+          {data:'<html>아래 링크를 클릭하신 후 서비스 이용 가능합니다.<br/> <a href="http://localhost:' + app.get('port') + '/bm/auth/' + authKey + '" target="_blank">별미인증하기</a></html>', alternative:true}
        ]
     }, function(err, message) { console.log(err || message); });
 
@@ -287,8 +287,8 @@ app.get('/bm/auth/:authkey', function(req, res){
 
 /*************** MY SQL POOL Manager ***************/
 
-app.get('/login', function(req, res){
-  fs.readFile('public/login.html', function(err, data){
+app.get('/byulme', function(req, res){
+  fs.readFile('public/byulme.html', function(err, data){
     if(err){
       res.end(err);
     } else {
@@ -312,8 +312,6 @@ var serverHandler = http.createServer(app);
 serverHandler.listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
-
-
 
 /***************  SOCKET IO ****************************/
 /*

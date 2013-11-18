@@ -20,7 +20,7 @@ define(function(require) {
 
 		initialize: function() {
 			if(bm.isLogIn() === false){
-				document.location.href="/login";	
+				document.location.href="/";	
 			}else{
 				//LogIn Setting // Time 초기화 
 				bm.loginRefresh();

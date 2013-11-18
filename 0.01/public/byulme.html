@@ -1,0 +1,579 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+		<meta name="author" content="www.frebsite.nl" />
+		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+		<title>Coolest responsive menu example ever.</title>
+		<link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+		<link type="text/css" rel="stylesheet" href="style/layout.css" />
+		<link type="text/css" rel="stylesheet" href="style/demo.css" />
+		<link type="text/css" rel="stylesheet" href="source/jquery.mmenu.all.css" />
+		<link type="text/css" rel="stylesheet" href="style/iconbar.css" media="all and (min-width: 500px)" />
+		<link type="text/css" rel="stylesheet" href="style/make/makestyle.css"/>
+		<link type="text/css" rel="stylesheet" href="style/regstar/regstarstyle.css"/>
+		<script type="text/javascript" src="lib/jquery-2.0.3.min.js"></script>
+		<script type="text/javascript" src="source/jquery.mmenu.js"></script>
+		<style type="text/css">
+			.mm-page {
+				position: relative;
+			}
+			#header {
+				position:fixed;
+				right: 0px;
+				width:auto;
+				z-index: 0;
+			}
+			#content {
+				padding-top:40px;
+			}
+			#content>h2{
+				text-align: center;
+				width:100%;
+				padding-top:110px;
+			}
+			.btnpop {
+				left:auto !important;
+				right: 10px !important;
+			}
+			#menu {
+				display:block !important;
+			}
+			.sns_icon {
+				text-align: right;
+			}
+			.sns_icon img{
+				margin: 5px 20px 5px 0px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="page">	
+
+			<div id="fb-root"></div> <!--For Facebook Script-->
+
+			<div id="content">
+				<h2>Loading...</h2>
+				<div class="cardList_wrap">
+					<div id="cardList_container">
+					</div>
+				</div>
+			</div>
+			
+			<div id="header" class="mm-fixed-top">
+				<a id="open-icon-header" href="#menu"></a>
+				BYUL ME
+			</div>
+			
+			<div id="tooltips" >
+				<div id="popup-1" class="tip">
+					<div>
+						<div id="star_upload_modal" style="display:none;">
+							<a href="#page" class="close">X</a>
+
+							<ul class="nav nav-tabs">
+					  		<li class="active"><a href="#nav1" data-toggle="tab"><i class="icon icon-facetime-video"></i>&nbsp;<strong>동영상</strong></a></li>
+					  		<li><a href="#nav2" data-toggle="tab"><i class="icon icon-picture"></i>&nbsp;<strong>이미지</strong></a></li>
+					  		<li><a href="#nav3" data-toggle="tab"><i class="icon icon-music"></i>&nbsp;<strong>음악</strong></a></li>
+							</ul>
+
+							<div class="tab-content">
+								<div class="tab-pane active" id="nav1">
+									<!-- 파일 업로드 화면 -->
+									<section class="page">
+											<div class="upload-file">
+												<span id="span_mv" class="btn fileinput-button">
+										       <img src="../style/image/bm_inbox.png" alt="동영상을 선택해 주세요">
+										       <input id="movieupload" type="file" name="files" title="동영상을 선택해 주세요"/>
+									   		</span>
+
+									   		<button id="makebutton" class="btn" type="button">
+													<img src="../style/image/bm_upload.png" alt="업로드">
+												</button>
+
+									   		<span id="fileinfo" class="fileinfo">
+									   		</span>
+											</div>
+								    	<!-- The global progress bar -->
+								    	<div id="progress" class="progress progress-striped">
+								    		<div class="bar bar-info" style="width: 0%;"></div>
+								    	</div>
+								    	<div id="errmsg">
+								    	</div>
+								    	<!--<div id="files" class="files"></div>-->
+									</section>									
+								</div>
+								<div class="tab-pane" id="nav2">
+									<!-- 파일 업로드 화면 -->
+									<section class="page">
+										<div class="upload-file">
+									    <span id="span_img" class="btn fileinput-button">
+									        <img src="../style/image/bm_inbox.png" alt="이미지를 선택해 주세요">
+									        <input id="imageupload" type="file" name="files" title="이미지를 선택해 주세요">
+								   		</span>
+
+								   		<button id="imgmakebutton" class="btn" type="button">
+								   			<img src="../style/image/bm_upload.png" alt="업로드">
+								   		</button>
+
+								   		<span id="imgfileinfo" class="fileinfo">
+								   		</span>
+								   	</div>
+								    <!-- The global progress bar -->
+							    	<div id="imgprogress" class="progress progress-striped">
+							    		<div class="bar bar-info" style="width: 0%;"></div>
+							    	</div>
+							    	<div id="imgerrmsg" ></div>
+							    	<!--<div id="files" class="files"></div>-->
+									</section>
+								</div>
+
+								<div class="tab-pane" id="nav3">
+									<!-- 파일 업로드 화면 -->
+									<section class="page">
+										<div class="upload-file">
+									    <span id="span_sd" class="btn fileinput-button">
+									        <img src="../style/image/bm_inbox.png" alt="음악파일을 선택해 주세요">
+									        <input id="soundupload" type="file" name="files" title="음악파일을 선택해 주세요">
+								   		</span>
+
+								   		<button id="sdmakebutton" class="btn" type="button">
+								   			<img src="../style/image/bm_upload.png" alt="업로드">
+								   		</button>
+
+								   		<span id="sdfileinfo" class="fileinfo">
+								   		</span>
+								   	</div>
+								    <!-- The global progress bar -->
+							    	<div id="sdprogress" class="progress progress-striped">
+							    		<div class="bar bar-info" style="width: 0%;"></div>
+							    	</div>
+							    	<div id="sderrmsg" ></div>
+							    	<!--<div id="files" class="files"></div>-->
+									</section>
+								</div>
+
+							</div>
+						</div>
+						<div id="upload_complete_box" class="alert alert-success complete_box"></div>
+						
+						<div id="star_reg_modal" style="display:none;">
+							<a href="#page" class="close">X</a>
+						    <div class="bm-row">
+						    	<div class="col-sm-6 col-md-3 bm-md-3">
+						    		<div class="thumbnail bm-thumbnail">
+										<img id="profile_img" src="../style/image/bm_profile.png">
+										<div class="caption" style="text-align:center;">
+											<button type="button" class="btn btn-xs bm-rs">
+												<img  src="../style/image/upload_img.png">
+												<input id="profile_upload" type="file" name="files" title="이미지를 선택해 주세요"/>
+											</button>
+										</div>
+						    		</div>
+								</div>
+								<br>
+								<div class="input-group input-group-sm bm-input-group">
+								    <span class="input-group-addon bm-group-addon">이름</span>
+								    <input id="reg_star_name" type="text" class="form-control bm-form-control" placeholder="이름 또는 별명">
+								</div>
+								<br>
+								<div class="input-group input-group-sm bm-input-group">
+									<span class="input-group-addon bm-group-addon">소개</span>
+									<input id="reg_star_intro" type="text" class="form-control bm-form-control" placeholder="자기를 소개하는 글">
+								</div>
+								<br>
+								<div style="text-align:right;">
+									<span id="reg_star_alert" class="alert" style="display:none;"></span>
+									<button id="reg_star_submit" class="btn" type="button">
+								   		<img src="../style/image/bm_upload.png" alt="등록하기">
+								   	</button>
+								</div>
+							</div>
+
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+			<nav id="menu">
+				<ul>
+					<li id="open-icon-menu"><a href="#menu">
+						<i class="icon icon-white icon-list-alt"></i></a></li>
+					<li><a href="#rank/newly">
+						<i class="icon icon-white icon-star"></i>
+						New</a></li>
+					<li><a href="#rank/season">
+						<i class="icon icon-white icon-th-large"></i>
+						Season</a></li>
+					<li><a href="#rank/monthly">
+						<i class="icon icon-white icon-th-list"></i>
+						Month</a></li>
+					<li><a href="#rank/weekly">
+						<i class="icon icon-white icon-list"></i>
+						Week</a></li>
+					<li><a href="#rank/daily">
+						<i class="icon icon-white icon-th"></i>
+						Day</a></li>
+					<li>
+						<span>
+							<a href="#">
+							<i class="icon icon-white icon-user"></i>
+							User</a>
+						</span>					
+						<ul>
+							<li>
+								<span>Friends</span>
+								<ul>
+									<li class="Label">A</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/1/" />
+											Alexa<br />
+											<small>Johnson</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/2/" />
+											Alexander<br />
+											<small>Brown</small>
+										</a>
+									</li>
+
+									<li class="Label">F</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/3/" />
+											Fred<br />
+											<small>Smith</small>
+										</a>
+									</li>
+
+									<li class="Label">J</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/4/" />
+											James<br />
+											<small>Miller</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/5/" />
+											Jefferson<br />
+											<small>Jackson</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/6/" />
+											Jordan<br />
+											<small>Lee</small>
+										</a>
+									</li>
+
+									<li class="Label">K</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/7/" />
+											Kim<br />
+											<small>Adams</small>
+										</a>
+									</li>
+
+									<li class="Label">M</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/8/" />
+											Meagan<br />
+											<small>Miller</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/9/" />
+											Melissa<br />
+											<small>Johnson</small>
+										</a>
+									</li>
+									
+									<li class="Label">N</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/10/" />
+											Nicole<br />
+											<small>Smith</small>
+										</a>
+									</li>
+
+									<li class="Label">S</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/1/" />
+											Samantha<br />
+											<small>Harris</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/2/" />
+											Scott<br />
+											<small>Thompson</small>
+										</a>
+									</li>
+								</ul>
+							</li>
+							
+							<li>
+								<span>Family</span>
+								<ul>
+									<li class="Label">A</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/3/" />
+											Adam<br />
+											<small>White</small>
+										</a>
+									</li>
+
+									<li class="Label">B</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/4/" />
+											Ben<br />
+											<small>Robinson</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/5/" />
+											Bruce<br />
+											<small>Lee</small>
+										</a>
+									</li>
+
+									<li class="Label">E</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/6/" />
+											Eddie<br />
+											<small>Williams</small>
+										</a>
+									</li>
+
+									<li class="Label">J</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/7/" />
+											Jack<br />
+											<small>Johnson</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/8/" />
+											John<br />
+											<small>Jackman</small>
+										</a>
+									</li>
+
+									<li class="Label">M</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/9/" />
+											Martina<br />
+											<small>Thompson</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/10/" />
+											Matthew<br />
+											<small>Watson</small>
+										</a>
+									</li>
+
+									<li class="Label">O</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/1/" />
+											Olivia<br />
+											<small>Taylor</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/2/" />
+											Owen<br />
+											<small>Wilson</small>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<span>Work colleagues</span>
+								<ul>
+									<li class="Label">D</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/3/" />
+											David<br />
+											<small>Harris</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/4/" />
+											Dennis<br />
+											<small>King</small>
+										</a>
+									</li>
+									
+									<li class="Label">E</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/5/" />
+											Eliza<br />
+											<small>Walker</small>
+										</a>
+									</li>
+									
+									<li class="Label">L</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/6/" />
+											Larry<br />
+											<small>Turner</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/7/" />
+											Lisa<br />
+											<small>Wilson</small>
+										</a>
+									</li>
+									
+									<li class="Label">M</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/8/" />
+											Michael<br />
+											<small>Jordan</small>
+										</a>
+									</li>
+									
+									<li class="Label">R</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/9/" />
+											Rachelle<br />
+											<small>Cooper</small>
+										</a>
+									</li>
+									<li class="img">
+										<a href="#">
+											<img src="http://lorempixel.com/50/50/people/10/" />
+											Rick<br />
+											<small>James</small>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li><a id="bm_type_menu" href="#popup-1"></a></li>
+							<li class="sns_icon"><img id="bm_fb_auth" src="style/image/lout_fb.png"/></li>
+						</ul>
+					</li>
+					<li><a href="#about">
+						<i class="icon icon-white icon-question-sign"></i>
+						About</a></li>
+				</ul>
+			</nav>
+		</div>
+		<script type="text/javascript">
+			$(function() {
+				var $menu = $('#menu');
+
+					// Toggle menu 
+				$('#open-icon-menu a, #open-icon-header').click(function( e ) {
+					e.stopImmediatePropagation();
+					e.preventDefault();
+					if($menu.hasClass( 'mm-opened' ) ){
+						var opened = true;
+					}		
+					// console.log('click');
+					$menu.trigger( $menu.hasClass( 'mm-opened' ) ? 'close.mm' : 'open.mm' );
+					if(opened) {
+						reWidth(60);
+					}
+				});
+
+				//	Create the menu
+				$menu.mmenu({
+					onClick: {
+						preventDefault	: true,
+						setSelected		: false,
+					},
+					counters	: true,
+					searchfield	: true,
+					header		: {
+						add			: true,
+						update		: true,
+						title		: 'Contacts' 
+					}
+				});
+
+				$('.mm-page').click(function(){
+					if($menu.hasClass( 'mm-opened' ) )
+						reWidth(75);
+					$menu.trigger('close.mm');
+				});
+
+				$('a.mm-subopen').click(function( e ) {
+					console.log('click');
+					e.stopImmediatePropagation();
+					e.preventDefault();
+					!$menu.hasClass( 'mm-opened' ) && $menu.trigger( 'open.mm');
+				});
+
+				function reWidth(offset) {
+					var pos = $('#page').position();
+					offset = offset || pos.left;
+					// console.log($(window).width() - offset);
+					$('#page').width(($(window).width() - offset) + 'px')
+				}
+
+				$(window).resize(function(){
+					console.log($(window).width());
+					if($(window).width() < 486) {
+						$('#page').width('auto');
+						return;
+					}
+					if($menu.hasClass( 'mm-opened' ) )
+						reWidth(220);
+					else
+						reWidth(60);
+				});
+				
+				var options = {
+					classes			: 'mm-light',
+					modal			: true
+				};
+
+				options.position = 'top';
+				options.zposition = 'front';
+				$('#popup-1').mmenu( options )
+								.on("opened.mm", function(){
+									$('#tooltips').trigger("show-modal");
+									$('#tooltips').trigger("reg-show-modal");
+								});
+			});
+
+		</script>
+		<script src="cornerstone/launcher.js" data-target="script/main"></script>
+	</body>
+</html>
