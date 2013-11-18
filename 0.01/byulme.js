@@ -1,6 +1,8 @@
 /**
  * Module dependencies.
  */
+// process.env.NODE_ENV = 'production';
+// process.env.NODE_ENV = 'development';
 
 var express = require('express');
 var http = require('http');
@@ -15,6 +17,7 @@ var email = require('emailjs');
 var crypto = require('crypto');
 var util = require('util');
 var app = express();
+var url = require('url');
 
 // all environments
 app.set('port', process.env.PORT || 8080);
@@ -24,12 +27,37 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-console.log('__dirname:' + __dirname);
-
 // development only
 if ('development' == app.get('env')) {
-	app.use(express.errorHandler());
+  console.log('development version');
+  /*************** MY SQL POOL Manager ***************/
+  var bmMysqlConfig={
+    host:"14.49.42.89", //로컬 개발중일때는 외부 IP
+    port:"11000",
+    // host:"172.27.150.164",
+    // port:"3306",
+    user:"bmmast",
+    password:"qufal13818",
+    multipleStatements: true,
+    waitForConnections:true, //사용자가 많을 경우 대기 유지
+    connectionLimit:100, //동시에 최대 100명 접속
+    queueLimit:0 //Queue에 사용자 제한없음
+  };
+} else if ('production' == app.get('env')) {
+  console.log('production version');
+  /*************** MY SQL POOL Manager ***************/
+  var bmMysqlConfig={
+    // host:"14.49.42.89",
+    // port:"11000",
+    host:"172.27.150.164", //운영서버에 올릴때는 외부 IP
+    port:"3306",
+    user:"bmmast",
+    password:"qufal13818",
+    multipleStatements: true,
+    waitForConnections:true, //사용자가 많을 경우 대기 유지
+    connectionLimit:100, //동시에 최대 100명 접속
+    queueLimit:0 //Queue에 사용자 제한없음
+  };
 }
 
 
@@ -46,22 +74,6 @@ app.get('/card/:menuId/:maxRank', function(req, res){
 })
 
 /*************** DB Control Process ****************/
-
-/*************** MY SQL POOL Manager ***************/
-
-var bmMysqlConfig={
-  // host:"14.49.42.89",
-  // port:"11000",
-  host:"172.27.150.164",
-  port:"3306",
-	user:"bmmast",
-	password:"qufal13818",
-	multipleStatements: true,
-	waitForConnections:true, //사용자가 많을 경우 대기 유지
-	connectionLimit:100, //동시에 최대 100명 접속
-	queueLimit:0 //Queue에 사용자 제한없음
-};
-
 
 var pool = mysql.createPool(bmMysqlConfig);
 
