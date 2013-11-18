@@ -14,8 +14,7 @@ define(function(require) {
 		routes : {
 			'' : 'rankRoute',
 			'rank/:menuId' : 'rankRoute',
-			'about' : 'aboutRoute',	
-			'member' : 'memberRoute'
+			'about' : 'aboutRoute'
 		},
 
 		initialize: function() {
@@ -73,13 +72,7 @@ define(function(require) {
 				require('cardListView')['menuId'] = null; //랭킹 메뉴아이디 초기화
 				//AboutView.render();
 			})
-		},
-
-		memberRoute : function() {
-			require(["memberView"], function(MemberView) {
-				MemberView.render();
-			})
-		},
+		}
 	});
 
 	

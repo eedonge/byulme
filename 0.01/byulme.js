@@ -28,10 +28,11 @@ app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
+var bmMysqlConfig = "";
 if ('development' == app.get('env')) {
   console.log('development version');
   /*************** MY SQL POOL Manager ***************/
-  var bmMysqlConfig={
+  bmMysqlConfig={
     host:"14.49.42.89", //로컬 개발중일때는 외부 IP
     port:"11000",
     // host:"172.27.150.164",
@@ -46,7 +47,7 @@ if ('development' == app.get('env')) {
 } else if ('production' == app.get('env')) {
   console.log('production version');
   /*************** MY SQL POOL Manager ***************/
-  var bmMysqlConfig={
+  bmMysqlConfig={
     // host:"14.49.42.89",
     // port:"11000",
     host:"172.27.150.164", //운영서버에 올릴때는 외부 IP
@@ -74,7 +75,6 @@ app.get('/card/:menuId/:maxRank', function(req, res){
 })
 
 /*************** DB Control Process ****************/
-
 var pool = mysql.createPool(bmMysqlConfig);
 
 /***************************************************/
