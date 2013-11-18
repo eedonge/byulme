@@ -81,7 +81,6 @@ exports.get_query = function(operation, params){
 			break;
 	}
 
-	console.log(_query);
 	return _query;
 
 };

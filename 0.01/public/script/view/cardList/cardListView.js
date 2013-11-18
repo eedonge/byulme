@@ -44,9 +44,10 @@ define(
 			});
 		},
 		
-		appendCardListCall: function() {
+		appendCardListCall: function() {;
 			if($(window).scrollTop() == $(document).height() - $(window).height() ) {
 				var that = this;
+				util.log('asdfsadfasdfasdf');
 				$(window).unbind('scroll');
 				cardDataUtil.cardData(this.menuId, this.maxRank, function(list){
 					that.appendCardList(list);

@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -14,11 +13,11 @@ var io = require('socket.io');
 var requirejs = require('requirejs');
 var email = require('emailjs');
 var crypto = require('crypto');
-
+var util = require('util');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 8001);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
