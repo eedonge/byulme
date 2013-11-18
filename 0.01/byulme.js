@@ -17,12 +17,15 @@ var util = require('util');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 8001);
+app.set('port', process.env.PORT || 8080);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+console.log('__dirname:' + __dirname);
 
 // development only
 if ('development' == app.get('env')) {
@@ -42,7 +45,7 @@ app.get('/card/:menuId/:maxRank', function(req, res){
 	});
 })
 
-/*************** DB Control Process ****************/ 
+/*************** DB Control Process ****************/
 
 /*************** MY SQL POOL Manager ***************/
 
@@ -69,11 +72,11 @@ app.get('/bmdb/:operation', function(req, res){
 		connection.query(dbcontroller.get_query(req.params.operation, req.query), function(err, rows){
 			res.send(rows);
 			connection.release();
-		}); 
+		});
 	});
 
 });
-			
+
 
 /***************************************************/
 /* INSERT, UPDATE : POST                           */
@@ -98,8 +101,8 @@ app.post('/bm/regstar', function(req, res){
 			res.send(results[0]);
 			connection.release();
 		});
-	}); 
-	
+	});
+
 });
 
 
@@ -108,7 +111,7 @@ app.post('/bm/regstar', function(req, res){
 /***************************************************/
 app.post('/bm/fb/auth', function(req, res){
 
-    //Short Token 을 Long Token 으로 Extend  
+    //Short Token 을 Long Token 으로 Extend
     graph.setAccessToken(req.body.shorttoken);
     graph.extendAccessToken({
         "client_id": '462018927252937'
@@ -127,7 +130,7 @@ app.post('/bm/fb/auth', function(req, res){
             connection.release();
         });
       });
-         
+
     });
 });
 
@@ -139,7 +142,7 @@ app.post('/bm/fb/feed/:operation', function(req, res){
 		//사용자의 Long Token Select
 		pool.getConnection(function(err, connection){
 			connection.query(dbcontroller.fb_query("GET_TOKEN", req.body), function(err, rows){
-				
+
 					//사용자의 Lonf Token이 존재하면 사용자의 Facebook ID를 조회 한다.
 					if(rows.length > 0){
 						var options = {
@@ -197,7 +200,7 @@ app.post('/bm/sign/:operation', function(req, res){
         }
         connection.release();
       });
-    });    
+    });
 
   }else if(req.params.operation == "SIGNIN"){
 
@@ -224,24 +227,24 @@ app.post('/bm/sign/:operation', function(req, res){
 
     //이메일 인증 요청
     var server  = email.server.connect({
-       user:    'star.byulme@gmail.com', 
-       password: 'sb1234!@#$', 
-       host:    'smtp.gmail.com', 
+       user:    'star.byulme@gmail.com',
+       password: 'sb1234!@#$',
+       host:    'smtp.gmail.com',
        ssl:     true
     });
 
-    
+
     server.send({
-       text:    'http://localhost:8080/bm/auth/' + authKey + '', 
-       from:    'administrator<star.byulme@gmail.com>', 
+       text:    'http://localhost:8080/bm/auth/' + authKey + '',
+       from:    'administrator<star.byulme@gmail.com>',
        to:      '<' + req.body.email + '>',
        subject: '별미 인증 메일',
-       attachment: 
+       attachment:
        [
           {data:'<html>아래 링크를 클릭하신 후 서비스 이용 가능합니다.<br/> <a href="http://localhost:8080/bm/auth/' + authKey + '" target="_blank">별미인증하기</a></html>', alternative:true}
        ]
     }, function(err, message) { console.log(err || message); });
-    
+
   }
 });
 
@@ -254,7 +257,7 @@ app.get('/bm/auth/:authkey', function(req, res){
     }
 
     connection.query(dbcontroller.get_query("GET_USER_INFO_AUTH", authParam), function(err, rows){
-      if(rows.length > 0){        
+      if(rows.length > 0){
         var bmUid = rows[0].uid;
         var bmType = rows[0].type;
 
@@ -289,22 +292,21 @@ app.get('/login', function(req, res){
     if(err){
       res.end(err);
     } else {
-      res.end(data);  
+      res.end(data);
     }
   });
 });
 
-/*
 app.get('/', function(req, res){
   fs.readFile('public/index.html', function(err, data){
     if(err){
       res.end(err);
     } else {
-      res.end(data);  
+      res.end(data);
     }
   });
 });
-*/
+
 
 var serverHandler = http.createServer(app);
 serverHandler.listen(app.get('port'), function(){
@@ -326,9 +328,9 @@ app_io.sockets.on('connection', function(socket){
 
 		var curCnt = 0;
 		//Movie Encoding 확인
-		
+
 		var intervalId = setInterval(function(){
-			
+
 			var isEmit = false;
 			pool.getConnection(function(err, connection){
 				connection.query(dbcontroller.get_query("GET_MOVIE_MAKE", pParam), function(err, rows){
@@ -336,15 +338,15 @@ app_io.sockets.on('connection', function(socket){
 					if(rows.length > 0){
 						if(rows[0].result == "1"){
 
-							socket.emit('getMovieMake', {status: 'success'}); 
+							socket.emit('getMovieMake', {status: 'success'});
 							isEmit = true;
 						}
 					}
 
-					connection.release(); 
-				});      
-			}); 
-			
+					connection.release();
+				});
+			});
+
 			curCnt = curCnt + 1;
 			if(isEmit == true || curCnt > 60){ //최대 60회 시도 후 접속 해지
 				clearInterval(intervalId);

@@ -2,7 +2,8 @@
 .header,
 #footer
 {
-	background: rgba(0, 215, 251, 1);
+	/*background: rgba(0, 215, 251, 1);*/
+	background: #007f91;
 	font-size: 16px;
 	font-weight: bold;
 	color: #fff;

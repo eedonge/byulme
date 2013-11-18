@@ -75,6 +75,7 @@ exports.get_query = function(operation, params){
 			_query = _query + "		bmdb.bm_user_star b";
 			_query = _query + " where	a.uid = b.uid";
 			_query = _query + " and		rownum between " + params.curMaxIndex + " + 1 and " + params.curMaxIndex + " + 20";
+			console.log(_query);
 			break;
 		default:
 			_query = "select 'TEST' from dual";
