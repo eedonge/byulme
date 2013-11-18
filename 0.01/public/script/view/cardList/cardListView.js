@@ -27,7 +27,6 @@ define(
 			var that  = this;
 
 			cardDataUtil.cardData(this.menuId, this.maxRank, function(list){
-
 				that.makeCardList(list);
 				that.maxRank = 20;
 				//isotope 처리
@@ -41,6 +40,9 @@ define(
 					},
 					sortBy : 'rank'
 				});
+				if (this.menuId == 'newly') {
+					$('.rank').css('display','none');
+				}
 			});
 		},
 
