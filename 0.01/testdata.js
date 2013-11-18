@@ -10,7 +10,7 @@ var bmMysqlConfig={
 	password:"qufal13818",
 	multipleStatements: true,
 	waitForConnections:true, //사용자가 많을 경우 대기 유지
-	connectionLimit:100, //동시에 최대 100명 접속
+	connectionLimit:10000, //동시에 최대 100명 접속
 	queueLimit:0 //Queue에 사용자 제한없음
 };
 
@@ -30,8 +30,7 @@ pool.getConnection(function(err, connection){
     //User Master 
     var nUser_qry = " insert into bmdb.bm_user_mast (uid, email, pw, type, auth) values ('" + nUserId + "',  '" +  nUserEmail + "', '" + nUserPw + "',  'N', 'Y' )";
 
-    connection.query(nUser_qry, function(err, rows){
-    }); 
+    //connection.query(nUser_qry, function(err, rows){}); 
 
     nUserArr.push(nUserId);
 
@@ -54,10 +53,9 @@ pool.getConnection(function(err, connection){
     var userStarAlias = "스타(" + i + ")";
     var userStarIntro = "최고의 스타가 되려고합니다(" + i + ")";
     var userStarPath = i + "" + i + "" + i + "" + i + "" + i;
-    var user_star_qry = " insert into bmdb.bm_user_star (uid, pf_img_url, alias, intro, path, fb_album_id) values ('" + userId + "',  '" +  userStarProfile + "', '" + userStarAlias + "',   '" + userStarIntro + "', '" + userStarPath + "', null ";
+    var user_star_qry = " insert into bmdb.bm_user_star (uid, pf_img_url, alias, intro, path, fb_album_id) values ('" + userId + "',  '" +  userStarProfile + "', '" + userStarAlias + "',   '" + userStarIntro + "', '" + userStarPath + "', null )";
 
-    connection.query(user_star_qry, function(err, rows){
-    });
+    connection.query(user_star_qry, function(err, rows){});
 
     //Star Card Mast (스타 1명당 100개의 데이터 넣음)
     var cardData = 
@@ -98,13 +96,23 @@ pool.getConnection(function(err, connection){
       for(var k = 0; k < rateCount; k++){
         
         var tmpNUserIdx = Math.floor(Math.random() * 100); // 0 ~ 100
-        var tmpCardRate = Math.round(Math.random() * 4 * 100) / 100;
+        var tmpCardRate = Math.floor(Math.random() * 3) + 1; // 1 ~ 4
 
         var card_rate_qry = " insert into bmdb.bm_user_card (uid, cid, rate) values ('" + nUserArr[tmpNUserIdx] + "',  '" +  cardCid + "', '" + tmpCardRate + "' )";  
 
         connection.query(card_rate_qry, function(err, rows){});
 
       }
+
+      var rate_qry_d = " insert into bmdb.bm_card_rate (cid, type, rate_avg, type_date) values ('" +  cardCid + "', 'D', '" +  (Math.round(Math.random() * 3 * 100) / 100) + "', date_format(date_add(now(), interval -" + result + " day),'%Y%m%d')) ";
+      var rate_qry_w = " insert into bmdb.bm_card_rate (cid, type, rate_avg, type_date) values ('" +  cardCid + "', 'W', '" +  (Math.round(Math.random() * 3 * 100) / 100) + "', date_format(date_add(now(), interval -" + result + " day),'%Y%m%d')) ";
+      var rate_qry_m = " insert into bmdb.bm_card_rate (cid, type, rate_avg, type_date) values ('" +  cardCid + "', 'M', '" +  (Math.round(Math.random() * 3 * 100) / 100) + "', date_format(date_add(now(), interval -" + result + " day),'%Y%m%d')) ";
+      var rate_qry_s = " insert into bmdb.bm_card_rate (cid, type, rate_avg, type_date) values ('" +  cardCid + "', 'S', '" +  (Math.round(Math.random() * 3 * 100) / 100) + "', date_format(date_add(now(), interval -" + result + " day),'%Y%m%d')) ";
+      
+      connection.query(rate_qry_d, function(err, rows){});
+      connection.query(rate_qry_w, function(err, rows){});
+      connection.query(rate_qry_m, function(err, rows){});
+      connection.query(rate_qry_s, function(err, rows){});
     }
   }
 });
