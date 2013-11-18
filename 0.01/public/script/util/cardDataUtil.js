@@ -13,7 +13,10 @@ define(function(require){
 					'menuId':id,
 					'starId':data[i].uid,
 					'rank':data[i].rownum,
-					'starName':data[i].alias
+					'starName':data[i].alias,
+					'type':data[i].type,
+					'mast_url':data[i].mast_url,
+					'mast_thumb_url':data[i].mast_thumb_url
 				}
 			}
 			
