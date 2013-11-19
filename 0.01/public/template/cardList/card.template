@@ -1,9 +1,19 @@
-<div class="card" data-starId="{{starId}}" data-menuId="{{menuId}}">
+<div id="{{cId}}" class="card" data-starId="{{starId}}" data-menuId="{{menuId}}">
 	<div class="sbox">
+        <p class="rank"><font size="6">{{rank}}</font></p>
 		<div style="text-align:center;">
-			<a class='viewer' href="{{mast_url}}" title="{{starName}}" style="padding-top:10px;color:#007F91; font-size:30px;">
-        <img class="thumb" src="{{mast_thumb_url}}">
+            <a class='viewer' href="{{mast_url}}" title="{{starName}}" style="padding-top:10px;color:#007F91; font-size:30px;">
+                <img class="thumb" src="{{mast_thumb_url}}">
             </a>
 		</div>
+        <div class="eval-box">
+            <div class="starpoints">
+                <span class="bm-star" data-value="1"></span>
+                <span class="bm-star" data-value="2"></span>
+                <span class="bm-star" data-value="3"></span>
+                <span class="bm-star" data-value="4"></span>
+                <span class="bm-star" data-value="5"></span>
+            </div>
+        </div>
 	</div>
 </div>

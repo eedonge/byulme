@@ -13,7 +13,6 @@ define(
 	){
 
 	var cardView = Backbone.View.extend({
-
 		render: function(con, data) {
 			if(data.menuId === 'newly') {
 				data.rankdisplay = 'none';
@@ -24,12 +23,6 @@ define(
 		},
 		template: function(data) {
 			return template(data);
-		},
-		eventSet: function(){
-			$(".viewer").colorbox({iframe:true, innerWidth:640, innerHeight:390, overlayClose:false});
-			$('.thumb').click(function(){
-				$('.viewer', $(this).siblings()).click();
-			});
 		}
 	});
 
