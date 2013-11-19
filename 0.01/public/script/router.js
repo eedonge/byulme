@@ -19,17 +19,17 @@ define(function(require) {
 
 		initialize: function() {
 			if(bm.isLogIn() === false){
-				document.location.href="/";	
+				document.location.href="/";
 			}else{
-				//LogIn Setting // Time 초기화 
+				//LogIn Setting // Time 초기화
 				bm.loginRefresh();
 
-				//사용자별 메뉴 설정 
+				//사용자별 메뉴 설정
 				if(bm.getUserType() === "S"){ //Star
 					$('#bm_type_menu').html('<i class="icon icon-white icon-upload"></i>카드만들기');
 					$('#star_upload_modal').show();
 
-					//카드만들기 초기화 
+					//카드만들기 초기화
 					require(["makeView"], function(MakeView) {
 						MakeView.init(bm.getUserID());
 					});
@@ -50,6 +50,7 @@ define(function(require) {
 		},
 
 		rankRoute: function(menuId) {
+				console.log('render start');
 			require(["cardListView"], function(cardListView) {
 				menuId = menuId || 'newly'; //메뉴아이디가 없다면 최근 리스트로
 				if(cardListView['menuId'] === menuId) return;
@@ -75,9 +76,9 @@ define(function(require) {
 		}
 	});
 
-	
+
 
 	new MainRouter();
 
 	Backbone.history.start();
-}); 
+});

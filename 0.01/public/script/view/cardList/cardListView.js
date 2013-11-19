@@ -40,9 +40,6 @@ define(
 					},
 					sortBy : 'rank'
 				});
-				if (this.menuId == 'newly') {
-					$('.rank').css('display','none');
-				}
 			});
 		},
 
@@ -78,7 +75,7 @@ define(
 				var card = new Card();
 				card.render(this.con, list[sId]);
 			}
-			// card.eventSet();
+			card.eventSet();
 		},
 
 		//랭킹 리스트가 이미 있는 상태에서 새로운 리스트로 업데이트한다.
