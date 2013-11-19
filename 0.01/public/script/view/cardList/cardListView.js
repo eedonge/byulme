@@ -27,27 +27,27 @@ define(
 			var that  = this;
 
 			cardDataUtil.cardData(this.menuId, this.maxRank, function(list){
-				that.makeCardList(list);
+				that.makeCardList(list,
+					function(){
+						//isotope 처리
+						$(that.con).isotope({
+							animationEngine:'jquery',
+							itemSelector : '.card',
+							getSortData : {
+								rank : function ( $elem ) {
+									return parseInt($elem.find('.rank').text(),10);
+								}
+							},
+							sortBy : 'rank'
+						});
+					});
 				that.maxRank = 20;
-				//isotope 처리
-				$(that.con).isotope({
-					animationEngine:'jquery',
-					itemSelector : '.card',
-					getSortData : {
-						rank : function ( $elem ) {
-							return parseInt($elem.find('.rank').text(),10);
-						}
-					},
-					sortBy : 'rank'
-				});
-				if (this.menuId == 'newly') {
-					$('.rank').css('display','none');
-				}
+
 			});
 		},
 
 		appendCardListCall: function() {;
-			if($(window).scrollTop() == $(document).height() - $(window).height() ) {
+			if($(window).scrollTop() >= $(document).height() - $(window).height() - 100) {
 				var that = this;
 				$(window).unbind('scroll');
 				cardDataUtil.cardData(this.menuId, this.maxRank, function(list){
@@ -59,30 +59,59 @@ define(
 
 		appendCardList: function(list){
 			var that = this;
+			var cnt = 0;
+			var cnt2 = 0;
 			var allTemplate;
 			for(sId in list) {
 				var card = new Card();
 				allTemplate += card.template(list[sId]);
+				cnt2++;
 			}
-			$(this.con).isotope('insert', $(allTemplate), function(){
-				$(window).scroll(function(){
-					that.appendCardListCall();
-				});
+
+
+			$('img', $(allTemplate)).load(function(){
+				cnt++;
+				if (cnt === cnt2) {
+					$(that.con).isotope('insert', $(allTemplate), function(){
+						console.log('set scroll event');
+						that.eventSet();
+						$(window).scroll(function(){
+							that.appendCardListCall();
+						});
+					});
+				}
 			});
+			console.log('cnt2:' + cnt2);
+
 		},
 
 		//랭킹메뉴가 최초 실행될 경우 랭킹 리스트를 새로 만든다.
-		makeCardList: function(list) {
+		makeCardList: function(list, callback) {
 			var i = 0;
+			var cnt = 0;
+			var cnt2 = 0;
+			var allTemplate = '';
 			for(sId in list) {
 				var card = new Card();
-				card.render(this.con, list[sId]);
+				var tt = card.template(list[sId]);
+				// card.eventSet($(tt));
+				// card.render(this.con, list[sId]);
+				allTemplate += tt;
+				cnt2++;
 			}
-			// card.eventSet();
+			$('img', $(allTemplate)).load(function(){
+				cnt++;
+				if (cnt === cnt2) {
+					callback && callback();
+				}
+			});
+			$(this.con).append(allTemplate);
+			this.eventSet();
 		},
 
 		//랭킹 리스트가 이미 있는 상태에서 새로운 리스트로 업데이트한다.
 		updateCardList: function(list) {
+			var that = this;
 			var board = $('.card'); //카드 그룹
 			var cardElem = null;
 			var tmpTemplate = '';
@@ -104,6 +133,7 @@ define(
 				// .append($(tmpTemplate))
 				.isotope('remove',board.filter('[data-menuId!="' + self.menuId + '"]'))	//isotope 객체에서 삭제
 				.isotope('insert',$(tmpTemplate), function() {
+						that.eventSet();
 						$(self.con).isotope('reloadItems');
 						$(self.con).isotope({sortBy:'rank'});
 					});
@@ -118,17 +148,27 @@ define(
 				that.maxRank = 20;
 			});
 		},
+		eventSet: function(){
+			$(".viewer").colorbox({iframe:true, innerWidth:640, innerHeight:390, overlayClose:false});
+			$('.thumb').unbind('click').click(function(){
+				$('.viewer', $(this).siblings()).click();
+			});
 
-		/*
-		무한 스크롤 적용
-		jquery.infinitescroll.min.js 로....
-		 */
-		viewDidAppear: function() {
-			//
-		},
+			$('.bm-star').unbind('mouseover').mouseover(function(){
+				var val = $(this).attr('data-value');
+				var starpoints = $('.bm-star', $(this).parent());
 
-		setAppendData: function(){
-
+				$(starpoints).each(function(){
+					if ($(this).attr('data-value') <= val) {
+						$(this).addClass('over');
+					} else {
+						$(this).removeClass('over');
+					}
+				});
+			});
+			$('.starpoints').unbind('mouseleave').mouseleave(function(){
+				$('.bm-star', $(this)).removeClass('over');
+			});
 		}
 	});
 
