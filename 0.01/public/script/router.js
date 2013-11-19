@@ -46,6 +46,7 @@ define(function(require) {
 
 				//Facebook Init
 				BmFaceBook.auth('bm_fb_auth', bm.getUserID(), (bm.getUserType() === "A") ? true : false) ;
+				
 			}
 		},
 

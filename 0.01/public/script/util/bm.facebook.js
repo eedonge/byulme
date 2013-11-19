@@ -1,6 +1,7 @@
 define(
 	[
-		'jquery'
+		'jquery',
+		'bootstrap'
 	], function(
 		$
 	){
@@ -67,8 +68,9 @@ define(
 					   }, {scope: fbPermission});
 
 			        });
-
         		}
+
+        		//$("#" + elementid).tooltip({title:'facebook 공유', trigger:'hover', placement:'left'});
         	}).fail(function(data){
 				
         	});

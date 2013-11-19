@@ -15,7 +15,6 @@ define(
 	var cardView = Backbone.View.extend({
 
 		render: function(con, data) {
-			console.log(data);
 			$(con).append(template(data));
 			$(".viewer").colorbox({iframe:true, innerWidth:640, innerHeight:390, overlayClose:false});
 		},
@@ -26,7 +25,6 @@ define(
 			$('.viewer').click(function(){});
 			$('#cboxOverlay').click(function(e){
 				e.preventDefault();
-				console.log($(this).html());
 				return false;
 			});
 		}
