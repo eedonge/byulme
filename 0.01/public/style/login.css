@@ -298,7 +298,6 @@ FOOTER
 }
 
 .login_complete_box{
-  display:none;
   position: absolute;
   right: 30px;
   bottom: 10px;

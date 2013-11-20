@@ -975,7 +975,8 @@ class UploadHandler
 
             }else if($file_type=="IMAGE"){
 
-                $file_thumb_name = $this->options['upload_basic_dir']."/".$this->options['user_path']."/thumbnail/".$value->name;
+                //$file_thumb_name = $this->options['upload_basic_dir']."/".$this->options['user_path']."/thumbnail/".$value->name;
+                $file_thumb_name = $this->options['upload_basic_dir']."/".$this->options['user_path']."/".$value->name;
 
                 $this->bmMySql->bm_insert_card_info($user_id, $file_id, "IMG");
                 $this->bmMySql->bm_insert_image_info($file_id, $file_full_name, $file_thumb_name);

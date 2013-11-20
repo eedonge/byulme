@@ -30,7 +30,7 @@ pool.getConnection(function(err, connection){
     //User Master 
     var nUser_qry = " insert into bmdb.bm_user_mast (uid, email, pw, type, auth) values ('" + nUserId + "',  '" +  nUserEmail + "', '" + nUserPw + "',  'N', 'Y' )";
 
-    connection.query(nUser_qry, function(err, rows){}); 
+    //connection.query(nUser_qry, function(err, rows){}); 
 
     nUserArr.push(nUserId);
 
@@ -60,37 +60,64 @@ pool.getConnection(function(err, connection){
     //Star Card Mast (스타 1명당 100개의 데이터 넣음)
     var cardData = 
     [
-      {masturl : '76566050', mastthumburl : 'http://b.vimeocdn.com/ts/451/499/451499729_640.jpg', pType : 'MV'},
-      {masturl : '76428111', mastthumburl : 'http://b.vimeocdn.com/ts/451/217/451217222_640.jpg', pType : 'MV'},
-      {masturl : '72047036', mastthumburl : 'http://b.vimeocdn.com/ts/446/854/446854087_640.jpg', pType : 'MV'},
-      {masturl : '76841647', mastthumburl : 'http://b.vimeocdn.com/ts/451/806/451806617_640.jpg', pType : 'MV'},
-      {masturl : '26013528', mastthumburl : 'http://b.vimeocdn.com/ts/445/584/445584914_640.jpg', pType : 'MV'},
-      {masturl : '43929737', mastthumburl : 'http://b.vimeocdn.com/ts/449/669/449669423_640.jpg', pType : 'MV'},
-      {masturl : '75623972', mastthumburl : 'http://b.vimeocdn.com/ts/451/518/451518382_640.jpg', pType : 'MV'},
-      {masturl : '76440793', mastthumburl : 'http://b.vimeocdn.com/ts/451/233/451233366_640.jpg', pType : 'MV'},
-      {masturl : '75491258', mastthumburl : 'http://b.vimeocdn.com/ts/450/063/450063825_640.jpg', pType : 'MV'},
-      {masturl : 'files/' + userStarPath + '/1.jpg' , mastthumburl : 'files/' + userStarPath + '/thumb/1.jpg', pType : 'IMG'},
-      {masturl : 'files/' + userStarPath + '/2.jpg' , mastthumburl : 'files/' + userStarPath + '/thumb/2.jpg', pType : 'IMG'},
-      {masturl : 'files/' + userStarPath + '/3.jpg' , mastthumburl : 'files/' + userStarPath + '/thumb/3.jpg', pType : 'IMG'},
-      {masturl : 'files/' + userStarPath + '/4.jpg' , mastthumburl : 'files/' + userStarPath + '/thumb/4.jpg', pType : 'IMG'},
-      {masturl : 'files/' + userStarPath + '/5.jpg' , mastthumburl : 'files/' + userStarPath + '/thumb/5.jpg', pType : 'IMG'},
-      {masturl : 'files/' + userStarPath + '/6.jpg' , mastthumburl : 'files/' + userStarPath + '/thumb/6.jpg', pType : 'IMG'},
-      {masturl : 'files/' + userStarPath + '/7.jpg' , mastthumburl : 'files/' + userStarPath + '/thumb/7.jpg', pType : 'IMG'},
-      {masturl : 'files/' + userStarPath + '/8.jpg' , mastthumburl : 'files/' + userStarPath + '/thumb/8.jpg', pType : 'IMG'},
-      {masturl : 'files/' + userStarPath + '/9.jpg' , mastthumburl : 'files/' + userStarPath + '/thumb/9.jpg', pType : 'IMG'}
+      {masturl : 'tAoME_aMm1w', mastthumburl : 'http://i1.ytimg.com/vi/tAoME_aMm1w/mqdefault.jpg', pType : 'MV'},
+      {masturl : '8SbUC-UaAxE', mastthumburl : 'http://i1.ytimg.com/vi/8SbUC-UaAxE/mqdefault.jpg', pType : 'MV'},
+      {masturl : 'zpZj1vDoV5s', mastthumburl : 'http://i1.ytimg.com/vi/zpZj1vDoV5s/mqdefault.jpg', pType : 'MV'},
+      {masturl : 'LOXEVd-Z7NE', mastthumburl : 'http://i1.ytimg.com/vi/LOXEVd-Z7NE/mqdefault.jpg', pType : 'MV'},
+      {masturl : '3fy4cqWMhyI', mastthumburl : 'http://i1.ytimg.com/vi/3fy4cqWMhyI/mqdefault.jpg', pType : 'MV'},
+      {masturl : 'A6XUVjK9W4o', mastthumburl : 'http://i1.ytimg.com/vi/A6XUVjK9W4o/mqdefault.jpg', pType : 'MV'},
+      {masturl : '16668477', mastthumburl : 'http://b.vimeocdn.com/ts/102/435/102435502_640.jpg', pType : 'MV'},
+      {masturl : '10634513', mastthumburl : 'http://b.vimeocdn.com/ts/562/291/56229148_640.jpg', pType : 'MV'},
+      {masturl : '38723323', mastthumburl : 'http://b.vimeocdn.com/ts/266/693/266693604_960.jpg', pType : 'MV'},
+      {masturl : '32710609', mastthumburl : 'http://b.vimeocdn.com/ts/221/496/221496422_960.jpg', pType : 'MV'},
+      {masturl : '34368172', mastthumburl : 'http://b.vimeocdn.com/ts/233/985/233985771_960.jpg', pType : 'MV'},
+      {masturl : '8463882', mastthumburl : 'http://b.vimeocdn.com/ts/395/189/39518944_640.jpg', pType : 'MV'},
+      {masturl : '23744121', mastthumburl : 'http://b.vimeocdn.com/ts/154/913/154913329_640.jpg', pType : 'MV'},
+      {masturl : '120707470', mastthumburl : 'files/music/common.png', pType : 'SD'},
+      {masturl : '120274857', mastthumburl : 'files/music/common.png', pType : 'SD'},
+      {masturl : '120039664', mastthumburl : 'files/music/common.png', pType : 'SD'},
+      {masturl : '120083255', mastthumburl : 'files/music/common.png', pType : 'SD'},
+      {masturl : '120774303', mastthumburl : 'files/music/common.png', pType : 'SD'},
+      {masturl : 'files/' + userStarPath + '/1.jpg' , mastthumburl : 'files/' + userStarPath + '/1.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/2.jpg' , mastthumburl : 'files/' + userStarPath + '/2.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/3.jpg' , mastthumburl : 'files/' + userStarPath + '/3.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/4.jpg' , mastthumburl : 'files/' + userStarPath + '/4.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/5.jpg' , mastthumburl : 'files/' + userStarPath + '/5.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/6.jpg' , mastthumburl : 'files/' + userStarPath + '/6.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/7.jpg' , mastthumburl : 'files/' + userStarPath + '/7.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/8.jpg' , mastthumburl : 'files/' + userStarPath + '/8.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/9.jpg' , mastthumburl : 'files/' + userStarPath + '/9.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/10.jpg' , mastthumburl : 'files/' + userStarPath + '/10.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/11.jpg' , mastthumburl : 'files/' + userStarPath + '/11.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/12.jpg' , mastthumburl : 'files/' + userStarPath + '/12.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/13.jpg' , mastthumburl : 'files/' + userStarPath + '/13.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/14.jpg' , mastthumburl : 'files/' + userStarPath + '/14.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/15.jpg' , mastthumburl : 'files/' + userStarPath + '/15.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/16.jpg' , mastthumburl : 'files/' + userStarPath + '/16.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/17.jpg' , mastthumburl : 'files/' + userStarPath + '/17.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/18.jpg' , mastthumburl : 'files/' + userStarPath + '/18.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/19.jpg' , mastthumburl : 'files/' + userStarPath + '/19.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/20.jpg' , mastthumburl : 'files/' + userStarPath + '/20.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/21.jpg' , mastthumburl : 'files/' + userStarPath + '/21.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/22.jpg' , mastthumburl : 'files/' + userStarPath + '/22.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/23.jpg' , mastthumburl : 'files/' + userStarPath + '/23.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/24.jpg' , mastthumburl : 'files/' + userStarPath + '/24.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/25.jpg' , mastthumburl : 'files/' + userStarPath + '/25.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/26.jpg' , mastthumburl : 'files/' + userStarPath + '/26.jpg', pType : 'IMG'},
+      {masturl : 'files/' + userStarPath + '/27.jpg' , mastthumburl : 'files/' + userStarPath + '/27.jpg', pType : 'IMG'}
     ]
 
-
     for(var j = 0; j< 100; j++){
-      var result = Math.floor(Math.random() * 16); // 0 ~ 16
+      var result = Math.floor(Math.random() * 40); // 0 ~ 40
 
+      var datediff = Math.floor(Math.random() * 100); 
       //Card Mast
       var cardCid = new Date().getTime() + "" + i + "" + j;
       var rateCount = Math.floor(Math.random() * 100); // 0 ~ 100명
       var card_mast_qry = " insert into bmdb.bm_card_mast (cid, uid, rate_count, type, date, mast_url, mast_thumb_url) ";
-      card_mast_qry = card_mast_qry + " values ('" + cardCid + "', '" + userId + "', '" + rateCount + "', '" + cardData[result].pType + "', sysdate(), '" + cardData[result].masturl + "', '" + cardData[result].mastthumburl + "' ) ";
+      card_mast_qry = card_mast_qry + " values ('" + cardCid + "', '" + userId + "', '" + rateCount + "', '" + cardData[result].pType + "', DATE_ADD(sysdate(), INTERVAL -" + datediff + " DAY) , '" + cardData[result].masturl + "', '" + cardData[result].mastthumburl + "' ) ";
       
-      //connection.query(card_mast_qry, function(err, rows){});
+      connection.query(card_mast_qry, function(err, rows){});
 
       //별점수 
       for(var k = 0; k < rateCount; k++){
@@ -100,7 +127,7 @@ pool.getConnection(function(err, connection){
 
         var card_rate_qry = " insert into bmdb.bm_user_card (uid, cid, rate) values ('" + nUserArr[tmpNUserIdx] + "',  '" +  cardCid + "', '" + tmpCardRate + "' )";  
 
-        //connection.query(card_rate_qry, function(err, rows){});
+        connection.query(card_rate_qry, function(err, rows){});
 
       }
 
@@ -109,10 +136,10 @@ pool.getConnection(function(err, connection){
       var rate_qry_m = " insert into bmdb.bm_card_rate (cid, type, rate_avg, type_date) values ('" +  cardCid + "', 'M', '" +  (Math.round(Math.random() * 3 * 100) / 100) + "', date_format(date_add(now(), interval -" + result + " day),'%Y%m%d')) ";
       var rate_qry_s = " insert into bmdb.bm_card_rate (cid, type, rate_avg, type_date) values ('" +  cardCid + "', 'S', '" +  (Math.round(Math.random() * 3 * 100) / 100) + "', date_format(date_add(now(), interval -" + result + " day),'%Y%m%d')) ";
       
-      //connection.query(rate_qry_d, function(err, rows){});
-      //connection.query(rate_qry_w, function(err, rows){});
-      //connection.query(rate_qry_m, function(err, rows){});
-      //connection.query(rate_qry_s, function(err, rows){});
+      connection.query(rate_qry_d, function(err, rows){});
+      connection.query(rate_qry_w, function(err, rows){});
+      connection.query(rate_qry_m, function(err, rows){});
+      connection.query(rate_qry_s, function(err, rows){});
     }
   }
 });
