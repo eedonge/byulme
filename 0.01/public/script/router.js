@@ -46,12 +46,11 @@ define(function(require) {
 
 				//Facebook Init
 				BmFaceBook.auth('bm_fb_auth', bm.getUserID(), (bm.getUserType() === "A") ? true : false) ;
-				
+
 			}
 		},
 
 		rankRoute: function(menuId) {
-				console.log('render start');
 			require(["cardListView"], function(cardListView) {
 				menuId = menuId || 'newly'; //메뉴아이디가 없다면 최근 리스트로
 				if(cardListView['menuId'] === menuId) return;

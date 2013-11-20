@@ -1,7 +1,8 @@
 exports.get_query = function(operation, params){
 
 	var _query = "";
-
+	console.log('ok:' + operation);
+	console.log('ok:' + params.curMaxIndex);
 	switch (operation)
 	{
 		case "GET_MOVIE_MAKE": //Movie Encoding 완료 확인
@@ -19,7 +20,7 @@ exports.get_query = function(operation, params){
 			_query = _query + " from bmdb.bm_facebook_auth ";
 			_query = _query + " where uid = '" + params.uid + "' ) rst ";
 			break;
-		case "SET_REG_STAR_INFO": //Star 신청 정보 
+		case "SET_REG_STAR_INFO": //Star 신청 정보
 			_query = "INSERT INTO bmdb.bm_user_star ";
 			_query = _query + "(uid, ";
 			_query = _query + "pf_img_url, ";
@@ -31,7 +32,7 @@ exports.get_query = function(operation, params){
 			_query = _query + "'" + params.uid + "', '" + params.pf_img_url + "', '" + params.alias + "', '" + params.intro + "', '" + params.path + "', null) ";
 			break;
 
-		case "SET_USER_TYPE_FOR_STAR": //User type을 Star로 수정 
+		case "SET_USER_TYPE_FOR_STAR": //User type을 Star로 수정
 			_query = "UPDATE bmdb.bm_user_mast set type = 'S' where uid = '" + params.uid + "' ";
 			break;
 
@@ -47,41 +48,35 @@ exports.get_query = function(operation, params){
 			break;
 
 		case "SET_AUTH": //회원가입 인증
-			_query = "update bmdb.bm_user_mast set auth = 'Y'  where auth = '" + params.auth + "' ";			
+			_query = "update bmdb.bm_user_mast set auth = 'Y'  where auth = '" + params.auth + "' ";
 			break;
 
-		case "GET_USER_INFO_AUTH": //회원정보 
-			_query = "select uid, email, type from bmdb.bm_user_mast where auth = '" + params.auth + "' ";			
+		case "GET_USER_INFO_AUTH": //회원정보
+			_query = "select uid, email, type from bmdb.bm_user_mast where auth = '" + params.auth + "' ";
 			break;
 
-		case "GET_LOGIN": //로그인 
+		case "GET_LOGIN": //로그인
 			_query = "select uid, email, type from bmdb.bm_user_mast where email = '" + params.email + "' and pw = '" + params.pass + "' and auth = 'Y' ";
 			break;
 		case "GET_NEWLY"://newly
-			_query = "select	a.rownum";
-			_query = _query + "		,a.cid";
-			_query = _query + "		,b.uid";
-			_query = _query + "		,a.type";
-			_query = _query + "		,b.alias";
-			_query = _query + "		,b.pf_img_url";
-			_query = _query + "		,a.mast_url";
-			_query = _query + "		,a.mast_thumb_url";
-			_query = _query + " from	(";
-			_query = _query + "		select	@RNUM := @RNUM + 1 AS rownum, a.*";
-			_query = _query + "		from	bmdb.bm_card_mast a,";
-			_query = _query + "		( SELECT @RNUM := 0 ) R";
-			_query = _query + "		order by date desc";
-			_query = _query + "		) a,";
-			_query = _query + "		bmdb.bm_user_star b";
-			_query = _query + " where	a.uid = b.uid";
-			_query = _query + " and		rownum between " + params.curMaxIndex + " + 1 and " + params.curMaxIndex + " + 20";
-			console.log(_query);
+			_query = "call bmdb.bm_newlyCardList_select("+ params.curMaxIndex +")";
+			break;
+		case "GET_SEASON"://season"
+			_query = "call bmdb.bm_rankCardList_select('S', "+ params.curMaxIndex +")";
+			break;
+		case "GET_MONTHLY"://MONTHLY"
+			_query = "call bmdb.bm_rankCardList_select('M', "+ params.curMaxIndex +")";
+			break;
+		case "GET_WEEKLY"://weekly"
+			_query = "call bmdb.bm_rankCardList_select('W', "+ params.curMaxIndex +")";
+			break;
+		case "GET_DAILY"://daily"
+			_query = "call bmdb.bm_rankCardList_select('D', "+ params.curMaxIndex +")";
 			break;
 		default:
 			_query = "select 'TEST' from dual";
 			break;
 	}
-
 	return _query;
 
 };
@@ -97,13 +92,13 @@ exports.fb_query = function(operation, params){
 			_query = _query + "on duplicate key ";
 			_query = _query + "update token='" + params.token + "',  expires='" + params.expires + "', last_date=sysdate() ";
 			break;
-		case "GET_TOKEN": //Facebook Token Select 
+		case "GET_TOKEN": //Facebook Token Select
 			_query = "select token from bmdb.bm_facebook_auth where uid = '" + params.uid + "' ";
 			break;
 		default:
 			_query = "";
 			break;
-	}	
+	}
 	return _query;
 }
 
