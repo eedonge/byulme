@@ -54,6 +54,16 @@ exports.get_query = function(operation, params){
 			_query = "select uid, email, type from bmdb.bm_user_mast where auth = '" + params.auth + "' ";			
 			break;
 
+		case "GET_USER_PROF_INFO": //회원 프로필 정보 
+
+			_query = " select a.email, a.type, b.pf_img_url, b.alias ";
+			_query = _query + "	from bmdb.bm_user_mast a ";
+			_query = _query + "	left join bmdb.bm_user_star b ";
+			_query = _query + "	on a.uid = b.uid ";
+			_query = _query + "	where a.uid = '" + params.uid + "' ";
+
+			break;
+
 		case "GET_LOGIN": //로그인 
 			_query = "select uid, email, type from bmdb.bm_user_mast where email = '" + params.email + "' and pw = '" + params.pass + "' and auth = 'Y' ";
 			break;

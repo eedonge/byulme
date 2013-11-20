@@ -44,6 +44,12 @@ define(function(require) {
 					});
 				}
 
+				//User Profile Setting
+				/*
+				$.get('/bmdb/GET_USER_PROF_INFO?uid=' + bm.getUserID(), function(data){
+
+				});*/
+
 				//Facebook Init
 				BmFaceBook.auth('bm_fb_auth', bm.getUserID(), (bm.getUserType() === "A") ? true : false) ;
 				
