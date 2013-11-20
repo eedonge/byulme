@@ -77,7 +77,7 @@ pool.getConnection(function(err, connection){
       {masturl : '120274857', mastthumburl : 'files/music/common.png', pType : 'SD'},
       {masturl : '120039664', mastthumburl : 'files/music/common.png', pType : 'SD'},
       {masturl : '120083255', mastthumburl : 'files/music/common.png', pType : 'SD'},
-      {masturl : '120774303', mastthumburl : 'hfiles/music/common.png', pType : 'SD'},
+      {masturl : '120774303', mastthumburl : 'files/music/common.png', pType : 'SD'},
       {masturl : 'files/' + userStarPath + '/1.jpg' , mastthumburl : 'files/' + userStarPath + '/1.jpg', pType : 'IMG'},
       {masturl : 'files/' + userStarPath + '/2.jpg' , mastthumburl : 'files/' + userStarPath + '/2.jpg', pType : 'IMG'},
       {masturl : 'files/' + userStarPath + '/3.jpg' , mastthumburl : 'files/' + userStarPath + '/3.jpg', pType : 'IMG'},
