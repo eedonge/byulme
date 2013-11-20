@@ -1,0 +1,32 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`bmmast`@`%` PROCEDURE `bm_rankCardList_select`(IN rankType VARCHAR(1))
+BEGIN
+	select	a.rownum
+			,a.rate_avg
+			,a.rate_count
+			,a.date
+			,a.cid		
+			,b.uid		
+			,a.type		
+			,b.alias,b.pf_img_url		
+			,a.mast_url		
+			,a.mast_thumb_url 
+	from	(		select	@RNUM := @RNUM + 1 AS rownum, 
+							a.*		
+					from	(	select	b.rate_avg, a.*	
+								from	bmdb.bm_card_mast a,
+										bmdb.bm_card_rate b
+								where	a.cid = b.cid
+								and		b.type = rankType
+								order by b.rate_avg desc, a.rate_count desc, a.date desc ) a,	
+							( 	SELECT @RNUM := 0 ) R
+					order by rownum		) a,
+			bmdb.bm_user_star b 
+	where	a.uid = b.uid 
+	and		rownum between 0 + 1 and 0 + 20;
+END

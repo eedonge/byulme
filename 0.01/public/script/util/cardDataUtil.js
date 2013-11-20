@@ -7,10 +7,12 @@ define(function(require){
 		var list = {};
 		var i = 0;
 		var byulmeHost = "http://14.49.42.89";
-
 		$.get('/bmdb/GET_' + id.toUpperCase() + '?curMaxIndex=' + limit, function(data){
-			for(i = 0; i < data.length; i++) {
+			if( Object.prototype.toString.call( data ) === '[object Array]' ) {
+			    data = data[0];
+			}
 
+			for(i = 0; i < data.length; i++) {
 				var srcParam = "";
 				var thumbParam = "";
 				switch (data[i].type) {
@@ -44,7 +46,6 @@ define(function(require){
 					'mast_thumb_url':thumbParam
 				}
 			}
-
 			callback && callback(list);
 		});
 	};

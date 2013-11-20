@@ -119,10 +119,12 @@ define(
 			for(sId in list) {
 				cardElem = board.filter('[data-starId="' + sId + '"]');
 				if (cardElem.length > 0) {	//이전 리스트에 해당 카드가 있다면
+					console.log('same:' + sId);
 					var card = new Card();
 					cardElem.html($(card.template(list[sId])).html());	//이전 리스트의 해당 카드를 새로운 리스트의 같은 카드로 변경 (랭킹 정보등 갱신을 위해)
 					cardElem.attr('data-menuId',this.menuId);			//해당 카드의 menuId 변경
 				} else {	//이전 리스트에 해당 카드가 없다면 랭킹에 추가한다.
+					console.log('diff:' + sId);
 					var card = new Card();
 					tmpTemplate += card.template(list[sId]);
 				}
@@ -143,6 +145,7 @@ define(
 			this.maxRank = 0;
 			var that = this;
 			$(window).scrollTop(0)
+			console.log(id);
 			cardDataUtil.cardData(id, this.maxRank, function(list){
 				that.updateCardList(list);
 				that.maxRank = 20;

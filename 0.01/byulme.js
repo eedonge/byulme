@@ -86,7 +86,7 @@ app.get('/bmdb/:operation', function(req, res){
 		connection.query(dbcontroller.get_query(req.params.operation, req.query), function(err, rows){
 			res.send(rows);
       if(connection){
-        connection.release();  
+        connection.release();
       }
 		});
 	});
