@@ -110,12 +110,12 @@ pool.getConnection(function(err, connection){
     for(var j = 0; j< 100; j++){
       var result = Math.floor(Math.random() * 40); // 0 ~ 40
 
-      var datediff = Math.floor(Math.random() * 100); 
+      
       //Card Mast
       var cardCid = new Date().getTime() + "" + i + "" + j;
       var rateCount = Math.floor(Math.random() * 100); // 0 ~ 100명
       var card_mast_qry = " insert into bmdb.bm_card_mast (cid, uid, rate_count, type, date, mast_url, mast_thumb_url) ";
-      card_mast_qry = card_mast_qry + " values ('" + cardCid + "', '" + userId + "', '" + rateCount + "', '" + cardData[result].pType + "', DATE_ADD(sysdate(), INTERVAL -" + datediff + " DAY) , '" + cardData[result].masturl + "', '" + cardData[result].mastthumburl + "' ) ";
+      card_mast_qry = card_mast_qry + " values ('" + cardCid + "', '" + userId + "', '" + rateCount + "', '" + cardData[result].pType + "', sysdate(), '" + cardData[result].masturl + "', '" + cardData[result].mastthumburl + "' ) ";
       
       connection.query(card_mast_qry, function(err, rows){});
 
@@ -124,8 +124,9 @@ pool.getConnection(function(err, connection){
         
         var tmpNUserIdx = Math.floor(Math.random() * 100); // 0 ~ 100
         var tmpCardRate = Math.floor(Math.random() * 3) + 1; // 1 ~ 4
-
-        var card_rate_qry = " insert into bmdb.bm_user_card (uid, cid, rate) values ('" + nUserArr[tmpNUserIdx] + "',  '" +  cardCid + "', '" + tmpCardRate + "' )";  
+        var datediff = Math.floor(Math.random() * 100); 
+        
+        var card_rate_qry = " insert into bmdb.bm_user_card (uid, cid, rate, date) values ('" + nUserArr[tmpNUserIdx] + "',  '" +  cardCid + "', '" + tmpCardRate + "', DATE_ADD(sysdate(), INTERVAL -" + datediff + " DAY) )";  
 
         connection.query(card_rate_qry, function(err, rows){});
 
@@ -136,10 +137,10 @@ pool.getConnection(function(err, connection){
       var rate_qry_m = " insert into bmdb.bm_card_rate (cid, type, rate_avg, type_date) values ('" +  cardCid + "', 'M', '" +  (Math.round(Math.random() * 3 * 100) / 100) + "', date_format(date_add(now(), interval -" + result + " day),'%Y%m%d')) ";
       var rate_qry_s = " insert into bmdb.bm_card_rate (cid, type, rate_avg, type_date) values ('" +  cardCid + "', 'S', '" +  (Math.round(Math.random() * 3 * 100) / 100) + "', date_format(date_add(now(), interval -" + result + " day),'%Y%m%d')) ";
       
-      connection.query(rate_qry_d, function(err, rows){});
-      connection.query(rate_qry_w, function(err, rows){});
-      connection.query(rate_qry_m, function(err, rows){});
-      connection.query(rate_qry_s, function(err, rows){});
+      //connection.query(rate_qry_d, function(err, rows){});
+      //connection.query(rate_qry_w, function(err, rows){});
+      //connection.query(rate_qry_m, function(err, rows){});
+      //connection.query(rate_qry_s, function(err, rows){});
     }
   }
 });
